@@ -1,0 +1,2 @@
+CREATE DATABASE attendence_application_db;
+USE attendence_application_db;
