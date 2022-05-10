@@ -59,3 +59,40 @@ CREATE TABLE admin
     contact INT,
     password VARCHAR(255)
 );
+
+CREATE TABLE class
+(
+    classId INT IDENTITY(1,1) PRIMARY KEY,
+    mode VARCHAR(12) CHECK(mode IN ('face to face', 'blended', 'online')),
+    type VARCHAR(255),
+    duration TIME,
+    starttime TIME,
+    grName VARCHAR(255),
+    grLevel TINYINT,
+    progId INT FOREIGN KEY REFERENCES programs
+);
+
+CREATE TABLE room
+(
+    moduleId INT FOREIGN KEY REFERENCES modules,
+    l_username INT FOREIGN KEY REFERENCES lecturer,
+    classId INT FOREIGN KEY REFERENCES class
+)
+
+CREATE TABLE groups
+(
+    grName VARCHAR(255),
+    grLevel TINYINT,
+    progId INT FOREIGN KEY REFERENCES programs
+);
+
+CREATE TABLE attendance
+(
+    studId INT FOREIGN KEY REFERENCES students,
+    date DATE,
+    classId INT FOREIGN KEY REFERENCES class,
+    presence VARCHAR(12) CHECK (presence IN ('present', 'absent')),
+    week TINYINT,
+    semester TINYINT,
+    status VARCHAR(9) CHECK (status IN ('postponed', 'cancelled', 'completed'))
+);
