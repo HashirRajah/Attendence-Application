@@ -13,7 +13,7 @@ CREATE TABLE modules
     name VARCHAR(255) UNIQUE
 );
 
-CREATE TABLE programs
+create TABLE programs
 (
     progId INT IDENTITY(1,1) PRIMARY KEY,
     name VARCHAR(255) UNIQUE,
@@ -95,4 +95,9 @@ CREATE TABLE attendance
     week TINYINT,
     semester TINYINT,
     status VARCHAR(9) CHECK (status IN ('postponed', 'cancelled', 'completed'))
+);
+
+CREATE TABLE blabsadasdasdla
+(
+    name varchar(1)
 );
