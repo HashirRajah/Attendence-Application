@@ -19,7 +19,7 @@ CREATE TABLE programs
     name VARCHAR(255) UNIQUE,
     progType VARCHAR(255) UNIQUE,
     deptId INT FOREIGN KEY REFERENCES department,
-    degreeType VARCHAR(255) CHECK(degreeType IN ('BSc', 'MSc', 'PHd'))
+    degreeType VARCHAR(255) CHECK(degreeType IN ('BSc', 'MSc', 'PhD'))
 );
 
 CREATE TABLE students
@@ -84,6 +84,7 @@ CREATE TABLE groups
     grName VARCHAR(255),
     grLevel TINYINT,
     progId INT FOREIGN KEY REFERENCES programs
+        PRIMARY KEY (grName,grLevel)
 );
 
 CREATE TABLE attendance
