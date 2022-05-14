@@ -75,7 +75,7 @@ CREATE TABLE class
 CREATE TABLE room
 (
     moduleId INT FOREIGN KEY REFERENCES modules,
-    l_username INT FOREIGN KEY REFERENCES lecturer,
+    l_username VARCHAR(255) FOREIGN KEY REFERENCES lecturer,
     classId INT FOREIGN KEY REFERENCES class
 )
 
