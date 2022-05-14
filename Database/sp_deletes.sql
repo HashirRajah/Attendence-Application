@@ -45,7 +45,7 @@ END;
 GO;
 
 CREATE PROCEDURE sp_delete_lecturer
-    @pk INT(20)
+    @pk VARCHAR(255)
 AS
 BEGIN
 
@@ -56,7 +56,7 @@ END;
 GO;
 
 CREATE PROCEDURE sp_delete_admin
-    @pk INT(20)
+    @pk VARCHAR(255)
 AS
 BEGIN
 
@@ -79,7 +79,7 @@ GO;
 
 CREATE PROCEDURE sp_delete_room
     @fkMod INT(20),
-    @fkL_username INT(20),
+    @fkL_username VARCHAR(255),
     @fkClass INT(20)
 AS
 BEGIN

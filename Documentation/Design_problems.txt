@@ -1,0 +1,3 @@
+//Attendence table
+Problem => Redundant data
+Find an improvement to the attendence table.
