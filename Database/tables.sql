@@ -37,7 +37,7 @@ CREATE TABLE students
 
 CREATE TABLE lecturer
 (
-    l_username INT IDENTITY(1,1) PRIMARY KEY,
+    l_username VARCHAR(255) PRIMARY KEY,
     fname VARCHAR(255),
     lname VARCHAR(255),
     gender CHAR(1) CHECK(gender IN ('M', 'F')),
@@ -50,7 +50,7 @@ CREATE TABLE lecturer
 
 CREATE TABLE admin
 (
-    a_username INT IDENTITY(1,1) PRIMARY KEY,
+    a_username VARCHAR(255) PRIMARY KEY,
     fname VARCHAR(255),
     lname VARCHAR(255),
     gender CHAR(1) CHECK(gender IN ('M', 'F')),
