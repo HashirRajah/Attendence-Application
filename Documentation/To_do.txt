@@ -1,1 +1,3 @@
 1.Add PK for room and (attendance?) table.
+2.Add date of birth attribute for all users in database
+3.Make approprite changes to database
