@@ -7,6 +7,7 @@ import variables.Variables;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import styles.*;
 
 public class StartPage extends JPanel implements ActionListener {
     //
@@ -21,7 +22,7 @@ public class StartPage extends JPanel implements ActionListener {
     // timer
     private Timer timer;
 
-    public StartPage(Color bg, Color fg) {
+    public StartPage(Theme theme) {
         super();
         // instantiating vars
         accountIcon = new ImageIcon("AttendanceApp/images/account.png");
@@ -32,7 +33,7 @@ public class StartPage extends JPanel implements ActionListener {
         imageLabel2 = new JLabel();
         imageLabel3 = new JLabel();
         loginLabel = new JPanel();
-        login = new ButtonStyle1(Variables.DEFAULT, Color.BLACK, 4, "Login", 100, 60);
+        login = new ButtonStyle1(theme, Color.BLACK, 4, "Login", 100, 60);
         timer = new Timer(200, this);
         //
         timer.start();
@@ -68,14 +69,14 @@ public class StartPage extends JPanel implements ActionListener {
         textLabel.setVerticalTextPosition(JLabel.CENTER);
         textLabel.setVerticalAlignment(JLabel.CENTER);
         textLabel.setHorizontalAlignment(JLabel.CENTER);
-        textLabel.setForeground(fg);
+        textLabel.setForeground(theme.getContentColor());
         textLabel.setFont(new Font("Arial", Font.PLAIN, 50));
         //
         this.setLayout(new BorderLayout());
-        this.setBackground(bg);
+        this.setBackground(theme.getMainColor());
 
         // login label
-        loginLabel.setBackground(bg);
+        loginLabel.setBackground(theme.getMainColor());
         loginLabel.setPreferredSize(new Dimension(this.getWidth(), 100));
         loginLabel.add(login);
 

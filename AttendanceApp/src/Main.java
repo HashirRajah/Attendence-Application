@@ -1,7 +1,11 @@
 import variables.Variables;
+import App_Version.Configuration;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        AppFrame frame = new AppFrame("App", Variables.DEFAULT);
+        // run all setups
+        Configuration.populateAppData();
+        //
+        AppFrame frame = new AppFrame(Variables.appData.get("Name"), Variables.DEFAULT);
     }
 }

@@ -3,10 +3,12 @@ package variables;
 //imports
 import java.awt.*;
 import styles.Theme;
+import java.util.HashMap;
+import App_Version.Configuration;
 
 public class Variables {
     // application data
-    public static String[] appData = new String[] {};
+    public static HashMap<String, String> appData = new HashMap<String, String>();
 
     // frame attributes
     // dimensions

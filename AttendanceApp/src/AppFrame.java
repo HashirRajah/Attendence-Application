@@ -1,4 +1,6 @@
 import java.awt.*;
+
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import styles.Theme;
 import variables.*;
@@ -7,15 +9,18 @@ public class AppFrame extends JFrame {
     // main components
     private MenuSideBar menu;
     private MainPanel mainPanel;
+    private ImageIcon logo;
 
     public AppFrame(String title, Theme theme) {
         super();
         // instantiate variables
         menu = new MenuSideBar(theme.getMenuColor());
-        mainPanel = new MainPanel(theme.getMainColor(), theme.getContentColor());
+        mainPanel = new MainPanel(theme);
+        logo = new ImageIcon("AttendanceApp/images/logo.png");
         //
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
+        this.setIconImage(logo.getImage());
         // this.setLocationRelativeTo(null);
         this.setLayout(new BorderLayout());
         this.setTitle(title);
