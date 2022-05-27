@@ -39,7 +39,7 @@ public class StartPage extends JPanel implements ActionListener {
         timer.start();
         //
         imageLabel.setIcon(accountIcon);
-        imageLabel.setForeground(Color.BLACK);
+        imageLabel.setForeground(theme.getContentColor());
         imageLabel.setFont(new Font("Arial", Font.BOLD, 80));
         imageLabel.setText("Easy.");
         imageLabel.setHorizontalTextPosition(JLabel.CENTER);
@@ -48,7 +48,7 @@ public class StartPage extends JPanel implements ActionListener {
         imageLabel.setHorizontalAlignment(JLabel.CENTER);
         //
         imageLabel2.setIcon(attendanceIcon);
-        imageLabel2.setForeground(Color.BLACK);
+        imageLabel2.setForeground(theme.getContentColor());
         imageLabel2.setFont(new Font("Arial", Font.BOLD, 50));
         imageLabel2.setText("Fast.");
         imageLabel2.setHorizontalTextPosition(JLabel.CENTER);
@@ -57,7 +57,7 @@ public class StartPage extends JPanel implements ActionListener {
         imageLabel2.setHorizontalAlignment(JLabel.CENTER);
         //
         imageLabel3.setIcon(icon);
-        imageLabel3.setForeground(Color.BLACK);
+        imageLabel3.setForeground(theme.getContentColor());
         imageLabel3.setFont(new Font("Arial", Font.BOLD, 50));
         imageLabel3.setText("Reliable.");
         imageLabel3.setHorizontalTextPosition(JLabel.CENTER);
