@@ -1,3 +1,6 @@
+package gui;
+
+//imports
 import javax.swing.JPanel;
 import java.awt.*;
 import variables.*;

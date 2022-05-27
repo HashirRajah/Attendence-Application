@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import styles.*;
+import gui.*;
 
 public class StartPage extends JPanel implements ActionListener {
     //
@@ -79,6 +80,11 @@ public class StartPage extends JPanel implements ActionListener {
         loginLabel.setBackground(theme.getMainColor());
         loginLabel.setPreferredSize(new Dimension(this.getWidth(), 100));
         loginLabel.add(login);
+
+        // login button
+        login.addActionListener(e -> {
+            MainPanel.cl.show(AppFrame.mainPanel, "classes");
+        });
 
         // adding components
         this.add(imageLabel, BorderLayout.CENTER);

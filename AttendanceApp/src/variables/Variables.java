@@ -4,7 +4,8 @@ package variables;
 import java.awt.*;
 import styles.Theme;
 import java.util.HashMap;
-import App_Version.Configuration;
+
+import app_version.Configuration;
 
 public class Variables {
     // application data
@@ -26,5 +27,5 @@ public class Variables {
     public static final Font DEFAULT_BUTTON_FONT = new Font("Arial", Font.BOLD, 20);
 
     // main pages
-    public static String[] pages = new String[] { "start" };
+    public static String[] pages = new String[] { "start", "classes" };
 }

@@ -1,5 +1,7 @@
-import java.awt.*;
+package gui;
 
+//imports
+import java.awt.*;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import styles.Theme;
@@ -8,7 +10,7 @@ import variables.*;
 public class AppFrame extends JFrame {
     // main components
     private MenuSideBar menu;
-    private MainPanel mainPanel;
+    public static MainPanel mainPanel;
     private ImageIcon logo;
 
     public AppFrame(String title, Theme theme) {
@@ -29,6 +31,6 @@ public class AppFrame extends JFrame {
         // this.setPreferredSize(Toolkit.getDefaultToolkit().getScreenSize());
         this.getContentPane().setBackground(Variables.FRAME_BG);
         this.add(this.menu, BorderLayout.WEST);
-        this.add(this.mainPanel, BorderLayout.CENTER);
+        this.add(mainPanel, BorderLayout.CENTER);
     }
 }
