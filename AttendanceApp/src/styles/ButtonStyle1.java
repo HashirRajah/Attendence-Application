@@ -23,7 +23,7 @@ public class ButtonStyle1 extends JButton {
         this.setBackground(theme.getMenuColor());
         this.setForeground(theme.getFontColor());
         this.setFont(Variables.DEFAULT_BUTTON_FONT);
-        this.setHorizontalTextPosition(JButton.CENTER);
+        // this.setHorizontalTextPosition(JButton.CENTER);
         this.setVerticalTextPosition(JButton.CENTER);
 
     }

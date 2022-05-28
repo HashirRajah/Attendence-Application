@@ -41,7 +41,7 @@ public class StartPage extends JPanel implements ActionListener {
         //
         imageLabel.setIcon(accountIcon);
         imageLabel.setForeground(theme.getContentColor());
-        imageLabel.setFont(new Font("Arial", Font.BOLD, 80));
+        imageLabel.setFont(new Font("consolas", Font.PLAIN, 80));
         imageLabel.setText("Easy.");
         imageLabel.setHorizontalTextPosition(JLabel.CENTER);
         imageLabel.setVerticalTextPosition(JLabel.BOTTOM);
@@ -50,7 +50,7 @@ public class StartPage extends JPanel implements ActionListener {
         //
         imageLabel2.setIcon(attendanceIcon);
         imageLabel2.setForeground(theme.getContentColor());
-        imageLabel2.setFont(new Font("Arial", Font.BOLD, 50));
+        imageLabel2.setFont(new Font("consolas", Font.PLAIN, 50));
         imageLabel2.setText("Fast.");
         imageLabel2.setHorizontalTextPosition(JLabel.CENTER);
         imageLabel2.setVerticalTextPosition(JLabel.BOTTOM);
@@ -59,7 +59,7 @@ public class StartPage extends JPanel implements ActionListener {
         //
         imageLabel3.setIcon(icon);
         imageLabel3.setForeground(theme.getContentColor());
-        imageLabel3.setFont(new Font("Arial", Font.BOLD, 50));
+        imageLabel3.setFont(new Font("consolas", Font.PLAIN, 50));
         imageLabel3.setText("Reliable.");
         imageLabel3.setHorizontalTextPosition(JLabel.CENTER);
         imageLabel3.setVerticalTextPosition(JLabel.BOTTOM);
@@ -71,7 +71,7 @@ public class StartPage extends JPanel implements ActionListener {
         textLabel.setVerticalAlignment(JLabel.CENTER);
         textLabel.setHorizontalAlignment(JLabel.CENTER);
         textLabel.setForeground(theme.getContentColor());
-        textLabel.setFont(new Font("Arial", Font.PLAIN, 50));
+        textLabel.setFont(new Font("consolas", Font.PLAIN, 50));
         //
         this.setLayout(new BorderLayout());
         this.setBackground(theme.getMainColor());
@@ -83,7 +83,8 @@ public class StartPage extends JPanel implements ActionListener {
 
         // login button
         login.addActionListener(e -> {
-            MainPanel.cl.show(AppFrame.mainPanel, "classes");
+            timer.stop();
+            MainPanel.cl.show(AppFrame.mainPanel, "settings");
         });
 
         // adding components

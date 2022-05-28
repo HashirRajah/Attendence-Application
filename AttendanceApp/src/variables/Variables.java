@@ -5,8 +5,6 @@ import java.awt.*;
 import styles.Theme;
 import java.util.HashMap;
 
-import app_version.Configuration;
-
 public class Variables {
     // application data
     public static HashMap<String, String> appData = new HashMap<String, String>();
@@ -24,8 +22,10 @@ public class Variables {
 
     // fonts
     // button fonts
-    public static final Font DEFAULT_BUTTON_FONT = new Font("Arial", Font.BOLD, 20);
+    public static final Font DEFAULT_BUTTON_FONT = new Font("consolas", Font.BOLD, 20);
+    public static final Font PAGES_TITLE = new Font("consolas", Font.PLAIN, 50);
+    public static final Font SETTINGS_FONT = new Font("consolas", Font.PLAIN, 30);
 
     // main pages
-    public static String[] pages = new String[] { "start", "classes" };
+    public static String[] pages = new String[] { "start", "classes", "settings" };
 }
