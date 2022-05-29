@@ -16,7 +16,7 @@ public class AppFrame extends JFrame {
     public AppFrame(String title, Theme theme) {
         super();
         // instantiate variables
-        menu = new MenuSideBar(theme.getMenuColor());
+        menu = new MenuSideBar(theme);
         mainPanel = new MainPanel(theme);
         logo = new ImageIcon("AttendanceApp/images/logo.png");
         //

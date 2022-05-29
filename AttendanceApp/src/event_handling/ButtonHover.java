@@ -1,0 +1,66 @@
+package event_handling;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.border.Border;
+
+import styles.SidebarButton;
+
+import java.awt.*;
+
+public class ButtonHover {
+
+    public static void HoverEffect(Color entered, Color exited, JButton b) {
+        b.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                evt.getComponent().setBackground(entered);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                evt.getComponent().setBackground(exited);
+            }
+
+        });
+    }
+
+    /*
+     * static void Button1(JButton b) {
+     * b.addMouseListener(new java.awt.event.MouseAdapter() {
+     * 
+     * public void mouseClicked(java.awt.event.MouseEvent evt) {
+     * evt.getComponent().setBackground(Color.ORANGE);
+     * setActive(SidebarButton.buttons);
+     * }
+     * 
+     * });
+     * 
+     * }
+     */
+
+    /*
+     * static void Border(Border entered, Border exited, JButton b) {
+     * b.addMouseListener(new java.awt.event.MouseAdapter() {
+     * public void mouseEntered(java.awt.event.MouseEvent evt) {
+     * ((JComponent) evt.getComponent()).setBorder(entered);
+     * }
+     * 
+     * public void mouseExited(java.awt.event.MouseEvent evt) {
+     * ((JComponent) evt.getComponent()).setBorder(exited);
+     * }
+     * 
+     * });
+     * 
+     * }
+     */
+    /*
+     * public static void setActive(ToolbarButton[] t) {
+     * for (int i = 0; i < t.length; i++) {
+     * if (t[i].getText() != Variables.playing) {
+     * t[i].setBackground(Variables.LEATHER);
+     * }
+     * }
+     * }
+     */
+}
