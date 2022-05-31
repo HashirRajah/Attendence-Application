@@ -7,6 +7,7 @@ import variables.*;
 import javax.swing.border.Border;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import event_handling.*;
 
 public class SidebarButton extends JButton {
 
@@ -28,6 +29,9 @@ public class SidebarButton extends JButton {
         this.setVerticalTextPosition(JButton.BOTTOM);
         // icon
         this.setIcon(icon);
+        // hover effect
+        ButtonHover.HoverEffect(theme.getHoverColor(), theme.getMenuColor(), theme.getFontColor(),
+                theme.getFontColor(), this);
 
     }
 

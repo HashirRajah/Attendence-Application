@@ -1,25 +1,26 @@
 package event_handling;
 
+//imports
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.border.Border;
-
 import styles.SidebarButton;
-
 import java.awt.*;
 
 public class ButtonHover {
 
-    public static void HoverEffect(Color entered, Color exited, JButton b) {
+    public static void HoverEffect(Color entered, Color exited, Color fgEntered, Color fgExited, JButton b) {
         b.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 evt.getComponent().setBackground(entered);
+                evt.getComponent().setForeground(fgEntered);
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 evt.getComponent().setBackground(exited);
+                evt.getComponent().setForeground(fgExited);
             }
 
         });

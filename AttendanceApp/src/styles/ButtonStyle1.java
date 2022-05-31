@@ -6,6 +6,7 @@ import java.awt.*;
 import variables.*;
 import javax.swing.border.Border;
 import javax.swing.BorderFactory;
+import event_handling.*;
 
 public class ButtonStyle1 extends JButton {
     //
@@ -25,6 +26,9 @@ public class ButtonStyle1 extends JButton {
         this.setFont(Variables.DEFAULT_BUTTON_FONT);
         // this.setHorizontalTextPosition(JButton.CENTER);
         this.setVerticalTextPosition(JButton.CENTER);
+        // hover effect
+        ButtonHover.HoverEffect(theme.getFontColor(), theme.getMenuColor(), theme.getMenuColor(), theme.getFontColor(),
+                this);
 
     }
 }

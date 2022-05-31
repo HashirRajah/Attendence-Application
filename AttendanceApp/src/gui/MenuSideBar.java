@@ -30,7 +30,6 @@ public class MenuSideBar extends JPanel {
         for (int i = 0; i < 5; i++) {
             //
             sideButton.add(new SidebarButton(theme, this.buttonText[i], Variables.iconFilePath[i]));
-            ButtonHover.HoverEffect(Variables.HoverColor, theme.getMenuColor(), sideButton.get(i));
             this.add(sideButton.get(i));
             // adding action listenners
         }

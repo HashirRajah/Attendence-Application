@@ -14,13 +14,11 @@ public class Variables {
         public static final int MIN_WIDTH = 1200, MIN_HEIGHT = 675;// 16:9 aspect ratio
         // colors
         public static final Color FRAME_BG = new Color(202, 239, 209);
-        // Hover color
-        public static final Color HoverColor = new Color(28, 28, 27);
 
         // all themes
         // default theme
         public static final Theme DEFAULT = new Theme(Color.DARK_GRAY, Color.WHITE, new Color(245, 245, 245),
-                        Color.BLACK,
+                        Color.BLACK, new Color(28, 28, 27),
                         "Default");
 
         // fonts

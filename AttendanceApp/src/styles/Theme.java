@@ -5,14 +5,15 @@ import java.awt.*;
 
 public class Theme {
     //
-    private Color menuColor, fontColor, mainColor, contentColor;
+    private Color menuColor, fontColor, mainColor, contentColor, hoverColor;
     private String name;
 
-    public Theme(Color menu, Color font, Color main, Color content, String name) {
+    public Theme(Color menu, Color font, Color main, Color content, Color hover, String name) {
         this.menuColor = menu;
         this.fontColor = font;
         this.mainColor = main;
         this.contentColor = content;
+        this.hoverColor = hover;
         this.name = name;
     }
 
@@ -30,6 +31,10 @@ public class Theme {
 
     public Color getContentColor() {
         return this.contentColor;
+    }
+
+    public Color getHoverColor() {
+        return this.hoverColor;
     }
 
     public String getName() {
