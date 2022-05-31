@@ -29,7 +29,7 @@ public class Variables {
         public static final Font SIDE_BUTTON_FONT = new Font("consolas", Font.BOLD, 15);
 
         // main pages
-        public static String[] pages = new String[] { "start", "classes", "settings" };
+        public static String[] pages = new String[] { "start", "classes", "settings", "login" };
 
         // menu icons
         public static String[] iconFilePath = new String[] { "AttendanceApp/images/settingsIcon/home.png",
