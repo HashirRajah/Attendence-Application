@@ -84,7 +84,7 @@ public class StartPage extends JPanel implements ActionListener {
         // login button
         login.addActionListener(e -> {
             timer.stop();
-            MainPanel.cl.show(AppFrame.mainPanel, "settings");
+            MainPanel.cl.show(AppFrame.mainPanel, "login");
         });
 
         // adding components

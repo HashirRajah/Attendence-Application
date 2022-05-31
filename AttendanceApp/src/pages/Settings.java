@@ -30,8 +30,6 @@ public class Settings extends JPanel {
         title.setFont(Variables.PAGES_TITLE);
         title.setVerticalAlignment(JLabel.CENTER);
         title.setHorizontalAlignment(JLabel.CENTER);
-        title.setVerticalTextPosition(JLabel.CENTER);
-        title.setHorizontalTextPosition(JLabel.RIGHT);
         //
         this.setBackground(theme.getMainColor());
         this.setLayout(new BorderLayout());

@@ -1,66 +1,77 @@
 package pages;
 
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 //imports
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
 import java.awt.*;
 import variables.*;
 import styles.*;
 import java.util.ArrayList;
 import event_handling.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
-public class LoginPage extends JPanel{
-    
+public class LoginPage extends JPanel {
+    //
+    private CenteredTextLabel username, password, title;
+    //
+    private JTextField user_text;
+    private JPasswordField pass_text;
+    //
+    private JButton login_button, forgot_password;
+    //
+    private JPanel loginContents, stylingPanels[];
+    //
+    private String[] positions = new String[] { BorderLayout.EAST, BorderLayout.WEST, BorderLayout.SOUTH };
 
-    private final int LOGIN_HEIGHT =  Variables. MIN_HEIGHT;
-    private final int LOGIN_WIDTH =   Variables. MIN_WIDTH - 150;
-
-    JLabel username;
-    JLabel password;
-
-    JTextField user_text;
-    JPasswordField pass_text;
-
-    JButton login_button;
-    JButton forgot_password;
-    
-
-
-    public LoginPage(Theme theme){
+    public LoginPage(Theme theme) {
         super();
-        //this.setLayout(new GridLayout(5, 1, 0, 10));
-    
-        //this.setPreferredSize(new Dimension(this.LOGIN_WIDTH, this.LOGIN_HEIGHT));
+        this.setLayout(new BorderLayout());
         this.setBackground(theme.getMainColor());
-
-
-        //this.setLayout(new GridLayout(3, 1, 0, 10));
-
-        this.username = new JLabel("Username");
-        this.password = new JLabel("Password");
-
+        // instantiating vars
+        title = new CenteredTextLabel("Login", theme.getContentColor(), Variables.PAGES_TITLE);
+        loginContents = new JPanel();
+        this.username = new CenteredTextLabel("Username", theme.getContentColor(), Variables.PAGES_TITLE);
+        this.password = new CenteredTextLabel("Password", theme.getContentColor(), Variables.PAGES_TITLE);
         this.user_text = new JTextField();
         this.pass_text = new JPasswordField();
-
         this.login_button = new JButton("Login");
         this.forgot_password = new JButton("Forgot Password");
-
-        this.setVisible(true);
-
-        this.add(username);
-        this.add(password);
-        this.add(user_text);
-        this.add(pass_text);
-        this.add(login_button);
-        this.add(forgot_password);
-
+        // title
+        title.setPreferredSize(new Dimension(this.getWidth(), 100));
+        // login contents
+        setUpLoginContents(theme);
+        // adding components
+        this.add(title, BorderLayout.NORTH);
+        this.add(loginContents, BorderLayout.CENTER);
+        setUpStylingPanels(theme);
     }
 
-  
+    private void setUpLoginContents(Theme theme) {
+        this.loginContents.setBackground(theme.getMainColor());
+        this.loginContents.setLayout(new GridLayout(5, 1, 0, 10));
+        // addings components to login contents
+        this.loginContents.add(this.username);
+        this.loginContents.add(user_text);
+    }
+
+    private void setUpStylingPanels(Theme theme) {
+        this.stylingPanels = new JPanel[3];
+        for (int i = 0; i < stylingPanels.length; i++) {
+            stylingPanels[i] = new JPanel();
+            stylingPanels[i].setBackground(theme.getMainColor());
+        }
+
+        // set size
+        stylingPanels[0].setPreferredSize(new Dimension(100, this.getHeight()));
+        stylingPanels[1].setPreferredSize(new Dimension(100, this.getHeight()));
+        stylingPanels[2].setPreferredSize(new Dimension(this.getWidth(), 100));
+
+        for (int i = 0; i < stylingPanels.length; i++) {
+            this.add(stylingPanels[i], this.positions[i]);
+        }
+    }
+
 }
