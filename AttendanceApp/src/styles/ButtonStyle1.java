@@ -21,14 +21,23 @@ public class ButtonStyle1 extends JButton {
         this.setText(text);
         this.setFocusable(false);
         this.setBorder(border);
-        this.setBackground(theme.getMenuColor());
-        this.setForeground(theme.getFontColor());
+        this.setBackground(theme.getButtonColor());
+        this.setForeground(theme.getMenuColor());
         this.setFont(Variables.DEFAULT_BUTTON_FONT);
         // this.setHorizontalTextPosition(JButton.CENTER);
         this.setVerticalTextPosition(JButton.CENTER);
         // hover effect
-        ButtonHover.HoverEffect(theme.getFontColor(), theme.getMenuColor(), theme.getMenuColor(), theme.getFontColor(),
+       // ButtonHover.HoverEffect(theme.getFontColor(), theme.getMenuColor(), theme.getMenuColor(), theme.getFontColor(),
+        //        this);
+
+
+       // public static void HoverEffect(Color entered, Color exited, Color fgEntered, Color fgExited, JButton b) 
+
+        ButtonHover.HoverEffect(theme.getMenuColor(), theme.getButtonColor(),   theme.getFontColor(), theme.getMenuColor(),
                 this);
+
+
+
 
     }
 }
