@@ -15,7 +15,7 @@ public class ButtonStyle1 extends JButton {
     public ButtonStyle1(Theme theme, Color borderColor, int borderThickness, String text, int width, int height) {
         super();
         // instantiating vars
-        border = BorderFactory.createLineBorder(borderColor, borderThickness, true);
+        border = BorderFactory.createLineBorder(borderColor, borderThickness, false);
         //
         this.setPreferredSize(new Dimension(width, height));
         this.setText(text);
@@ -27,17 +27,9 @@ public class ButtonStyle1 extends JButton {
         // this.setHorizontalTextPosition(JButton.CENTER);
         this.setVerticalTextPosition(JButton.CENTER);
         // hover effect
-       // ButtonHover.HoverEffect(theme.getFontColor(), theme.getMenuColor(), theme.getMenuColor(), theme.getFontColor(),
-        //        this);
-
-
-       // public static void HoverEffect(Color entered, Color exited, Color fgEntered, Color fgExited, JButton b) 
-
-        ButtonHover.HoverEffect(theme.getMenuColor(), theme.getButtonColor(),   theme.getFontColor(), theme.getMenuColor(),
+        ButtonHover.HoverEffect(theme.getMenuColor(), theme.getButtonColor(), theme.getFontColor(),
+                theme.getMenuColor(),
                 this);
-
-
-
 
     }
 }

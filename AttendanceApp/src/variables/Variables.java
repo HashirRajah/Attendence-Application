@@ -75,7 +75,7 @@ public class Variables {
   // fonts
   // button fonts
   public static final Font DEFAULT_BUTTON_FONT = new Font("consolas", Font.BOLD, 20);
-  public static final Font PAGES_TITLE = new Font("consolas", Font.BOLD, 60);
+  public static final Font PAGES_TITLE = new Font("consolas", Font.PLAIN, 60);
   public static final Font SETTINGS_FONT = new Font("consolas", Font.PLAIN, 30);
   public static final Font SIDE_BUTTON_FONT = new Font("consolas", Font.BOLD, 15);
 

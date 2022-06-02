@@ -5,14 +5,14 @@ import javax.swing.*;
 import styles.*;
 import java.awt.*;
 import variables.*;
+import gui.*;
 
 public class Settings extends JPanel {
     //
     private JLabel title;
-    private JPanel allSettings, stylingPanels[];
+    private JPanel allSettings;
     private SettingsButtonStyle[] settingsBtn;
     private String[] settingsList = new String[] { "Themes >", "Fonts >", "Account >" };
-    private String[] positions = new String[] { BorderLayout.EAST, BorderLayout.WEST, BorderLayout.SOUTH };
 
     public Settings(Theme theme) {
         super();
@@ -39,7 +39,7 @@ public class Settings extends JPanel {
         // adding components
         this.add(title, BorderLayout.NORTH);
         this.add(allSettings, BorderLayout.CENTER);
-        setUpPanels(theme);
+        StylingPanel.setUpStylingPanels(theme, this, 150, 150);
     }
 
     private void setUpSettings(Theme theme) {
@@ -51,23 +51,6 @@ public class Settings extends JPanel {
             settingsBtn[i] = new SettingsButtonStyle(theme, theme.getMenuColor(), 3, this.settingsList[i]);
             this.allSettings.add(settingsBtn[i]);
             // adding action listenners
-        }
-    }
-
-    private void setUpPanels(Theme theme) {
-        this.stylingPanels = new JPanel[3];
-        for (int i = 0; i < stylingPanels.length; i++) {
-            stylingPanels[i] = new JPanel();
-            stylingPanels[i].setBackground(theme.getMainColor());
-        }
-
-        // set size
-        stylingPanels[0].setPreferredSize(new Dimension(150, this.getHeight()));
-        stylingPanels[1].setPreferredSize(new Dimension(150, this.getHeight()));
-        stylingPanels[2].setPreferredSize(new Dimension(this.getWidth(), 150));
-
-        for (int i = 0; i < stylingPanels.length; i++) {
-            this.add(stylingPanels[i], this.positions[i]);
         }
     }
 }

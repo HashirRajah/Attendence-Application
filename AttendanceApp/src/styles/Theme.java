@@ -46,6 +46,7 @@ public class Theme {
     public Color getHoverColor() {
         return this.hoverColor;
     }
+
     public Color getButtonColor() {
         return this.buttonColor;
     }
