@@ -64,6 +64,14 @@ public class Variables {
       "Candy",
       new Color(230, 78, 139));
 
+  public static final Theme MIDNIGHT_RED = new Theme(new Color(48, 3, 3),
+      new Color(130, 59, 59),
+      new Color(97, 31, 31),
+      Color.WHITE,
+      new Color(130, 59, 59),
+      "Midnight_red",
+      new Color(130, 59, 59));
+
   // fonts
   // button fonts
   public static final Font DEFAULT_BUTTON_FONT = new Font("consolas", Font.BOLD, 20);
