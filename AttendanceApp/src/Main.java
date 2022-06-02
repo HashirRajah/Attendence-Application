@@ -9,9 +9,7 @@ public class Main {
         Configuration.populateAppData();
         // DatabaseConnection.dbConnect();
         //
-        AppFrame frame = new AppFrame(Variables.appData.get("Name"), Variables.BLUEBERRY);
-
-        
+        AppFrame frame = new AppFrame(Variables.appData.get("Name"), Variables.BUMBLEBEE);
 
     }
 }
