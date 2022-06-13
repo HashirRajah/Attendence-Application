@@ -10,6 +10,7 @@ import gui.*;
 public class ClassesList extends JScrollPane {
     //
     private ClassPanel allClasses;
+    private ClassButton classButton;
 
     public ClassesList(Theme theme) {
         super();
@@ -45,14 +46,14 @@ public class ClassesList extends JScrollPane {
             this.add(infoLabel, BorderLayout.NORTH);
             this.add(listOfClasses, BorderLayout.CENTER);
             StylingPanel.setUpStylingPanels(theme, this, 50, 50);
-            addClasses(listOfClasses);
+            addClasses(theme, listOfClasses);
         }
 
-        private void addClasses(JPanel panel) {
+        private void addClasses(Theme theme, JPanel panel) {
             for (int i = 0; i < 9; i++) {
-                JButton button = new JButton("Class" + i);
-                button.setPreferredSize(new Dimension(100, 100));
-                panel.add(button);
+                classButton = new ClassButton(theme, Variables.classText[i]);
+                classButton.setPreferredSize(new Dimension(100, 100));
+                panel.add(classButton);
             }
         }
     }
