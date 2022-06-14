@@ -22,6 +22,6 @@ public class Validations {
 
     // password strength
     public static boolean passwordStrength(String password) {
-        return Pattern.matches("^[^\n]{8,}$", "password");
+        return Pattern.matches("^[^\n]{8,}$", password);
     }
 }
