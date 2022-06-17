@@ -4,7 +4,7 @@ package backEnd;
 import java.util.ArrayList;
 
 public class Classes {
-     
+
      private int id;
      private String mode;
      private String type;
@@ -12,8 +12,8 @@ public class Classes {
      private String duration;
      private static int nextId;
      private Module module;
-     private ArrayList<StudentAttendance> attendance;
      private ArrayList<Lecturer> lecturer;
+     private StudentAttendance attendance;
 
      public Classes(int id, String mode, String type, String startTime, String duration) {
           this.id = id;
