@@ -1,3 +1,14 @@
 1.Add PK for room and (attendance?) table.
 2.Add date of birth attribute for all users in database
 3.Make approprite changes to database
+
+//changes to make in db
+1.change moduleId -> module_code varchar in modules
+2.add date_of_birth: date in all users
+3.add enroll table date, studId(fk), module_code(fk)
+4.add pk in room table
+5.create table settings theme: varchar
+//
+6.modify stored procedures
+7.populate with data
+

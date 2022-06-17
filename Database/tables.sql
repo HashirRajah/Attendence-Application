@@ -32,7 +32,7 @@ CREATE TABLE students
     email VARCHAR(255) CHECK(email LIKE '%___@___%'),
     contact INT,
     progId INT FOREIGN KEY REFERENCES programs,
-    password VARCHAR(255)
+    passwordHash VARCHAR(255)
 );
 
 CREATE TABLE lecturer
@@ -89,11 +89,19 @@ CREATE TABLE groups
 
 CREATE TABLE attendance
 (
-    studId INT FOREIGN KEY REFERENCES students,
+    id INT IDENTITY(1,1) PRIMARY KEY,
     date DATE,
     classId INT FOREIGN KEY REFERENCES class,
-    presence VARCHAR(12) CHECK (presence IN ('present', 'absent')),
     week TINYINT,
     semester TINYINT,
     status VARCHAR(9) CHECK (status IN ('postponed', 'cancelled', 'completed'))
 );
+
+-- CREATE TABLE student_attendance
+-- (
+--     student_id INT FOREIGN KEY REFERENCES students,
+--     presence VARCHAR(12) CHECK(presence IN('present', 'absent')),
+-- );
+
+
+
