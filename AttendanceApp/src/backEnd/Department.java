@@ -9,7 +9,8 @@ public class Department {
 	private String name;
 	private static int nextId;
 	private ArrayList<Student> listOfStudents;
-	private ArrayList<Lecturer> listofLecturer;
+	private ArrayList<Lecturer> listOfLecturer;
+	private ArrayList<Department> listOfDepartment;
 
 	public Department(int id, String name) {
 		this.id = id;

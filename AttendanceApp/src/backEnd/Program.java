@@ -10,8 +10,9 @@ public class Program {
 	private String type;
 	private static int nextId;
 	private ArrayList<Student> listOfStudents;
-	private ArrayList<Module> modules;
+	private ArrayList<Module> listOfModules;
 	private ArrayList<Group> listOfGroup;
+	private Department department;
 
 	public Program(int id, String name, String type) {
 		this.id = id;

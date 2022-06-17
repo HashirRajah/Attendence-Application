@@ -6,10 +6,10 @@ import gui.*;
 public class Main {
     public static void main(String[] args) throws Exception {
         // run all setups
-        Configuration.populateAppData();
+         Configuration.populateAppData();
         //  DatabaseConnection.dbConnect();
         //
-        AppFrame frame = new AppFrame(Variables.appData.get("Name"), Variables.BLUEBERRY);
+         AppFrame frame = new AppFrame(Variables.appData.get("Name"), Variables.BLUEBERRY);
 
     }
 }
