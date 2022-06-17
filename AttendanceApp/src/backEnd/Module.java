@@ -8,6 +8,9 @@ public class Module {
      private String moduleCode;
      private String name;
      private ArrayList<Student> studentsEnrolled;
+     private ArrayList<Program> programs;
+     private ArrayList<Lecturer> lectures;
+     private ArrayList<Classes> classes;
 
      public Module(String moduleCode, String name) {
           this.moduleCode = moduleCode;
