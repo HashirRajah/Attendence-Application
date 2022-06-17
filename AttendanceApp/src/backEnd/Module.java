@@ -1,9 +1,13 @@
 package backEnd;
 
+//imports
+import java.util.ArrayList;
+
 public class Module {
 
      private String moduleCode;
      private String name;
+     private ArrayList<Student> studentsEnrolled;
 
      public Module(String moduleCode, String name) {
           this.moduleCode = moduleCode;
@@ -27,10 +31,10 @@ public class Module {
      }
 
      public boolean checkName(String name) {
-          
+
           boolean isSame = false;
-          
-          //codes to check names
+
+          // codes to check names
 
           return isSame;
      }

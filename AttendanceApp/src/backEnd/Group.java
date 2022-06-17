@@ -1,9 +1,13 @@
 package backEnd;
 
+//imports
+import java.util.ArrayList;
+
 public class Group {
 
     private int level;
     private String name;
+    private ArrayList<Student> listOfStudents;
 
     public Group(int level, String name) {
         this.level = level;
