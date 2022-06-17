@@ -8,7 +8,7 @@ public class Student extends User {
     private static int nextId;
     private Department dept;
     private Program programOfStudy;
-    private ArrayList<Enroll> modulesEnrolled;
+    private ArrayList<Enroll> listOfmodulesEnrolled;
     private Group group;
 
     // methods

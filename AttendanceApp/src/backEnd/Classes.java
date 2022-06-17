@@ -14,6 +14,7 @@ public class Classes {
      private Module module;
      private ArrayList<Lecturer> lecturer;
      private StudentAttendance attendance;
+     private Group group;
 
      public Classes(int id, String mode, String type, String startTime, String duration) {
           this.id = id;

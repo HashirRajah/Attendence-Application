@@ -8,6 +8,8 @@ public class Group {
     private int level;
     private String name;
     private ArrayList<Student> listOfStudents;
+    private ArrayList<Classes> listOfClasses;
+    private Program program;
 
     public Group(int level, String name) {
         this.level = level;

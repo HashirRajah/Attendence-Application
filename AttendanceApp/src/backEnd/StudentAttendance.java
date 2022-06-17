@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class StudentAttendance {
     private String presence;
     private Classes classes;
-    private ArrayList<Attendance> listAttendance;
+    private ArrayList<Attendance> listOfAttendance;
 
     // constructor
     public StudentAttendance(String presence) {
