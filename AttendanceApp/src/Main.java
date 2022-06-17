@@ -9,7 +9,7 @@ public class Main {
         Configuration.populateAppData();
         // DatabaseConnection.dbConnect();
         //
-        AppFrame frame = new AppFrame(Variables.appData.get("Name"), Variables.JUNGLE_FURY);
+        AppFrame frame = new AppFrame(Variables.appData.get("Name"), Variables.BLUEBERRY);
 
     }
 }
