@@ -51,6 +51,9 @@ public class Settings extends JPanel {
             settingsBtn[i] = new SettingsButtonStyle(theme, theme.getMenuColor(), 3, this.settingsList[i]);
             this.allSettings.add(settingsBtn[i]);
             // adding action listenners
+            settingsBtn[i].addActionListener(e -> {
+                MainPanel.cl.show(AppFrame.mainPanel, "theme-settings");
+            });
         }
     }
 }

@@ -7,21 +7,22 @@ import java.awt.*;
 
 public class ThemeSettingPage extends JPanel {
 
-    // private String[] tNames = new String[] {"uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve"};
-    ThemeSettingPage() {
+    // private String[] tNames = new String[] {"uno", "dos", "tres", "cuatro",
+    // "cinco", "seis", "siete", "ocho", "nueve"};
+    public ThemeSettingPage() {
 
         // JLabel[] themeName = new JLabel[9];
 
         // for(int j = 1; j < 10; j++) {
-        //     themeName[j].setText(tNames[j]);
-        //     this.add(themeName[j]);
+        // themeName[j].setText(tNames[j]);
+        // this.add(themeName[j]);
         // }
 
         this.setLayout(new GridLayout(3, 3, 20, 40));
 
         JButton buttonTheme;
 
-        for(int i = 0; i < 9; i++) {
+        for (int i = 0; i < 9; i++) {
 
             JPanel color1 = new JPanel();
             JPanel color2 = new JPanel();
@@ -31,7 +32,7 @@ public class ThemeSettingPage extends JPanel {
 
             // this.add(new JButton("color" + (i+1)));
             buttonTheme = new JButton();
-            buttonTheme.setLayout(new GridLayout(1,2));
+            buttonTheme.setLayout(new GridLayout(1, 2));
 
             buttonTheme.add(color1);
             buttonTheme.add(color2);
