@@ -9,6 +9,8 @@ public class StudentAttendance {
 
     // constructor
     public StudentAttendance(String presence) {
+        this.presence = presence;
+        this.classes = classes;
 
     }
 
@@ -20,4 +22,14 @@ public class StudentAttendance {
     public String getPresence() {
         return this.presence;
     }
+
+    // Classes
+    public void setClasses(Classes classes) {
+        this.classes = classes;
+    }
+
+    public Classes getClasses() {
+        return this.classes;
+    }
+
 }
