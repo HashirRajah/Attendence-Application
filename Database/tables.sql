@@ -1,4 +1,4 @@
-CREATE DATABASE attendence_application_db;
+CREATE DATABASE attendance_application_db;
 USE attendence_application_db;
 
 CREATE TABLE department
@@ -77,6 +77,7 @@ CREATE TABLE room
     module_code VARCHAR(255) FOREIGN KEY REFERENCES modules,
     l_username VARCHAR(255) FOREIGN KEY REFERENCES lecturer,
     classId INT FOREIGN KEY REFERENCES class
+        PRIMARY KEY (module_code,l_username, classId)
 )
 
 CREATE TABLE groups
@@ -110,8 +111,8 @@ DROP TABLE room
 ALTER TABLE room
 ADD FOREIGN KEY (l_username) REFERENCES lecturer (l_username);
 
-ALTER TABLE room
-ADD PRIMARY KEY (module_code,l_username);
+-- ALTER TABLE room
+-- ADD PRIMARY KEY (module_code,l_username);
 
 ALTER TABLE students
 ADD date_of_birth DATE;
@@ -124,6 +125,7 @@ ADD date_of_birth DATE;
 
 CREATE TABLE setting
 (
+    id INT IDENTITY(1,1) PRIMARY KEY,
     theme VARCHAR(255)
 );
 
@@ -132,6 +134,7 @@ CREATE TABLE enroll
     date DATE,
     studId INT FOREIGN KEY REFERENCES students,
     module_code VARCHAR(255) FOREIGN KEY REFERENCES modules
+        PRIMARY KEY (date, studId, module_code)
 );
 
 
