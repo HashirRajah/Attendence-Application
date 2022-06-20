@@ -9,7 +9,7 @@ CREATE TABLE department
 
 CREATE TABLE modules
 (
-    moduleId INT IDENTITY(1,1) PRIMARY KEY,
+    module_code VARCHAR(255) PRIMARY KEY,
     name VARCHAR(255) UNIQUE
 );
 
@@ -74,7 +74,7 @@ CREATE TABLE class
 
 CREATE TABLE room
 (
-    moduleId INT FOREIGN KEY REFERENCES modules,
+    module_code VARCHAR(255) FOREIGN KEY REFERENCES modules,
     l_username VARCHAR(255) FOREIGN KEY REFERENCES lecturer,
     classId INT FOREIGN KEY REFERENCES class
 )
@@ -103,5 +103,28 @@ CREATE TABLE attendance
 --     presence VARCHAR(12) CHECK(presence IN('present', 'absent')),
 -- );
 
+--Changes
+DROP TABLE modules
+DROP TABLE room
+
+ALTER TABLE room
+ADD FOREIGN KEY (l_username) REFERENCES lecturer (l_username);
+
+ALTER TABLE room
+ADD PRIMARY KEY (module_code,l_username);
+
+ALTER TABLE students
+ADD date_of_birth DATE;
+
+ALTER TABLE lecturer
+ADD date_of_birth DATE;
+
+ALTER TABLE admin
+ADD date_of_birth DATE;
+
+CREATE TABLE setting
+(
+    theme VARCHAR(255)
+);
 
 
