@@ -83,7 +83,7 @@ public class Variables {
         public static final Font LOGIN = new Font("consolas", Font.PLAIN, 30);
 
         // main pages
-        public static String[] pages = new String[] { "start", "classes", "settings", "login" };
+        public static String[] pages = new String[] { "start", "classes", "settings", "login", "theme-settings" };
 
         // menu icons
         public static String[] iconFilePath = new String[] { "AttendanceApp/images/settingsIcon/home.png",
