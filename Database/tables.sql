@@ -127,4 +127,11 @@ CREATE TABLE setting
     theme VARCHAR(255)
 );
 
+CREATE TABLE enroll
+(
+    date DATE,
+    studId INT FOREIGN KEY REFERENCES students,
+    module_code VARCHAR(255) FOREIGN KEY REFERENCES modules
+);
+
 
