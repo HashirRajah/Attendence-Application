@@ -137,4 +137,29 @@ CREATE TABLE enroll
         PRIMARY KEY (date, studId, module_code)
 );
 
+--inserts for users
 
+--student
+
+INSERT INTO students
+VALUES
+    ( 'Khizar', 'Panchoo', 'M', 'Mesnil', 'khizarp06@gmial.com', 59844124, NULL, 'PASSWORD'),
+    ( 'Mayur', 'Mohabeer', 'M', 'Dubreui', 'mayur@gmial.com', 53245354, NULL, 'PASSWORD'),
+    ( 'Hashir', 'Rajah', 'M', 'Beau Bassin', 'hashir@gmial.com', 53424562, NULL, 'PASSWORD');
+
+--Lecturer
+
+INSERT INTO lecturer
+VALUES
+    ( 'Gsathan', 'Gavin' , 'Sathan' , 'M' , 'Quatre Bornes' , 'sathan@gmail.com', 59867432 , 'Full-time', "password" ),
+    ( 'SCheerkoot', 'Sudha' , 'Cheerkoot' , 'F' , 'Quatre Bornes' , 'cheerkoot@gmail.com', 59367432 , 'Full-time', "password" ),
+    ( 'AChutoo', 'Anwar' , 'Chutoo' , 'M' , 'Quatre Bornes' , 'chutoo@gmail.com', 59347432 , 'Full-time', "password" );
+
+
+--Admin
+
+INSERT INTO admin
+VALUES
+    ( 'Admin1', 'John' , 'Smith' , 'M' , 'Port-Louis' , 'admin1@gmail.com', 59834867, "admin" ),
+    ( 'Admin2', 'Harry' , 'Style' , 'M' , 'Port-Louis' , 'admin2@gmail.com', 54334867, "admin" ),
+    ( 'Admin3', 'John' , 'Smith' , 'M' , 'Port-Louis' , 'admin3@gmail.com', 59835367, "admin" );
