@@ -1,5 +1,5 @@
 CREATE DATABASE attendance_application_db;
-USE attendence_application_db;
+USE attendance_application_db;
 
 CREATE TABLE department
 (

@@ -15,33 +15,60 @@ import event_handling.*;
 
 public class ClassButton extends JButton {
 
-    private JLabel bannerLabel;
+    private CenteredTextLabel className;
     private ImageIcon banner;
+    private JPanel p1, p2, p3, p4;
+    private Border border, border2;
 
     public ClassButton(Theme theme, String text) {
         super();
         // instantiating vars
         // bannerLabel = new JLabel();
-        banner = new ImageIcon("AttendanceApp/images/class.jpg");
+        // banner = new ImageIcon("AttendanceApp/images/class.jpg");
         // this.setPreferredSize(new Dimension(width, height));
+        //
+        border = BorderFactory.createLineBorder(theme.getFontColor(), 3, false);
+        border2 = BorderFactory.createLineBorder(theme.getContentColor(), 5, false);
+        p1 = new JPanel();
+        p2 = new JPanel();
+        p3 = new JPanel();
+        p4 = new JPanel();
+        className = new CenteredTextLabel(text, theme.getFontColor(), Variables.THEME_BUTTON_FONT);
+        //
+        p1.setBackground(theme.getMenuColor());
+        p2.setBackground(theme.getContentColor());
+        p3.setBackground(theme.getContentColor());
+        p4.setBackground(theme.getContentColor());
+        //
+        className.setHorizontalAlignment(JLabel.LEFT);
+        className.setVerticalAlignment(JLabel.BOTTOM);
+        p1.add(className);
 
         this.setText(text);
         this.setFocusable(false);
         this.setBackground(theme.getMenuColor());
-        this.setForeground(theme.getFontColor());
-        this.setFont(Variables.SIDE_BUTTON_FONT);
-        this.setBorder(null);
-        this.setHorizontalTextPosition(JButton.CENTER);
-        this.setVerticalTextPosition(JButton.BOTTOM);
+        this.setLayout(new GridLayout(4, 1, 0, 0));
+        // this.setForeground(theme.getFontColor());
+        // this.setFont(Variables.SIDE_BUTTON_FONT);
+        this.setBorder(border);
+        this.add(p1);
+        this.add(p2);
+        this.add(p3);
+        this.add(p4);
+        // this.setHorizontalTextPosition(JButton.CENTER);
+        // this.setVerticalTextPosition(JButton.BOTTOM);
 
         // this.add(bannerLabel);
         // icon
-        this.setIcon(banner);
+        // this.setIcon(banner);
         // bannerLabel.setIcon(banner);
         // hover effect
-        ButtonHover.HoverEffect(theme.getHoverColor(), theme.getMenuColor(), theme.getFontColor(),
-                theme.getFontColor(), this);
+        // ButtonHover.HoverEffect(theme.getHoverColor(), theme.getMenuColor(),
+        // theme.getFontColor(),
+        // theme.getFontColor(), this);
+
+        // event handling
+        ButtonHover.BorderHover(border2, border, this);
 
     }
-
 }

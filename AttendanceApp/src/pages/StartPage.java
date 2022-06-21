@@ -17,7 +17,7 @@ public class StartPage extends JPanel implements ActionListener {
     private JPanel loginLabel;
     private ButtonStyle1 login;
     //
-    private String message = new String("Login or Sign up");
+    private String message = new String("Login or get the f___ out of here");
     private String messageAnimation = new String("");
     private int position = 0;
     // timer
@@ -84,7 +84,7 @@ public class StartPage extends JPanel implements ActionListener {
         // login button
         login.addActionListener(e -> {
             timer.stop();
-            MainPanel.cl.show(AppFrame.mainPanel, "settings");
+            MainPanel.cl.show(AppFrame.mainPanel, "classes");
         });
 
         // adding components

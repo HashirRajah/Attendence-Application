@@ -1,47 +1,57 @@
 package pages;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
+//imports
 import javax.swing.*;
+import gui.*;
 import java.awt.*;
+import styles.*;
+import variables.*;
 
-public class ThemeSettingPage extends JPanel {
+public class ThemeSettingPage extends JScrollPane {
+    // attributes
+    private ThemeSettingPagePanel content;
 
-    // private String[] tNames = new String[] {"uno", "dos", "tres", "cuatro",
-    // "cinco", "seis", "siete", "ocho", "nueve"};
-    public ThemeSettingPage() {
-
-        // JLabel[] themeName = new JLabel[9];
-
-        // for(int j = 1; j < 10; j++) {
-        // themeName[j].setText(tNames[j]);
-        // this.add(themeName[j]);
-        // }
-
-        this.setLayout(new GridLayout(3, 3, 20, 40));
-
-        JButton buttonTheme;
-
-        for (int i = 0; i < 9; i++) {
-
-            JPanel color1 = new JPanel();
-            JPanel color2 = new JPanel();
-
-            color1.setBackground(new Color(255, 0, 0));
-            color2.setBackground(new Color(0, 0, 255));
-
-            // this.add(new JButton("color" + (i+1)));
-            buttonTheme = new JButton();
-            buttonTheme.setLayout(new GridLayout(1, 2));
-
-            buttonTheme.add(color1);
-            buttonTheme.add(color2);
-
-            buttonTheme.setBackground(Color.BLACK);
-
-            this.add(buttonTheme);
-        }
-
+    // methods
+    public ThemeSettingPage(Theme theme) {
+        super();
+        // instantiate vars
+        content = new ThemeSettingPagePanel(theme);
+        this.setViewportView(content);
     }
 
+    public class ThemeSettingPagePanel extends JPanel {
+        // attributes
+        private CenteredTextLabel title;
+        private JPanel allThemes;
+
+        // methods
+        public ThemeSettingPagePanel(Theme theme) {
+            //
+            super();
+            this.setBackground(theme.getMainColor());
+            this.setLayout(new BorderLayout());
+            // instantiating vars
+            title = new CenteredTextLabel("Settings > Theme", theme.getContentColor(), Variables.PAGES_TITLE2);
+            title.setPreferredSize(new Dimension(this.getWidth(), 150));
+            allThemes = new JPanel();
+            // theme list
+            allThemes.setBackground(theme.getMainColor());
+            // calc rows and cols
+            int rows = (Variables.themes.length / 3) + 1;
+            allThemes.setLayout(new GridLayout(rows, 3, 10, 10));
+            // add all themes
+            addThemsList(allThemes, theme);
+            // adding components
+            this.add(title, BorderLayout.NORTH);
+            this.add(allThemes, BorderLayout.CENTER);
+            StylingPanel.setUpStylingPanels(theme, this, 150, 150);
+        }
+
+        private void addThemsList(JPanel panel, Theme theme) {
+            for (int i = 0; i < Variables.themes.length; i++) {
+                ThemeButtonStyle b = new ThemeButtonStyle(Variables.themes[i], theme);
+                panel.add(b);
+            }
+        }
+    }
 }

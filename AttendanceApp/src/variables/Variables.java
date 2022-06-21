@@ -71,22 +71,32 @@ public class Variables {
                         new Color(130, 59, 59),
                         "Midnight_red",
                         new Color(130, 59, 59));
-
+        // array and hashmap of themes
+        public static Theme[] themes = new Theme[] { DEFAULT, MIDNIGHT_RED, CANDY, BLUEBERRY, JUNGLE_FURY, LAVENDER,
+                        BUMBLEBEE };
+        public static HashMap<String, Theme> allThemes = new HashMap<String, Theme>();
+        // active theme
+        public static Theme activeTheme = DEFAULT;
         // fonts
         // button fonts
         public static final Font DEFAULT_BUTTON_FONT = new Font("consolas", Font.BOLD, 20);
         public static final Font PAGES_TITLE = new Font("consolas", Font.PLAIN, 60);
+        public static final Font PAGES_TITLE2 = new Font("consolas", Font.PLAIN, 40);
         public static final Font SETTINGS_FONT = new Font("consolas", Font.PLAIN, 30);
+        public static final Font THEME_BUTTON_FONT = new Font("consolas", Font.PLAIN, 20);
+        public static final Font THEME_BUTTON_FONT2 = new Font("consolas", Font.BOLD, 25);
         public static final Font SIDE_BUTTON_FONT = new Font("consolas", Font.BOLD, 15);
 
         // LOGIN
         public static final Font LOGIN = new Font("consolas", Font.PLAIN, 30);
 
         // main pages
-        public static String[] pages = new String[] { "start", "classes", "settings", "login", "theme-settings" };
+        public static String[] pages = new String[] { "start", "classes", "settings", "login", "theme-settings",
+                        "font-settings", "account-settings" };
 
         // menu icons
-        public static String[] iconFilePath = new String[] { "AttendanceApp/images/settingsIcon/home.png",
+        public static String[] iconFilePath = new String[] { "AttendanceApp/images/settingsIcon/login.png",
+                        "AttendanceApp/images/settingsIcon/home.png",
                         "AttendanceApp/images/settingsIcon/Attendance.png",
                         "AttendanceApp/images/settingsIcon/classes.png",
                         "AttendanceApp/images/settingsIcon/setting.png", "AttendanceApp/images/settingsIcon/back.png" };

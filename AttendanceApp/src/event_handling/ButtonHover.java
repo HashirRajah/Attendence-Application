@@ -40,21 +40,18 @@ public class ButtonHover {
      * }
      */
 
-    /*
-     * static void Border(Border entered, Border exited, JButton b) {
-     * b.addMouseListener(new java.awt.event.MouseAdapter() {
-     * public void mouseEntered(java.awt.event.MouseEvent evt) {
-     * ((JComponent) evt.getComponent()).setBorder(entered);
-     * }
-     * 
-     * public void mouseExited(java.awt.event.MouseEvent evt) {
-     * ((JComponent) evt.getComponent()).setBorder(exited);
-     * }
-     * 
-     * });
-     * 
-     * }
-     */
+    public static void BorderHover(Border entered, Border exited, JButton b) {
+        b.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ((JComponent) evt.getComponent()).setBorder(entered);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ((JComponent) evt.getComponent()).setBorder(exited);
+            }
+        });
+    }
+
     /*
      * public static void setActive(ToolbarButton[] t) {
      * for (int i = 0; i < t.length; i++) {

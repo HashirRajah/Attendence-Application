@@ -31,7 +31,7 @@ public class ClassesList extends JScrollPane {
             infoLabel = new JLabel();
             listOfClasses = new JPanel();
             // list of classes
-            listOfClasses.setLayout(new GridLayout(3, 3, 20, 20));
+            listOfClasses.setLayout(new GridLayout(3, 3, 10, 10));
             listOfClasses.setBackground(theme.getMainColor());
             //
             infoLabel.setText("Classes");
@@ -45,7 +45,7 @@ public class ClassesList extends JScrollPane {
             this.setLayout(new BorderLayout());
             this.add(infoLabel, BorderLayout.NORTH);
             this.add(listOfClasses, BorderLayout.CENTER);
-            StylingPanel.setUpStylingPanels(theme, this, 50, 50);
+            StylingPanel.setUpStylingPanels(theme, this, 30, 20);
             addClasses(theme, listOfClasses);
         }
 

@@ -13,6 +13,7 @@ public class Settings extends JPanel {
     private JPanel allSettings;
     private SettingsButtonStyle[] settingsBtn;
     private String[] settingsList = new String[] { "Themes >", "Fonts >", "Account >" };
+    private String[] settingsPages = new String[] { "theme-settings", "font-settings", "account-settings" };
 
     public Settings(Theme theme) {
         super();

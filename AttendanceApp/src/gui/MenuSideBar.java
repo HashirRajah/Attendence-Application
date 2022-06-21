@@ -15,11 +15,11 @@ public class MenuSideBar extends JPanel {
     //
     private final int WIDTH = 150, HEIGHT = Variables.MIN_HEIGHT;
     private ArrayList<SidebarButton> sideButton;
-    private String[] buttonText = new String[] { "Home", "Attendance", "Classes", "Settings", "Back" };
+    private String[] buttonText = new String[] { "Login", "Home", "Attendance", "Classes", "Settings", "Back" };
 
     public MenuSideBar(Theme theme) {
         super();
-        this.setLayout(new GridLayout(5, 1, 0, 10));
+        this.setLayout(new GridLayout(6, 1, 0, 10));
         this.setPreferredSize(new Dimension(this.WIDTH, this.HEIGHT));
         this.setBackground(theme.getMenuColor());
         setupSideButton(theme);
@@ -27,7 +27,7 @@ public class MenuSideBar extends JPanel {
 
     private void setupSideButton(Theme theme) {
         this.sideButton = new ArrayList<SidebarButton>();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < buttonText.length; i++) {
             //
             sideButton.add(new SidebarButton(theme, this.buttonText[i], Variables.iconFilePath[i]));
             this.add(sideButton.get(i));
