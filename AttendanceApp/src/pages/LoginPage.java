@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import gui.*;
+import db.*;
 
 public class LoginPage extends JPanel {
     //
@@ -41,7 +42,7 @@ public class LoginPage extends JPanel {
         this.setBackground(theme.getMainColor());
         // this.setBackground(Color.DARK_GRAY);
         // instantiating vars
-        title = new CenteredTextLabel("L O G I N", theme.getFontColor(), Variables.PAGES_TITLE);
+        title = new CenteredTextLabel("L O G I N", theme.getContentColor(), Variables.PAGES_TITLE);
         // title
         title.setPreferredSize(new Dimension(this.getWidth(), 150));
         // image
@@ -79,9 +80,12 @@ public class LoginPage extends JPanel {
         pass_text.setBorder(user_text_border);
 
         this.login_button = new ButtonStyle1(theme, Color.GREEN, 0, "Login", 50, 50);
+        login_button.addActionListener(e -> {
+            DatabaseConnection.login(user_text.getText(), String.valueOf(pass_text.getPassword()));
+        });
         // login_button.setBorder(new RoundBtn(15));
         this.forget = new JLabel("Forgot Password?");
-        forget.setForeground(theme.getFontColor());
+        forget.setForeground(theme.getContentColor());
         // forget.setAlignmentX(CENTER_ALIGNMENT);
         forget.setHorizontalAlignment(JLabel.CENTER);
         // login contents

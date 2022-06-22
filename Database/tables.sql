@@ -31,8 +31,7 @@ CREATE TABLE students
     address VARCHAR(255),
     email VARCHAR(255) CHECK(email LIKE '%___@___%'),
     contact INT,
-    progId INT FOREIGN KEY REFERENCES programs,
-    passwordHash VARCHAR(255)
+    progId INT FOREIGN KEY REFERENCES programs
 );
 
 CREATE TABLE lecturer
@@ -44,8 +43,7 @@ CREATE TABLE lecturer
     address VARCHAR(255),
     email VARCHAR(255) CHECK(email LIKE '%___@___%'),
     contact INT,
-    type VARCHAR(255) CHECK(type IN ('Part-time', 'Full-time')),
-    password VARCHAR(255)
+    type VARCHAR(255) CHECK(type IN ('Part-time', 'Full-time'))
 );
 
 CREATE TABLE admin
@@ -57,7 +55,6 @@ CREATE TABLE admin
     address VARCHAR(255),
     email VARCHAR(255) CHECK(email LIKE '%___@___%'),
     contact INT,
-    password VARCHAR(255)
 );
 
 CREATE TABLE class
@@ -78,7 +75,7 @@ CREATE TABLE room
     l_username VARCHAR(255) FOREIGN KEY REFERENCES lecturer,
     classId INT FOREIGN KEY REFERENCES class
         PRIMARY KEY (module_code,l_username, classId)
-)
+);
 
 CREATE TABLE groups
 (
@@ -105,11 +102,11 @@ CREATE TABLE attendance
 -- );
 
 --Changes
-DROP TABLE modules
-DROP TABLE room
+-- DROP TABLE modules
+-- DROP TABLE room
 
-ALTER TABLE room
-ADD FOREIGN KEY (l_username) REFERENCES lecturer (l_username);
+-- ALTER TABLE room
+-- ADD FOREIGN KEY (l_username) REFERENCES lecturer (l_username);
 
 -- ALTER TABLE room
 -- ADD PRIMARY KEY (module_code,l_username);
@@ -129,6 +126,10 @@ CREATE TABLE setting
     theme VARCHAR(255)
 );
 
+INSERT INTO setting
+    (theme)
+VALUES('Default');
+
 CREATE TABLE enroll
 (
     date DATE,
@@ -142,24 +143,48 @@ CREATE TABLE enroll
 --student
 
 INSERT INTO students
+    (fname, lname, gender, address, email, contact, progId, date_of_birth)
 VALUES
-    ( 'Khizar', 'Panchoo', 'M', 'Mesnil', 'khizarp06@gmial.com', 59844124, NULL, 'PASSWORD'),
-    ( 'Mayur', 'Mohabeer', 'M', 'Dubreui', 'mayur@gmial.com', 53245354, NULL, 'PASSWORD'),
-    ( 'Hashir', 'Rajah', 'M', 'Beau Bassin', 'hashir@gmial.com', 53424562, NULL, 'PASSWORD');
+    ( 'Khizar', 'Panchoo', 'M', 'Mesnil', 'khizarp06@gmial.com', 59844124, NULL, '10-10-1999'),
+    ( 'Mayur', 'Mohabeer', 'M', 'Dubreui', 'mayur@gmial.com', 53245354, NULL, '10-10-1990'),
+    ( 'Hashir', 'Rajah', 'M', 'Beau Bassin', 'hashir@gmial.com', 53424562, NULL, '10-10-1990');
 
 --Lecturer
 
 INSERT INTO lecturer
+    (l_username, fname, lname, gender, address, email, contact, [type], date_of_birth)
 VALUES
-    ( 'Gsathan', 'Gavin' , 'Sathan' , 'M' , 'Quatre Bornes' , 'sathan@gmail.com', 59867432 , 'Full-time', "password" ),
-    ( 'SCheerkoot', 'Sudha' , 'Cheerkoot' , 'F' , 'Quatre Bornes' , 'cheerkoot@gmail.com', 59367432 , 'Full-time', "password" ),
-    ( 'AChutoo', 'Anwar' , 'Chutoo' , 'M' , 'Quatre Bornes' , 'chutoo@gmail.com', 59347432 , 'Full-time', "password" );
+    ( 'Gsathan', 'Gavin' , 'Sathan' , 'M' , 'Quatre Bornes' , 'sathan@gmail.com', 59867432 , 'Full-time', '10-10-1990'),
+    ( 'SCheerkoot', 'Sudha' , 'Cheerkoot' , 'F' , 'Quatre Bornes' , 'cheerkoot@gmail.com', 59367432 , 'Full-time', '10-10-1990' ),
+    ( 'AChutoo', 'Anwar' , 'Chutoo' , 'M' , 'Quatre Bornes' , 'chutoo@gmail.com', 59347432 , 'Full-time', '10-10-1990' );
 
 
 --Admin
 
 INSERT INTO admin
+    (a_username, fname, lname, gender, address, email, contact, date_of_birth)
 VALUES
-    ( 'Admin1', 'John' , 'Smith' , 'M' , 'Port-Louis' , 'admin1@gmail.com', 59834867, "admin" ),
-    ( 'Admin2', 'Harry' , 'Style' , 'M' , 'Port-Louis' , 'admin2@gmail.com', 54334867, "admin" ),
-    ( 'Admin3', 'John' , 'Smith' , 'M' , 'Port-Louis' , 'admin3@gmail.com', 59835367, "admin" );
+    ( 'Admin1', 'John' , 'Smith' , 'M' , 'Port-Louis' , 'admin1@gmail.com', 59834867, '10-10-1990'),
+    ( 'Admin2', 'Harry' , 'Style' , 'M' , 'Port-Louis' , 'admin2@gmail.com', 54334867, '10-10-1990'),
+    ( 'Admin3', 'John' , 'Smith' , 'M' , 'Port-Louis' , 'admin3@gmail.com', 59835367, '10-10-1990' );
+
+
+CREATE TABLE users
+(
+    username VARCHAR(255) PRIMARY KEY,
+    passwordHash VARCHAR(255) NOT NULL,
+    userType VARCHAR(10) CHECK(userType IN('admin', 'lecturer', 'student')) NOT NULL
+);
+
+--users--
+INSERT INTO users
+VALUES
+    ( 'Admin1', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918' , 'admin'),
+    ( 'Admin2', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918' , 'admin'),
+    ( 'Admin3', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918' , 'admin'),
+    ( 'AChutoo', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8' , 'lecturer'),
+    ( 'SCheerkoot', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8' , 'lecturer'),
+    ( 'Gsathan', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8' , 'lecturer'),
+    ( '1', 'be64ae89ddd24e225434de95d501711339baeee18f009ba9b4369af27d30d60' , 'student'),
+    ( '2', 'be64ae89ddd24e225434de95d501711339baeee18f009ba9b4369af27d30d60' , 'student'),
+    ( '3', 'be64ae89ddd24e225434de95d501711339baeee18f009ba9b4369af27d30d60' , 'student');

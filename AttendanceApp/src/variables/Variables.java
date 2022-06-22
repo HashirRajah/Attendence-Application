@@ -4,6 +4,7 @@ package variables;
 import java.awt.*;
 import styles.Theme;
 import java.util.HashMap;
+import backEnd.*;
 
 public class Variables {
         // application data
@@ -21,7 +22,7 @@ public class Variables {
         // default theme
         public static final Theme DEFAULT = new Theme(Color.DARK_GRAY, Color.WHITE, new Color(245, 245, 245),
                         Color.BLACK, new Color(28, 28, 27),
-                        "Default");
+                        "Default", Color.BLACK);
 
         // Theme 1
         public static final Theme BUMBLEBEE = new Theme(new Color(13, 14, 15),
@@ -105,5 +106,13 @@ public class Variables {
         public static String[] classText = new String[] { "Algorithm & Complexities", "Object Oriented Programming",
                         "Operating System", "Web-Centric Computing", "Computer Graphics", "Software Engineering",
                         "Programming", "Database Design", "Formal System" };
+
+        // menu
+        public static String[] studentMenu = new String[] {};
+        public static String[] lecturerMenu = new String[] {};
+        public static String[] adminMenu = new String[] {};
+        // login
+        public static boolean loggedIn = false;
+        public static User userLoggedIn;
 
 }
