@@ -66,15 +66,24 @@ public class Variables {
                         new Color(230, 78, 139));
 
         public static final Theme MIDNIGHT_RED = new Theme(new Color(48, 3, 3),
-                        new Color(130, 59, 59),
+                        new Color(245, 245, 245),
                         new Color(97, 31, 31),
                         Color.WHITE,
                         new Color(130, 59, 59),
                         "Midnight_red",
                         new Color(130, 59, 59));
+
+        public static final Theme GREEN = new Theme(new Color(32, 145, 122),
+                        new Color(3, 28, 23),
+                        new Color(16, 156, 112),
+                        Color.WHITE,
+                        new Color(84, 240, 216),
+                        "Green",
+                        new Color(84, 240, 216));
+
         // array and hashmap of themes
         public static Theme[] themes = new Theme[] { DEFAULT, MIDNIGHT_RED, CANDY, BLUEBERRY, JUNGLE_FURY, LAVENDER,
-                        BUMBLEBEE };
+                        BUMBLEBEE, GREEN };
         public static HashMap<String, Theme> allThemes = new HashMap<String, Theme>();
         // active theme
         public static Theme activeTheme = DEFAULT;
