@@ -11,7 +11,7 @@ public class Main {
         Configuration.runSetUp();
         Configuration.menuConfiguration();
         //
-        AppFrame frame = new AppFrame(Variables.appData.get("Name"), Variables.MIDNIGHT_RED);
+        AppFrame frame = new AppFrame(Variables.appData.get("Name"), Variables.activeTheme);
 
     }
 }
