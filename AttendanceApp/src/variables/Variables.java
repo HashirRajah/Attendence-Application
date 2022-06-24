@@ -82,9 +82,17 @@ public class Variables {
                         "Green",
                         new Color(84, 240, 216));
 
+          public static final Theme DEVESH_SPECIAL_THEME = new Theme(new Color(69, 12, 37),
+          new Color(78, 140, 89),
+          new Color(120, 20, 15),
+          Color.WHITE,
+          new Color(200, 10, 100),
+          "Devesh_Special_Theme",
+          new Color(210, 90, 100));
+
         // array and hashmap of themes
         public static Theme[] themes = new Theme[] { DEFAULT, MIDNIGHT_RED, CANDY, BLUEBERRY, JUNGLE_FURY, LAVENDER,
-                        BUMBLEBEE, GREEN };
+                        BUMBLEBEE, GREEN, DEVESH_SPECIAL_THEME };
         public static HashMap<String, Theme> allThemes = new HashMap<String, Theme>();
         // active theme
         public static Theme activeTheme = DEFAULT;
