@@ -11,6 +11,8 @@ import variables.*;
 import styles.*;
 import java.util.ArrayList;
 import event_handling.*;
+import java.awt.event.*;
+import app_version.*;
 
 public class MenuSideBar extends JPanel {
     //
@@ -29,7 +31,8 @@ public class MenuSideBar extends JPanel {
     public void setupSideButton(Theme theme) {
         // remove all buttons before adding new;
         this.removeAll();
-        this.revalidate();
+        // this.revalidate();
+        // validate();
         this.sideButton = new ArrayList<SidebarButton>();
         for (int i = 0; i < Variables.activeMenu.size(); i++) {
             //
@@ -38,7 +41,25 @@ public class MenuSideBar extends JPanel {
             this.add(sideButton.get(i));
             // System.out.println(sideButton.get(i).getText());
             // adding action listenners
+            if (sideButton.get(i).getText().equals("Logout")) {
+                sideButton.get(i).addActionListener(new Logout());
+            }
         }
         this.revalidate();
+        validate();
+        this.repaint();
+    }
+
+    private class Logout implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Variables.loggedIn = false;
+            Variables.userLoggedIn = null;
+            Configuration.menuConfiguration();
+            MainPanel.cl.show(AppFrame.mainPanel, "start");
+            setupSideButton(Variables.activeTheme);
+        }
+
     }
 }

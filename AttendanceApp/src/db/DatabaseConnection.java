@@ -6,6 +6,7 @@ import styles.*;
 import variables.Variables;
 import backEnd.*;
 import gui.AppFrame;
+import gui.MainPanel;
 
 import java.util.ArrayList;
 
@@ -135,6 +136,7 @@ public class DatabaseConnection {
                     if (Variables.userLoggedIn != null) {
                         Configuration.menuConfiguration();
                         AppFrame.menu.setupSideButton(Variables.activeTheme);
+                        MainPanel.cl.show(AppFrame.mainPanel, "settings");
                     }
                     // close all statements
                     stmt.close();

@@ -65,7 +65,7 @@ public class LoginPage extends JPanel {
         // textfield design
         user_text.setBackground(theme.getMenuColor());
         user_text.setForeground(theme.getFontColor());
-        user_text.setFont(new Font("consolas", Font.PLAIN, 15));
+        user_text.setFont(new Font("consolas", Font.BOLD, 20));
         user_text.setCaretColor(theme.getFontColor());
         user_text.setText("JohnDoe99");
 
