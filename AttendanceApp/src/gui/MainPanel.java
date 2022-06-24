@@ -14,7 +14,7 @@ public class MainPanel extends JPanel {
     private StartPage startPage;
     private ClassesList classList;
     private Settings settings;
-    private LoginPage login;
+    public static LoginPage login;
     private ThemeSettingPage themeSettings;
     private FontSettingsPage fontSettings;
     private AccountSettingsPage accountSettings;

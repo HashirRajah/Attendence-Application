@@ -37,6 +37,7 @@ public class DatabaseConnection {
                 Statement update = db_conn.createStatement();
                 // execute update
                 update.executeUpdate(sql);
+                update.close();
                 // System.out.println(x);
             } catch (Exception e) {
                 System.out.println(e);
@@ -141,6 +142,9 @@ public class DatabaseConnection {
                     // close all statements
                     stmt.close();
                     stmt2.close();
+                } else {
+                    MainPanel.login.errorMsg.setVisible(true);
+                    MainPanel.login.repaint();
                 }
             } catch (Exception e) {
                 System.out.println(e);
