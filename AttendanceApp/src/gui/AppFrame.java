@@ -3,13 +3,14 @@ package gui;
 //imports
 import java.awt.*;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import styles.Theme;
 import variables.*;
 
 public class AppFrame extends JFrame {
     // main components
-    private MenuSideBar menu;
+    public static MenuSideBar menu;
     public static MainPanel mainPanel;
     private ImageIcon logo;
 
@@ -33,4 +34,5 @@ public class AppFrame extends JFrame {
         this.add(this.menu, BorderLayout.WEST);
         this.add(mainPanel, BorderLayout.CENTER);
     }
+
 }

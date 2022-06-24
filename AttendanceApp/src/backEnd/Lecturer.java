@@ -10,8 +10,10 @@ public class Lecturer extends User {
     private ArrayList<Classes> listOfClasses;
     private Department department;
 
-    public Lecturer(char gender, String email, String fName, String lName, String addr, String contactNo, String dob) {
-        super(gender, email, fName, lName, addr, contactNo, dob);
+    public Lecturer(String username, char gender, String email, String fName, String lName, String addr,
+            String contactNo, String passwordHash, String dob, String type) {
+        super(username, gender, email, fName, lName, addr, contactNo, passwordHash, dob);
+        this.type = type;
     }
 
     public void setType(String type) {

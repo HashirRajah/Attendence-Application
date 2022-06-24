@@ -5,6 +5,7 @@ import java.awt.*;
 import styles.Theme;
 import java.util.HashMap;
 import backEnd.*;
+import java.util.ArrayList;
 
 public class Variables {
         // application data
@@ -105,11 +106,15 @@ public class Variables {
                         "font-settings", "account-settings" };
 
         // menu icons
-        public static String[] iconFilePath = new String[] { "AttendanceApp/images/settingsIcon/login.png",
-                        "AttendanceApp/images/settingsIcon/home.png",
-                        "AttendanceApp/images/settingsIcon/Attendance.png",
+        public static String[] iconFilePath = new String[] { "AttendanceApp/images/settingsIcon/home.png",
+                        "AttendanceApp/images/settingsIcon/dashboard.png",
                         "AttendanceApp/images/settingsIcon/classes.png",
-                        "AttendanceApp/images/settingsIcon/setting.png", "AttendanceApp/images/settingsIcon/back.png" };
+                        "AttendanceApp/images/settingsIcon/setting.png",
+                        "AttendanceApp/images/settingsIcon/back.png", "AttendanceApp/images/settingsIcon/login.png",
+                        "AttendanceApp/images/settingsIcon/logout.png" };
+        public static HashMap<String, String> menuIcons = new HashMap<String, String>();
+        public static String[] allMenu = new String[] { "Home", "Dashboard", "Classes", "Settings", "Back", "Login",
+                        "Logout" };
 
         // Class Text
         public static String[] classText = new String[] { "Algorithm & Complexities", "Object Oriented Programming",
@@ -117,11 +122,14 @@ public class Variables {
                         "Programming", "Database Design", "Formal System" };
 
         // menu
-        public static String[] studentMenu = new String[] {};
-        public static String[] lecturerMenu = new String[] {};
-        public static String[] adminMenu = new String[] {};
+        public static String[] studentMenu = new String[] { "Home", "Classes", "Settings", "Logout", "Back" };
+        public static String[] lecturerMenu = new String[] { "Home", "Classes", "Settings", "Logout", "Back" };
+        public static String[] adminMenu = new String[] { "Dashboard", "Settings", "Logout", "Back" };
+        public static ArrayList<String> activeMenu;
+
         // login
         public static boolean loggedIn = false;
         public static User userLoggedIn;
+        public static String userType = "";
 
 }

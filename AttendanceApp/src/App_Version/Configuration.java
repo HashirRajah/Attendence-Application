@@ -48,5 +48,34 @@ public class Configuration {
         for (int i = 0; i < Variables.themes.length; i++) {
             Variables.allThemes.put(Variables.themes[i].getName(), Variables.themes[i]);
         }
+        // populate menuIcons
+        for (int i = 0; i < Variables.allMenu.length; i++) {
+            Variables.menuIcons.put(Variables.allMenu[i], Variables.iconFilePath[i]);
+        }
+    }
+
+    public static void menuConfiguration() {
+        Variables.activeMenu = new ArrayList<String>();
+        if (Variables.loggedIn) {
+            switch (Variables.userType) {
+                case "admin":
+                    for (int i = 0; i < Variables.adminMenu.length; i++) {
+                        Variables.activeMenu.add(Variables.adminMenu[i]);
+                    }
+                    break;
+                case "lecturer":
+                    for (int i = 0; i < Variables.lecturerMenu.length; i++) {
+                        Variables.activeMenu.add(Variables.lecturerMenu[i]);
+                    }
+                    break;
+                case "student":
+                    for (int i = 0; i < Variables.studentMenu.length; i++) {
+                        Variables.activeMenu.add(Variables.studentMenu[i]);
+                    }
+                    break;
+            }
+        } else {
+            Variables.activeMenu.add("Login");
+        }
     }
 }

@@ -5,6 +5,11 @@ import java.sql.*;
 import styles.*;
 import variables.Variables;
 import backEnd.*;
+import gui.AppFrame;
+
+import java.util.ArrayList;
+
+import app_version.Configuration;
 
 public class DatabaseConnection {
     static final String URL = new String(
@@ -64,36 +69,79 @@ public class DatabaseConnection {
                     type = result.getString(3);
                     break;
                 }
-                System.out.println(passwd);
+                // System.out.println(passwd);
                 if (PasswordManipulation.validatePassword(password, passwd)) {
                     Variables.loggedIn = true;
+                    // System.out.println("logged in");
                     // sql
                     sql = "SELECT * FROM";
                     //
+                    ResultSet userInfo;
                     switch (type) {
                         case "admin":
                             sql += " admin WHERE a_username = ?;";
-                            PreparedStatement stmtA = db_conn.prepareStatement(sql);
-                            stmtA.setString(1, username);
-                            result = stmtA.executeQuery();
                             break;
                         case "lecturer":
                             sql += " lecturer WHERE l_username = ?;";
-                            PreparedStatement stmtL = db_conn.prepareStatement(sql);
-                            stmtL.setString(1, username);
-                            result = stmtL.executeQuery();
                             break;
                         case "student":
                             sql += " students WHERE studId = ?;";
-                            PreparedStatement stmtS = db_conn.prepareStatement(sql);
-                            stmtS.setInt(1, Integer.parseInt(username));
-                            result = stmtS.executeQuery();
                             break;
                     }
-
+                    //
+                    PreparedStatement stmt2 = db_conn.prepareStatement(sql);
+                    if (type.equals("student")) {
+                        stmt2.setInt(1, Integer.parseInt(username));
+                    } else {
+                        stmt2.setString(1, username);
+                    }
+                    userInfo = stmt2.executeQuery();
+                    //
+                    ArrayList<String> userData = new ArrayList<String>();
+                    //
+                    ResultSetMetaData mtdt = userInfo.getMetaData();
+                    int numColumns = mtdt.getColumnCount();
+                    // System.out.println(numColumns);
+                    while (userInfo.next()) {
+                        for (int i = 1; i <= numColumns; i++) {
+                            userData.add(userInfo.getString(i));
+                            // System.out.println(userInfo.getString(i));
+                        }
+                        break;
+                    }
+                    //
+                    switch (type) {
+                        case "admin":
+                            Variables.userLoggedIn = new Admin(username, userData.get(3).charAt(0), userData.get(5),
+                                    userData.get(1), userData.get(2), userData.get(4), userData.get(6),
+                                    passwd, userData.get(7));
+                            Variables.userType = "admin";
+                            break;
+                        case "lecturer":
+                            Variables.userLoggedIn = new Lecturer(username, userData.get(3).charAt(0), userData.get(5),
+                                    userData.get(1), userData.get(2), userData.get(4),
+                                    userData.get(6), passwd, userData.get(8), userData.get(7));
+                            Variables.userType = "lecturer";
+                            break;
+                        case "student":
+                            Variables.userLoggedIn = new Student(username, userData.get(3).charAt(0),
+                                    userData.get(5), userData.get(1),
+                                    userData.get(2), userData.get(4), userData.get(6),
+                                    passwd, userData.get(8));
+                            Variables.userType = "student";
+                            break;
+                    }
+                    // System.out.println(Variables.userLoggedIn);
+                    if (Variables.userLoggedIn != null) {
+                        Configuration.menuConfiguration();
+                        AppFrame.menu.setupSideButton(Variables.activeTheme);
+                    }
+                    // close all statements
+                    stmt.close();
+                    stmt2.close();
                 }
             } catch (Exception e) {
-
+                System.out.println(e);
             } finally {
                 try {
                     db_conn.close();

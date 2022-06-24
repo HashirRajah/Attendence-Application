@@ -9,6 +9,7 @@ public class Main {
         // run all setups
         Configuration.populateAppData();
         Configuration.runSetUp();
+        Configuration.menuConfiguration();
         //
         AppFrame frame = new AppFrame(Variables.appData.get("Name"), Variables.activeTheme);
 
