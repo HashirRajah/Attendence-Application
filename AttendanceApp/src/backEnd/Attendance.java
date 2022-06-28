@@ -6,9 +6,14 @@ public class Attendance {
     private String date;
     private int week;
     private int semester;
+    private String status;
 
-    public Attendance(int id, String date, int week, int semester) {
-
+    public Attendance(int id, String date, int week, int semester, String status) {
+        this.id = id;
+        this.date= date;
+        this.week = week;
+        this.semester = semester;
+        this.status = status;
     }
 
     public void setId(int id) {
@@ -41,5 +46,13 @@ public class Attendance {
 
     public int getSemester() {
         return this.semester;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getStatus() {
+        return this.status;
     }
 }

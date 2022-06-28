@@ -120,6 +120,8 @@ ADD date_of_birth DATE;
 ALTER TABLE admin
 ADD date_of_birth DATE;
 
+
+
 CREATE TABLE setting
 (
     id INT IDENTITY(1,1) PRIMARY KEY,
@@ -189,15 +191,21 @@ VALUES
     ( '2', 'be64ae89ddd24e225434de95d501711339baeee18f009ba9b4369af27d30d60' , 'student'),
     ( '3', 'be64ae89ddd24e225434de95d501711339baeee18f009ba9b4369af27d30d60' , 'student');
 
+
+-- ALTER TABLE programs 
+-- DROP CONSTRAINT ;
+
+
 INSERT INTO department
-    (deptId, name)
+    ( name)
 VALUES
-    ("Faculty of Information, Communication and Digital Technologies"),
-    ("Faculty of Engineering");
+    ('Faculty of Information, Communication and Digital Technologies'),
+    ('Faculty of Engineering');
 
 INSERT INTO programs
     (name , progType, deptId, degreeType)
 VALUES
-    ("Computer Science", "ajfasd", 1, "BSc"),
-    ("Civil Engineering", "ajfasd", 2, "MSc");
+    ('Computer Science', 'Full Time', 1, 'BSc'),
+    ('Civil Engineering', NULL, 2, 'MSc');
 
+SELECT * FROM programs;
