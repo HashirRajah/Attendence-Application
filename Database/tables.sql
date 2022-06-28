@@ -192,12 +192,38 @@ VALUES
 INSERT INTO department
     (name)
 VALUES
-    ("Faculty of Information, Communication and Digital Technologies"),
-    ("Faculty of Engineering");
+    ('Faculty of Information, Communication and Digital Technologies'),
+    ('Faculty of Engineering');
 
 INSERT INTO programs
     (name , progType, deptId, degreeType)
 VALUES
-    ("Computer Science", "Full time", 1, "BSc"),
-    ("Civil Engineering", "Full time", 2, "MSc");
+    ('Computer Science', 'Part time', 1, 'BSc'),
+    ('Civil Engineering', 'Full time', 2, 'MSc');
+
+INSERT INTO modules
+    (module_code, name)
+VALUES
+    ('ICT2020', 'Object-Oriented-Techniques')
+
+
+INSERT INTO class
+    ( mode, type , duration , starttime , grName, grLevel, progId )
+VALUES
+    ('online', 'Lecture', '2:00', '10:00', 'Group A', 2, 1);
+
+UPDATE students
+SET progId = 1
+WHERE studId = 1;
+
+INSERT INTO groups
+    (grName, grLevel, progId)
+VALUES
+    ('Group A', 2, 1),
+    ('Group B', 2, 1);
+
+INSERT INTO room
+    (module_code, l_username, classId)
+VALUES
+    ('ICT2020', 'AChutoo', 2);
 

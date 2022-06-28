@@ -6,7 +6,6 @@ import java.awt.*;
 
 public class CenteredTextLabel extends JLabel {
 
-    
     //
     public CenteredTextLabel(String text, Color fg, Font font) {
         super();
@@ -18,7 +17,7 @@ public class CenteredTextLabel extends JLabel {
         this.setVerticalAlignment(JLabel.CENTER);
     }
 
-    public CenteredTextLabel( String text, Color fg, Font font, ImageIcon image) {
+    public CenteredTextLabel(String text, Color fg, Font font, ImageIcon image) {
         super();
 
         this.setText(text);
@@ -30,6 +29,11 @@ public class CenteredTextLabel extends JLabel {
         this.setHorizontalTextPosition(JLabel.RIGHT);
         this.setVerticalTextPosition(JLabel.CENTER);
         this.setIconTextGap(20);
-  
+
+    }
+
+    public CenteredTextLabel(String text, Color fg) {
+        this.setText(text);
+        this.setForeground(fg);
     }
 }
