@@ -188,3 +188,16 @@ VALUES
     ( '1', 'be64ae89ddd24e225434de95d501711339baeee18f009ba9b4369af27d30d60' , 'student'),
     ( '2', 'be64ae89ddd24e225434de95d501711339baeee18f009ba9b4369af27d30d60' , 'student'),
     ( '3', 'be64ae89ddd24e225434de95d501711339baeee18f009ba9b4369af27d30d60' , 'student');
+
+INSERT INTO department
+    (deptId, name)
+VALUES
+    ("Faculty of Information, Communication and Digital Technologies"),
+    ("Faculty of Engineering");
+
+INSERT INTO programs
+    (name , progType, deptId, degreeType)
+VALUES
+    ("Computer Science", "ajfasd", 1, "BSc"),
+    ("Civil Engineering", "ajfasd", 2, "MSc");
+
