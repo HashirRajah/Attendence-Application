@@ -31,6 +31,8 @@ public class AttendancePage extends JScrollPane {
         private JPanel moduleDetails;
 
         private JPanel attendanceTable;
+
+        //private JPanel Search;
        
 
         //private JLabel 
@@ -44,6 +46,18 @@ public class AttendancePage extends JScrollPane {
             attendance =  new Attendance(1, "13/02/2022", 3, 2, "present");
 
             title = new JLabel("Attendance");
+
+            attendanceTable =  new JPanel();
+            attendanceTable.setLayout(new GridLayout(10,10,5,5));
+            attendanceTable.set
+
+
+
+
+
+
+
+
             this.add(title);
            
         }
