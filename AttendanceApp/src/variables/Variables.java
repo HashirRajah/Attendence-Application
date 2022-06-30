@@ -6,6 +6,7 @@ import styles.Theme;
 import java.util.HashMap;
 import backEnd.*;
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class Variables {
         // application data
@@ -102,13 +103,13 @@ public class Variables {
                         "Green",
                         new Color(84, 240, 216));
 
-          public static final Theme DEVESH_SPECIAL_THEME = new Theme(new Color(69, 12, 37),
-          new Color(78, 140, 89),
-          new Color(120, 20, 15),
-          Color.WHITE,
-          new Color(200, 10, 100),
-          "Devesh_Special_Theme",
-          new Color(210, 90, 100));
+        public static final Theme DEVESH_SPECIAL_THEME = new Theme(new Color(69, 12, 37),
+                        new Color(78, 140, 89),
+                        new Color(120, 20, 15),
+                        Color.WHITE,
+                        new Color(200, 10, 100),
+                        "Devesh_Special_Theme",
+                        new Color(210, 90, 100));
 
         // array and hashmap of themes
         public static Theme[] themes = new Theme[] { DEFAULT, MIDNIGHT_RED, CANDY, BLUEBERRY, JUNGLE_FURY, LAVENDER,
@@ -160,4 +161,6 @@ public class Variables {
         public static User userLoggedIn;
         public static String userType = "";
 
+        // pages stack
+        public static Stack<String> pagesStack = new Stack<String>();
 }

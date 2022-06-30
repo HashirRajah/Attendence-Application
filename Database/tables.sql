@@ -234,4 +234,43 @@ INSERT INTO room
 VALUES
     ('ICT2020', 'AChutoo', 2);
 
-SELECT * FROM programs;
+SELECT *
+FROM programs;
+
+
+
+---Here
+ALTER TABLE class
+ADD module_code VARCHAR(255) FOREIGN KEY REFERENCES modules;
+
+UPDATE class SET module_code = 'ICT2020' WHERE classId = 1;
+
+ALTER TABLE students
+ADD grName VARCHAR(255);
+
+ALTER TABLE students
+ADD grLevel TINYINT;
+
+UPDATE students SET grName = 'Group A';
+UPDATE students SET grLevel = 2;
+
+CREATE TABLE attendance_1
+(
+    studId INT PRIMARY KEY FOREIGN KEY REFERENCES students,
+    attd_1 VARCHAR(255)
+);
+
+INSERT INTO attendance
+    (date, classId, week, semester, status)
+VALUES('01-01-2022', 1, 1, 1, 'completed');
+
+INSERT INTO enroll
+VALUES('01-01-2022', 1, 'ICT2020'),
+    ('01-01-2022', 2, 'ICT2020'),
+    ('01-01-2022', 3, 'ICT2020');
+
+
+INSERT INTO attendance_1
+VALUES(1, 'present'),
+    (2, 'present'),
+    (3, 'present');

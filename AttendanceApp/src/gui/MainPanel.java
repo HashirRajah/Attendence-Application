@@ -12,13 +12,16 @@ public class MainPanel extends JPanel {
     public static CardLayout cl = new CardLayout();
     // all pages/panels
     private StartPage startPage;
-    private ClassesList classList;
+    public static ClassesList classList;
+    public static ListOfClasses classes;
     private Settings settings;
     public static LoginPage login;
     private ThemeSettingPage themeSettings;
     private FontSettingsPage fontSettings;
     private AccountSettingsPage accountSettings;
-    private  AttendancePage attendance;
+    public static HomePage homePage;
+    private AttendancePage attendance;
+    private AddAttendance addAttendance;
 
     public MainPanel(Theme theme) {
         super();
@@ -30,7 +33,10 @@ public class MainPanel extends JPanel {
         themeSettings = new ThemeSettingPage(theme);
         fontSettings = new FontSettingsPage(theme);
         accountSettings = new AccountSettingsPage(theme);
+        homePage = new HomePage(theme);
         attendance = new AttendancePage(theme);
+        addAttendance = new AddAttendance(theme);
+        classes = new ListOfClasses(theme);
         //
         this.setLayout(cl);
         this.setBackground(theme.getMainColor());
@@ -42,7 +48,10 @@ public class MainPanel extends JPanel {
         this.add(themeSettings, Variables.pages[4]);
         this.add(fontSettings, Variables.pages[5]);
         this.add(accountSettings, Variables.pages[6]);
+        this.add(homePage, "home");
         this.add(attendance, "attendance");
+        this.add(addAttendance, "add attendance");
+        this.add(classes, "list-of-classes");
 
         // show start page
         cl.show(this, Variables.pages[0]);

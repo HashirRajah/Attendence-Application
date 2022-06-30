@@ -1,4 +1,5 @@
 package pages;
+
 import javax.print.AttributeException;
 //imports
 import javax.swing.*;
@@ -13,14 +14,13 @@ import gui.*;
 public class AttendancePage extends JScrollPane {
     //
     private AttendancePanel attendanceBoard;
-    //private ClassButton classButton;
+    // private ClassButton classButton;
 
     public AttendancePage(Theme theme) {
         super();
         // instantiate vars
-         attendanceBoard = new AttendancePanel(theme);
-         this.setViewportView(attendanceBoard);
-
+        attendanceBoard = new AttendancePanel(theme);
+        this.setViewportView(attendanceBoard);
 
     }
 
@@ -45,10 +45,14 @@ public class AttendancePage extends JScrollPane {
 
         
 
+<<<<<<< HEAD
        
+=======
+        // private JPanel Search;
 
-        //private JLabel 
-        
+        // private JLabel
+>>>>>>> 4b73855efa9c4e10db181943933f158c096265c7
+
         private Attendance attendance;
 
         //
@@ -59,7 +63,7 @@ public class AttendancePage extends JScrollPane {
             this.setBackground(theme.getMainColor());
             
             // instantiating vars
-            attendance =  new Attendance(1, "13/02/2022", 3, 2, "present");
+            attendance = new Attendance(1, "13/02/2022", 3, 2, "present");
 
             
             // user_text.setBackground(theme.getMenuColor());
@@ -68,6 +72,7 @@ public class AttendancePage extends JScrollPane {
             // user_text.setCaretColor(theme.getFontColor());
             // user_text.setText("JohnDoe99");
 
+<<<<<<< HEAD
             
 
             //labels
@@ -283,10 +288,16 @@ public class AttendancePage extends JScrollPane {
             this.add(titlePanel, BorderLayout.NORTH );
             this.add(Container, BorderLayout.CENTER);
            
+=======
+            attendanceTable = new JPanel();
+            attendanceTable.setLayout(new GridLayout(10, 10, 5, 5));
+            // attendanceTable.set
+
+            this.add(title);
+
+>>>>>>> 4b73855efa9c4e10db181943933f158c096265c7
         }
 
-        
-     
     }
 }
 

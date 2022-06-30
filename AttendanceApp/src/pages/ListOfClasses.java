@@ -7,32 +7,30 @@ import styles.*;
 import variables.Variables;
 import gui.*;
 import java.util.ArrayList;
-import java.awt.event.*;
-import db.*;
 
-public class ClassesList extends JScrollPane {
+public class ListOfClasses extends JScrollPane {
     //
-    private ClassPanel allClasses;
+    private ClassListPanel allClasses;
 
-    public ClassesList(Theme theme) {
+    public ListOfClasses(Theme theme) {
         super();
         // instantiate vars
-        allClasses = new ClassPanel(theme);
+        allClasses = new ClassListPanel(theme);
         this.setViewportView(allClasses);
     }
 
-    public ClassPanel getAllClasses() {
+    public ClassListPanel getAllClassesList() {
         return this.allClasses;
     }
 
-    public class ClassPanel extends JPanel {
+    public class ClassListPanel extends JPanel {
         //
         private JLabel infoLabel;
         private JPanel listOfClasses;
         private ArrayList<ClassButton> classButtons;
 
         //
-        public ClassPanel(Theme theme) {
+        public ClassListPanel(Theme theme) {
             super();
             // instantiating vars
             infoLabel = new JLabel();
@@ -42,7 +40,7 @@ public class ClassesList extends JScrollPane {
             //
             classButtons = new ArrayList<ClassButton>();
             //
-            infoLabel.setText("Modules");
+            infoLabel.setText("Classes");
             infoLabel.setPreferredSize(new Dimension(this.getWidth(), 150));
             infoLabel.setHorizontalAlignment(JLabel.CENTER);
             infoLabel.setVerticalAlignment(JLabel.CENTER);
@@ -71,30 +69,10 @@ public class ClassesList extends JScrollPane {
                 // classButtons = new ClassButton(theme, Variables.classText[i]);
                 classButtons.get(i).setPreferredSize(new Dimension(100, 100));
                 listOfClasses.add(classButtons.get(i));
-                // adding action listeners
-                classButtons.get(i).addActionListener(new ActionList(classButtons.get(i).getString()));
             }
             this.revalidate();
             validate();
             this.repaint();
-        }
-
-        private class ActionList implements ActionListener {
-            private String module_code;
-
-            public ActionList(String module_code) {
-                super();
-                this.module_code = module_code;
-            }
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-                DatabaseConnection.fetchClassesList(module_code);
-                MainPanel.cl.show(AppFrame.mainPanel, "list-of-classes");
-                Variables.pagesStack.push("list-of-classes");
-            }
-
         }
     }
 }
