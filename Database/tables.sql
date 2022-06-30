@@ -120,6 +120,8 @@ ADD date_of_birth DATE;
 ALTER TABLE admin
 ADD date_of_birth DATE;
 
+
+
 CREATE TABLE setting
 (
     id INT IDENTITY(1,1) PRIMARY KEY,
@@ -188,3 +190,87 @@ VALUES
     ( '1', 'be64ae89ddd24e225434de95d501711339baeee18f009ba9b4369af27d30d60' , 'student'),
     ( '2', 'be64ae89ddd24e225434de95d501711339baeee18f009ba9b4369af27d30d60' , 'student'),
     ( '3', 'be64ae89ddd24e225434de95d501711339baeee18f009ba9b4369af27d30d60' , 'student');
+
+
+-- ALTER TABLE programs 
+-- DROP CONSTRAINT ;
+
+
+INSERT INTO department
+    (name)
+VALUES
+    ('Faculty of Information, Communication and Digital Technologies'),
+    ('Faculty of Engineering');
+
+INSERT INTO programs
+    (name , progType, deptId, degreeType)
+VALUES
+    ('Computer Science', 'Part time', 1, 'BSc'),
+    ('Civil Engineering', 'Full time', 2, 'MSc');
+
+INSERT INTO modules
+    (module_code, name)
+VALUES
+    ('ICT2020', 'Object-Oriented-Techniques')
+
+
+INSERT INTO class
+    ( mode, type , duration , starttime , grName, grLevel, progId )
+VALUES
+    ('online', 'Lecture', '2:00', '10:00', 'Group A', 2, 1);
+
+UPDATE students
+SET progId = 1
+WHERE studId = 1;
+
+INSERT INTO groups
+    (grName, grLevel, progId)
+VALUES
+    ('Group A', 2, 1),
+    ('Group B', 2, 1);
+
+INSERT INTO room
+    (module_code, l_username, classId)
+VALUES
+    ('ICT2020', 'AChutoo', 2);
+
+SELECT *
+FROM programs;
+
+
+
+---Here
+ALTER TABLE class
+ADD module_code VARCHAR(255) FOREIGN KEY REFERENCES modules;
+
+UPDATE class SET module_code = 'ICT2020' WHERE classId = 2;
+
+ALTER TABLE students
+ADD grName VARCHAR(255);
+
+ALTER TABLE students
+ADD grLevel TINYINT;
+
+UPDATE students SET grName = 'Group A';
+UPDATE students SET grLevel = 2;
+
+CREATE TABLE attendance_1
+(
+    studId INT PRIMARY KEY FOREIGN KEY REFERENCES students,
+    attd_1 VARCHAR(255)
+);
+
+INSERT INTO attendance
+    (date, classId, week, semester, status)
+VALUES('01-01-2022', 2, 1, 1, 'completed');
+
+INSERT INTO enroll
+VALUES('01-01-2022', 1, 'ICT2020'),
+    ('01-01-2022', 2, 'ICT2020'),
+    ('01-01-2022', 3, 'ICT2020');
+
+
+INSERT INTO attendance_1
+VALUES(1, 'present'),
+    (2, 'present'),
+    (3, 'present');

@@ -23,6 +23,7 @@ public class LoginPage extends JPanel {
     private ImageIcon profileIcon, lockIcon;
     //
     private JLabel forget;
+    public static JLabel errorMsg;
     //
     private CenteredTextLabel title;
     private CenteredTextLabel username, password;
@@ -78,6 +79,13 @@ public class LoginPage extends JPanel {
         pass_text.setFont(new Font("consolas", Font.PLAIN, 15));
         pass_text.setCaretColor(theme.getFontColor());
         pass_text.setBorder(user_text_border);
+        //
+        errorMsg = new JLabel("Your Cridentials seems to wrong:(");
+        errorMsg.setHorizontalAlignment(JLabel.CENTER);
+        errorMsg.setVerticalAlignment(JLabel.CENTER);
+        errorMsg.setFont(new Font("consolas", Font.BOLD, 20));
+        errorMsg.setForeground(theme.getContentColor());
+        errorMsg.setVisible(false);
 
         this.login_button = new ButtonStyle1(theme, Color.GREEN, 0, "Login", 50, 50);
         login_button.addActionListener(e -> {
@@ -102,7 +110,7 @@ public class LoginPage extends JPanel {
 
         this.loginContents.setBackground(theme.getMainColor());
         // this.loginContents.setBackground(Color.DARK_GRAY);
-        this.loginContents.setLayout(new GridLayout(7, 1, 0, 20));
+        this.loginContents.setLayout(new GridLayout(8, 1, 0, 20));
 
         // addings components to login contents
         this.loginContents.add(this.username);
@@ -112,6 +120,7 @@ public class LoginPage extends JPanel {
         this.loginContents.add(pass_text);
         this.loginContents.add(login_button);
         this.loginContents.add(forget);
+        this.loginContents.add(errorMsg);
     }
 
 }

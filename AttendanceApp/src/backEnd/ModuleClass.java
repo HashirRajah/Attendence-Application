@@ -3,7 +3,7 @@ package backEnd;
 //imports
 import java.util.ArrayList;
 
-public class Module {
+public class ModuleClass {
 
      private String moduleCode;
      private String name;
@@ -12,7 +12,7 @@ public class Module {
      private ArrayList<Lecturer> listOfLectures;
      private ArrayList<Classes> listOfClasses;
 
-     public Module(String moduleCode, String name) {
+     public ModuleClass(String moduleCode, String name) {
           this.moduleCode = moduleCode;
           this.name = name;
      }

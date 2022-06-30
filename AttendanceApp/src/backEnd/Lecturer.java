@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Lecturer extends User {
 
     private String type;
-    private ArrayList<Module> listOfModuleTaught;
+    private ArrayList<ModuleClass> listOfModuleTaught;
     private ArrayList<Classes> listOfClasses;
     private Department department;
 

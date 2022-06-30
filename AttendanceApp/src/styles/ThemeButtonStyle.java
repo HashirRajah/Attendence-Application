@@ -25,8 +25,8 @@ public class ThemeButtonStyle extends JButton {
             borderColor = appTheme.getFontColor();
         }
         //
-        border = BorderFactory.createLineBorder(appTheme.getContentColor(), 7, false);
-        border2 = BorderFactory.createLineBorder(borderColor, 5, false);
+        border = BorderFactory.createLineBorder(appTheme.getContentColor(), 5, false);
+        border2 = BorderFactory.createLineBorder(borderColor, 3, false);
         p1 = new JPanel();
         p2 = new JPanel();
         p3 = new JPanel();
