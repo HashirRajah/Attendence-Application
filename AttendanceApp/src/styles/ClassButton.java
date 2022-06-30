@@ -19,6 +19,7 @@ public class ClassButton extends JButton {
     private ImageIcon banner;
     private JPanel p1, p2, p3, p4;
     private Border border, border2;
+    private Classes cls;
 
     public ClassButton(Theme theme, ModuleClass mod) {
         super();
@@ -76,6 +77,7 @@ public class ClassButton extends JButton {
 
     public ClassButton(Theme theme, Classes c) {
         super();
+        cls = c;
         // instantiating vars
         // bannerLabel = new JLabel();
         // banner = new ImageIcon("AttendanceApp/images/class.jpg");
@@ -130,5 +132,9 @@ public class ClassButton extends JButton {
 
     public String getString() {
         return classCode.getText();
+    }
+
+    public Classes getClasses() {
+        return this.cls;
     }
 }

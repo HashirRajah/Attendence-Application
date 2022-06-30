@@ -290,4 +290,45 @@ public class DatabaseConnection {
             }
         }
     }
+
+    public static void add_Attendance(String date, int classId, int sem, int week) {
+        dbConnect();
+        if (db_conn != null) {
+            try {
+                String sql = "EXEC sp_add_attendance '" + date + "', " + classId + ", " + sem + ", " + week + ";";
+                String sql2 = "SELECT MAX(id) FROM attendance WHERE classId = " + classId + ";";
+                String tableName = "attendance_" + String.valueOf(classId);
+                String colName = "attd_";
+                String sql3 = "ALTER TABLE " + tableName + " ADD " + colName + " VARCHAR(255);";
+
+                // System.out.println(sql);
+                // execute query
+                Statement query = db_conn.createStatement();
+                boolean status = query.execute(sql);
+                if (status) {
+                    ResultSet result = query.executeQuery(sql2);
+                    int col;
+                    result.first();
+                    col = result.getInt(1);
+                    colName += String.valueOf(col);
+
+                    boolean status2 = query.execute(sql3);
+                    if (status2) {
+                        MainPanel.cl.show(AppFrame.mainPanel, "");
+                    }
+                }
+                //
+                // close
+                query.close();
+            } catch (Exception e) {
+                System.out.println(e);
+            } finally {
+                try {
+                    db_conn.close();
+                } catch (Exception e) {
+
+                }
+            }
+        }
+    }
 }

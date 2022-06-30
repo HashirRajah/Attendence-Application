@@ -21,7 +21,8 @@ public class MainPanel extends JPanel {
     private AccountSettingsPage accountSettings;
     public static HomePage homePage;
     private AttendancePage attendance;
-    private AddAttendance addAttendance;
+    public static ViewAttendance viewAttd;
+    public static AddAttendance addAttd;
 
     public MainPanel(Theme theme) {
         super();
@@ -34,8 +35,7 @@ public class MainPanel extends JPanel {
         fontSettings = new FontSettingsPage(theme);
         accountSettings = new AccountSettingsPage(theme);
         homePage = new HomePage(theme);
-        attendance = new AttendancePage(theme);
-        addAttendance = new AddAttendance(theme);
+        // attendance = new AttendancePage(theme);
         classes = new ListOfClasses(theme);
         //
         this.setLayout(cl);
@@ -49,11 +49,11 @@ public class MainPanel extends JPanel {
         this.add(fontSettings, Variables.pages[5]);
         this.add(accountSettings, Variables.pages[6]);
         this.add(homePage, "home");
-        this.add(attendance, "attendance");
-        this.add(addAttendance, "add attendance");
+        // this.add(attendance, "attendance");
         this.add(classes, "list-of-classes");
 
         // show start page
         cl.show(this, Variables.pages[0]);
     }
+
 }

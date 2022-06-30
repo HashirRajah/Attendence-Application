@@ -17,6 +17,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import gui.*;
 import db.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import backEnd.*;
 
 public class AddAttendance extends JPanel {
     //
@@ -30,7 +33,7 @@ public class AddAttendance extends JPanel {
     private JPanel AttendanceContent;
 
     //
-    public AddAttendance(Theme theme) {
+    public AddAttendance(Theme theme, Classes c) {
 
         super();
         this.setLayout(new BorderLayout());
@@ -58,40 +61,42 @@ public class AddAttendance extends JPanel {
         // Date
         date_txt.setBackground(theme.getMenuColor());
         date_txt.setForeground(theme.getFontColor());
-        date_txt.setFont(new Font("consolas", Font.BOLD, 15));
+        date_txt.setFont(new Font("consolas", Font.BOLD, 20));
         date_txt.setCaretColor(theme.getFontColor());
-        date_txt.setText("08/09/2022");
+        date_txt.setText(java.time.LocalDate.now().toString());
         Border date_txt_border = BorderFactory.createLineBorder(Color.YELLOW, 0);
         date_txt.setBorder(date_txt_border);
 
         // Class
         class_txt.setBackground(theme.getMenuColor());
         class_txt.setForeground(theme.getFontColor());
-        class_txt.setFont(new Font("consolas", Font.PLAIN, 15));
+        class_txt.setFont(new Font("consolas", Font.BOLD, 20));
         class_txt.setCaretColor(theme.getFontColor());
         class_txt.setBorder(date_txt_border);
+        class_txt.setEditable(false);
+        class_txt.setText(String.valueOf(c.getId()));
 
         // Week
         week_txt.setBackground(theme.getMenuColor());
         week_txt.setForeground(theme.getFontColor());
-        week_txt.setFont(new Font("consolas", Font.PLAIN, 15));
+        week_txt.setFont(new Font("consolas", Font.BOLD, 20));
         week_txt.setCaretColor(theme.getFontColor());
         week_txt.setBorder(date_txt_border);
 
         // semester
         semester_txt.setBackground(theme.getMenuColor());
         semester_txt.setForeground(theme.getFontColor());
-        semester_txt.setFont(new Font("consolas", Font.PLAIN, 15));
+        semester_txt.setFont(new Font("consolas", Font.BOLD, 20));
         semester_txt.setCaretColor(theme.getFontColor());
         semester_txt.setBorder(date_txt_border);
 
         this.addButton = new ButtonStyle1(theme, Color.GREEN, 0, "Add", 50, 50);
-        /*
-         * addButton.addActionListener(e -> {
-         * DatabaseConnection.login(date_txt.getText(),
-         * String.valueOf(class_txt.getPassword()));
-         * });
-         */ // login_button.setBorder(new RoundBtn(15));
+
+        addButton.addActionListener(e -> {
+            DatabaseConnection.add_Attendance(date_txt.getText(), Integer.parseInt(class_txt.getText()),
+                    Integer.parseInt(semester_txt.getText()), Integer.parseInt(week_txt.getText()));
+        });
+        // login_button.setBorder(new RoundBtn(15));
 
         // Attendance contents
         setUpAttendanceContent(theme);

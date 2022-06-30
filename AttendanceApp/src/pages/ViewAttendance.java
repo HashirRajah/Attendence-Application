@@ -3,11 +3,12 @@ package pages;
 //imports
 import javax.swing.*;
 import javax.swing.text.View;
-
 import styles.*;
 import java.awt.*;
 import variables.*;
 import gui.*;
+import java.awt.event.*;
+import backEnd.*;
 
 public class ViewAttendance extends JPanel {
     //
@@ -15,12 +16,14 @@ public class ViewAttendance extends JPanel {
     private ViewButton[] viewBtn;
     private JLabel title;
     private String[] viewList = new String[] { "View Attendance", "Add Attendance" };
+    private Classes theClass;
 
-    public ViewAttendance(Theme theme) {
+    public ViewAttendance(Theme theme, Classes c) {
         super();
         // instantiating vars
         allView = new JPanel();
         title = new JLabel();
+        theClass = c;
 
         // title customization
         title.setPreferredSize(new Dimension(this.getWidth(), 150));
@@ -52,6 +55,30 @@ public class ViewAttendance extends JPanel {
             //
             viewBtn[i] = new ViewButton(theme, theme.getMenuColor(), 3, this.viewList[i]);
             this.allView.add(viewBtn[i]);
+            // add action listener
+            viewBtn[i].addActionListener(new ActionList(viewBtn[i].getText(), theClass));
         }
+    }
+
+    private class ActionList implements ActionListener {
+        private String target;
+        private Classes c;
+
+        public ActionList(String target, Classes c) {
+            super();
+            this.target = target;
+            this.c = c;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // TODO Auto-generated method stub
+            if (Variables.userType.equals("lecturer") && target.equals("Add Attendance")) {
+                MainPanel.addAttd = new AddAttendance(Variables.activeTheme, c);
+                AppFrame.mainPanel.add(MainPanel.addAttd, "add-attendance");
+                MainPanel.cl.show(AppFrame.mainPanel, "add-attendance");
+            }
+        }
+
     }
 }

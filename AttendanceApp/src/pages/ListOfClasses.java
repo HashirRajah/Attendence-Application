@@ -7,6 +7,9 @@ import styles.*;
 import variables.Variables;
 import gui.*;
 import java.util.ArrayList;
+import db.*;
+import java.awt.event.*;
+import backEnd.*;
 
 public class ListOfClasses extends JScrollPane {
     //
@@ -69,10 +72,33 @@ public class ListOfClasses extends JScrollPane {
                 // classButtons = new ClassButton(theme, Variables.classText[i]);
                 classButtons.get(i).setPreferredSize(new Dimension(100, 100));
                 listOfClasses.add(classButtons.get(i));
+                // action listener
+                classButtons.get(i).addActionListener(new ActionList(classButtons.get(i).getClasses()));
             }
             this.revalidate();
             validate();
             this.repaint();
+        }
+
+        private class ActionList implements ActionListener {
+            private Classes c;
+
+            public ActionList(Classes c) {
+                super();
+                this.c = c;
+            }
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                if (Variables.userType.equals("lecturer")) {
+                    MainPanel.viewAttd = new ViewAttendance(Variables.activeTheme, c);
+                    AppFrame.mainPanel.add(MainPanel.viewAttd, "attendance-choice");
+                    MainPanel.cl.show(AppFrame.mainPanel, "attendance-choice");
+                    Variables.pagesStack.push("attendance-choice");
+                }
+            }
+
         }
     }
 }
