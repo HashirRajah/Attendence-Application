@@ -13,8 +13,9 @@ public class AccountSettingsPage extends JPanel implements ActionListener {
     // attributes
     private JTextField address, firstName, lastName, ContactNumber;
     private CenteredTextLabel addressLabel, firstNameLabel, lastNameLabel, ContactNumberLabel, title;
-    private ButtonStyle1 edit, save, close;
+    private ButtonStyle1 edit, save, cancel;
     private JPanel accountSettingContent, buttonPanels;
+    private ImageIcon titleIcon;
 
     // methods
     public AccountSettingsPage(Theme theme) {
@@ -22,6 +23,9 @@ public class AccountSettingsPage extends JPanel implements ActionListener {
           this.setBackground(theme.getMainColor());
           this.setLayout(new BorderLayout());
           //
+
+          //instantiating icon
+          // titleIcon = new ImageIcon("AttendanceApp/images/userDetails.png");
 
            //instantiating JLabels
            addressLabel = new CenteredTextLabel("Address : ", theme.getContentColor());
@@ -34,11 +38,16 @@ public class AccountSettingsPage extends JPanel implements ActionListener {
            ContactNumberLabel.setFont(new Font("consolas", Font.BOLD, 25));
            title = new CenteredTextLabel("User Details", theme.getContentColor(), Variables.PAGES_TITLE);
            title.setPreferredSize(new Dimension(this.getWidth(), 150));         
+
            //instantiating JTextFields
            address = new JTextField();
+           address.setEditable(false);
            firstName = new JTextField();
+           firstName.setEditable(false);
            lastName = new JTextField();
+           lastName.setEditable(false);
            ContactNumber = new JTextField();      
+           ContactNumber.setEditable(false);
 
            //border for text fields
            Border date_txt_border = BorderFactory.createLineBorder(Color.YELLOW, 0);      
@@ -75,10 +84,13 @@ public class AccountSettingsPage extends JPanel implements ActionListener {
            //instantiating JButtons
            edit = new ButtonStyle1(theme, Color.GREEN, 0, "Edit", 50, 50);
            edit.setPreferredSize(new Dimension(100, 550));
-           close = new ButtonStyle1(theme, Color.GREEN, 0, "Close", 50, 50);
-           close.setPreferredSize(new Dimension(100, 50));
+           edit.addActionListener(this);
+           cancel = new ButtonStyle1(theme, Color.GREEN, 0, "Cancel", 50, 50);
+           cancel.setPreferredSize(new Dimension(100, 50));
+           cancel.addActionListener(this);
            save = new ButtonStyle1(theme, Color.GREEN, 0, "Save", 50, 50);    
            save.setPreferredSize(new Dimension(100, 50));
+           save.addActionListener(this);
 
            //instantiating main panel
            accountSettingContent = new JPanel();       
@@ -122,19 +134,22 @@ public class AccountSettingsPage extends JPanel implements ActionListener {
 
      buttonPanels.add(edit);
      buttonPanels.add(save);
-     buttonPanels.add(close);
+     buttonPanels.add(cancel);
 
  } 
 
      public void actionPerformed(ActionEvent e) {
-          if(e.getSource() == close) {
-               
+          if(e.getSource() == cancel) {
+               save.setEnabled(false);
           }
           if(e.getSource() == save) {
                
           }
           if(e.getSource() == edit) {
-               
+               address.setEditable(true);
+               firstName.setEditable(true);
+               lastName.setEditable(true);
+               ContactNumber.setEditable(true);
           }
 
      }
