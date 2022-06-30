@@ -4,7 +4,7 @@ public class Enroll {
     // attributes
     private String date;
     private Student student;
-    private Module module;
+    private ModuleClass module;
 
     // methods
     public Enroll(String date) {

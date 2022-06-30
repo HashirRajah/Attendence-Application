@@ -6,6 +6,8 @@ import styles.*;
 import java.awt.*;
 import variables.*;
 import gui.*;
+import java.awt.event.*;
+import java.util.HashMap;
 
 public class Settings extends JPanel {
     //
@@ -13,7 +15,7 @@ public class Settings extends JPanel {
     private JPanel allSettings;
     private SettingsButtonStyle[] settingsBtn;
     private String[] settingsList = new String[] { "Themes >", "Fonts >", "Account >" };
-    private String[] settingsPages = new String[] { "theme-settings", "font-settings", "account-settings" };
+    private HashMap<String, MyActionListeners> listOfListeners;
 
     public Settings(Theme theme) {
         super();
@@ -23,6 +25,8 @@ public class Settings extends JPanel {
 
         // all settings
         allSettings.setBackground(theme.getMainColor());
+        //
+        this.setUpMyActionListeners();
 
         // title customization
         title.setPreferredSize(new Dimension(this.getWidth(), 150));
@@ -52,9 +56,59 @@ public class Settings extends JPanel {
             settingsBtn[i] = new SettingsButtonStyle(theme, theme.getMenuColor(), 3, this.settingsList[i]);
             this.allSettings.add(settingsBtn[i]);
             // adding action listenners
-            settingsBtn[i].addActionListener(e -> {
-                MainPanel.cl.show(AppFrame.mainPanel, "theme-settings");
-            });
+            settingsBtn[i].addActionListener(listOfListeners.get(this.settingsList[i]));
+
         }
+    }
+
+    private void setUpMyActionListeners() {
+        listOfListeners = new HashMap<String, MyActionListeners>();
+        //
+        listOfListeners.put(settingsList[0], new ShowThemeSettings());
+        listOfListeners.put(settingsList[1], new ShowFontSettings());
+        listOfListeners.put(settingsList[2], new ShowAccountSettings());
+    }
+
+    private class MyActionListeners implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // TODO Auto-generated method stub
+
+        }
+
+    }
+
+    private class ShowThemeSettings extends MyActionListeners implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // TODO Auto-generated method stub
+            MainPanel.cl.show(AppFrame.mainPanel, "theme-settings");
+            Variables.pagesStack.push("theme-settings");
+        }
+
+    }
+
+    private class ShowFontSettings extends MyActionListeners implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // TODO Auto-generated method stub
+            MainPanel.cl.show(AppFrame.mainPanel, "font-settings");
+            Variables.pagesStack.push("font-settings");
+        }
+
+    }
+
+    private class ShowAccountSettings extends MyActionListeners implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // TODO Auto-generated method stub
+            MainPanel.cl.show(AppFrame.mainPanel, "account-settings");
+            Variables.pagesStack.push("account-settings");
+        }
+
     }
 }

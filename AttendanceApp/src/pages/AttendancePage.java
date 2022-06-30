@@ -1,4 +1,5 @@
 package pages;
+
 import javax.print.AttributeException;
 //imports
 import javax.swing.*;
@@ -13,14 +14,13 @@ import gui.*;
 public class AttendancePage extends JScrollPane {
     //
     private AttendancePanel attendanceBoard;
-    //private ClassButton classButton;
+    // private ClassButton classButton;
 
     public AttendancePage(Theme theme) {
         super();
         // instantiate vars
-         attendanceBoard = new AttendancePanel(theme);
-         this.setViewportView(attendanceBoard);
-
+        attendanceBoard = new AttendancePanel(theme);
+        this.setViewportView(attendanceBoard);
 
     }
 
@@ -32,37 +32,27 @@ public class AttendancePage extends JScrollPane {
 
         private JPanel attendanceTable;
 
-        //private JPanel Search;
-       
+        // private JPanel Search;
 
-        //private JLabel 
-        
+        // private JLabel
+
         private Attendance attendance;
 
         //
-        public AttendancePanel(Theme theme, Attendance attendance) {
+        public AttendancePanel(Theme theme) {
             super();
             // instantiating vars
-            attendance =  new Attendance(1, "13/02/2022", 3, 2, "present");
+            attendance = new Attendance(1, "13/02/2022", 3, 2, "present");
 
             title = new JLabel("Attendance");
 
-            attendanceTable =  new JPanel();
-            attendanceTable.setLayout(new GridLayout(10,10,5,5));
-            attendanceTable.set
-
-
-
-
-
-
-
+            attendanceTable = new JPanel();
+            attendanceTable.setLayout(new GridLayout(10, 10, 5, 5));
+            // attendanceTable.set
 
             this.add(title);
-           
+
         }
 
-        
-     
     }
 }

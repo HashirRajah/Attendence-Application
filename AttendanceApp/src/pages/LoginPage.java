@@ -84,7 +84,7 @@ public class LoginPage extends JPanel {
         errorMsg.setHorizontalAlignment(JLabel.CENTER);
         errorMsg.setVerticalAlignment(JLabel.CENTER);
         errorMsg.setFont(new Font("consolas", Font.BOLD, 20));
-        errorMsg.setForeground(theme.getFontColor());
+        errorMsg.setForeground(theme.getContentColor());
         errorMsg.setVisible(false);
 
         this.login_button = new ButtonStyle1(theme, Color.GREEN, 0, "Login", 50, 50);

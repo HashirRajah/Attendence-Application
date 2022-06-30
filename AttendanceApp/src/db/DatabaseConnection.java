@@ -5,11 +5,8 @@ import java.sql.*;
 import styles.*;
 import variables.Variables;
 import backEnd.*;
-import gui.AppFrame;
-import gui.MainPanel;
-
+import gui.*;
 import java.util.ArrayList;
-
 import app_version.Configuration;
 
 public class DatabaseConnection {
@@ -137,7 +134,9 @@ public class DatabaseConnection {
                     if (Variables.userLoggedIn != null) {
                         Configuration.menuConfiguration();
                         AppFrame.menu.setupSideButton(Variables.activeTheme);
-                        MainPanel.cl.show(AppFrame.mainPanel, "settings");
+                        MainPanel.homePage.setUpLabel(Variables.activeTheme);
+                        MainPanel.cl.show(AppFrame.mainPanel, "home");
+                        Variables.pagesStack.push("home");
                     }
                     // close all statements
                     stmt.close();
@@ -146,6 +145,140 @@ public class DatabaseConnection {
                     MainPanel.login.errorMsg.setVisible(true);
                     MainPanel.login.repaint();
                 }
+            } catch (Exception e) {
+                System.out.println(e);
+            } finally {
+                try {
+                    db_conn.close();
+                } catch (Exception e) {
+
+                }
+            }
+        }
+    }
+
+    public static void fetchClasses() {
+        dbConnect();
+        if (db_conn != null && MainPanel.classList.getAllClasses().getClassButtons().isEmpty()) {
+            try {
+                String sql = "SELECT m.module_code, m.name FROM modules m, ";
+                switch (Variables.userType) {
+                    case "student":
+                        sql += "enroll e WHERE m.module_code = e.module_code AND e.studId = "
+                                + Variables.userLoggedIn.getUsername() + ";";
+                        break;
+                    case "lecturer":
+                        sql += "room r WHERE m.module_code = r.module_code AND r.l_username = '"
+                                + Variables.userLoggedIn.getUsername() + "';";
+                        break;
+                }
+                // execute query
+                Statement query = db_conn.createStatement();
+                ResultSet results = query.executeQuery(sql);
+                //
+                ResultSetMetaData mtdt = results.getMetaData();
+                // int numColumns = mtdt.getColumnCount();
+                // System.out.println(numColumns);
+                //
+                while (results.next()) {
+                    ModuleClass mod = new ModuleClass(results.getString(1), results.getString(2));
+                    if (MainPanel.classList.getAllClasses().getClassButtons().isEmpty()) {
+                        MainPanel.classList.getAllClasses().getClassButtons()
+                                .add(new ClassButton(Variables.activeTheme, mod));
+                    }
+                }
+                MainPanel.classList.getAllClasses().addClasses(Variables.activeTheme);
+                // close
+                query.close();
+            } catch (Exception e) {
+                System.out.println(e);
+            } finally {
+                try {
+                    db_conn.close();
+                } catch (Exception e) {
+
+                }
+            }
+        }
+    }
+
+    public static void fetchClassesList(String module_code) {
+        dbConnect();
+        if (db_conn != null && MainPanel.classes.getAllClassesList().getClassButtons().isEmpty()) {
+            try {
+                String sql = "SELECT * FROM class c";
+                switch (Variables.userType) {
+                    case "student":
+                        sql += " WHERE c.module_code = '" + module_code + "';";
+                        break;
+                    case "lecturer":
+                        sql += ", room r WHERE r.classId = c.classId AND r.module_code = '" + module_code
+                                + "' AND r.l_username = '"
+                                + Variables.userLoggedIn.getUsername() + "';";
+                        break;
+                }
+                // System.out.println(sql);
+                // execute query
+                Statement query = db_conn.createStatement();
+                ResultSet results = query.executeQuery(sql);
+                //
+                ResultSetMetaData mtdt = results.getMetaData();
+                // int numColumns = mtdt.getColumnCount();
+                // System.out.println(numColumns);
+                //
+                while (results.next()) {
+                    Classes c = new Classes(results.getInt(1), results.getString(2), results.getString(3),
+                            results.getString(4), results.getString(5));
+                    if (MainPanel.classes.getAllClassesList().getClassButtons().isEmpty()) {
+                        MainPanel.classes.getAllClassesList().getClassButtons()
+                                .add(new ClassButton(Variables.activeTheme, c));
+                    }
+                }
+                MainPanel.classes.getAllClassesList().addClasses(Variables.activeTheme);
+                // close
+                query.close();
+            } catch (Exception e) {
+                System.out.println(e);
+            } finally {
+                try {
+                    db_conn.close();
+                } catch (Exception e) {
+
+                }
+            }
+        }
+    }
+
+    public static void fetchStudents(Classes c) {
+        dbConnect();
+        if (db_conn != null && MainPanel.classes.getAllClassesList().getClassButtons().isEmpty()) {
+            try {
+                String sql = "SELECT * FROM class c";
+                switch (Variables.userType) {
+                    case "student":
+                        sql += " WHERE c.module_code = '" + c.getMode() + "';";
+                        break;
+                    case "lecturer":
+                        sql += ", room r WHERE r.classId = c.classId AND r.module_code = '" + c.getMode()
+                                + "' AND r.l_username = '"
+                                + Variables.userLoggedIn.getUsername() + "';";
+                        break;
+                }
+                // System.out.println(sql);
+                // execute query
+                Statement query = db_conn.createStatement();
+                ResultSet results = query.executeQuery(sql);
+                //
+                ResultSetMetaData mtdt = results.getMetaData();
+                // int numColumns = mtdt.getColumnCount();
+                // System.out.println(numColumns);
+                //
+                while (results.next()) {
+
+                }
+                MainPanel.classes.getAllClassesList().addClasses(Variables.activeTheme);
+                // close
+                query.close();
             } catch (Exception e) {
                 System.out.println(e);
             } finally {
