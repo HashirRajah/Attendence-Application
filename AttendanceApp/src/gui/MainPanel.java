@@ -18,6 +18,7 @@ public class MainPanel extends JPanel {
     private ThemeSettingPage themeSettings;
     private FontSettingsPage fontSettings;
     private AccountSettingsPage accountSettings;
+    private  AttendancePage attendance;
 
     public MainPanel(Theme theme) {
         super();
@@ -29,6 +30,7 @@ public class MainPanel extends JPanel {
         themeSettings = new ThemeSettingPage(theme);
         fontSettings = new FontSettingsPage(theme);
         accountSettings = new AccountSettingsPage(theme);
+        attendance = new AttendancePage(theme);
         //
         this.setLayout(cl);
         this.setBackground(theme.getMainColor());
@@ -40,6 +42,7 @@ public class MainPanel extends JPanel {
         this.add(themeSettings, Variables.pages[4]);
         this.add(fontSettings, Variables.pages[5]);
         this.add(accountSettings, Variables.pages[6]);
+        this.add(attendance, "attendance");
 
         // show start page
         cl.show(this, Variables.pages[0]);
