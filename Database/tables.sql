@@ -243,7 +243,7 @@ FROM programs;
 ALTER TABLE class
 ADD module_code VARCHAR(255) FOREIGN KEY REFERENCES modules;
 
-UPDATE class SET module_code = 'ICT2020' WHERE classId = 2;
+UPDATE class SET module_code = 'ICT2020' WHERE classId = 1;
 
 ALTER TABLE students
 ADD grName VARCHAR(255);
@@ -262,7 +262,7 @@ CREATE TABLE attendance_1
 
 INSERT INTO attendance
     (date, classId, week, semester, status)
-VALUES('01-01-2022', 2, 1, 1, 'completed');
+VALUES('01-01-2022', 1, 1, 1, 'completed');
 
 INSERT INTO enroll
 VALUES('01-01-2022', 1, 'ICT2020'),
