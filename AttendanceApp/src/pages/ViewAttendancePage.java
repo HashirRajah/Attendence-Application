@@ -5,22 +5,30 @@ import javax.print.AttributeException;
 import javax.swing.*;
 
 import backEnd.Attendance;
+import backEnd.Classes;
+import backEnd.ModuleClass;
 
 import java.awt.*;
+import java.util.ArrayList;
+
 import styles.*;
 import variables.Variables;
 import gui.*;
 
 public class ViewAttendancePage extends JScrollPane {
     //
-    private ViewAttendancePanel attendanceBoard;
+    private ViewAttendancePanel viewAttendanceBoard;
+    private Attendance attendance;
+    private Classes c;
     // private ClassButton classButton;
 
-    public ViewAttendancePage(Theme theme) {
+    public ViewAttendancePage(Theme theme, Classes cl, Attendance attd, String code, String name) {
         super();
+        this.c = cl;
+        this.attendance = attd;
         // instantiate vars
-        attendanceBoard = new ViewAttendancePanel(theme);
-        this.setViewportView(attendanceBoard);
+        viewAttendanceBoard = new ViewAttendancePanel(theme, code, name);
+        this.setViewportView(viewAttendanceBoard);
 
     }
 
@@ -29,6 +37,7 @@ public class ViewAttendancePage extends JScrollPane {
         private JLabel title, noOfStud, moduleName, moduleCode, LecturerName, week, semester, date, nameOfStudents,
                 attendanceStatus;
 
+        private ArrayList<String> ids = new ArrayList<String>(), names = new ArrayList<String>();
         // private JLabel
 
         private JTextField titletxt, noOfStudtxt, moduleNametxt, moduleCodetxt, LecturerNametxt, searchtxt, weektxt,
@@ -36,27 +45,35 @@ public class ViewAttendancePage extends JScrollPane {
 
         private JPanel moduleDetails, titlePanel, attendanceTable, Container, TableCol, attendanceContainer;
 
-        private JPanel southPanel, northPanel, eastPanel, westPanel, centerPanel;
+       // private JLabel studentID;
+
+        private ModuleClass mod;
 
         // hardcoded label
         private JLabel stud1, stud2;
         private JLabel stud1Atd, stud2Atd;
-
-
         private JLabel studentID;
         private JLabel studID1, studID2;
         private JLabel studentAttendanceStatus1, studentAttendanceStatus2;
 
         private Attendance attendance;
 
+        private ButtonStyle1 Download;
+
         //
-        public ViewAttendancePanel(Theme theme) {
+        public ViewAttendancePanel(Theme theme, String module_name, String module_code) {
             super();
 
             this.setLayout(new BorderLayout());
             this.setBackground(theme.getMainColor());
+            this.mod = new ModuleClass(module_code, module_name);
 
             // instantiating vars
+
+            //Download
+            Download = new ButtonStyle1(theme, theme.getFontColor(), 2, "Download", 50, 50);
+
+            
             attendance = new Attendance(1, "13/02/2022", 3, 2, "present");
 
            
@@ -83,6 +100,9 @@ public class ViewAttendancePage extends JScrollPane {
             nameOfStudents.setForeground(theme.getContentColor());
             attendanceStatus.setForeground(theme.getContentColor());
             studentID.setForeground(theme.getContentColor());
+
+
+            /////////////////////////////////////////////////////////////////
 
             stud1 = new JLabel("Divesh Nugessur");
             // stud1.setHorizontalAlignment();
@@ -157,7 +177,6 @@ public class ViewAttendancePage extends JScrollPane {
             moduleCode.setForeground(theme.getFontColor());
             noOfStud.setForeground(theme.getFontColor());
             // search.setForeground(theme.getFontColor());
-
             week.setForeground(theme.getFontColor());
             semester.setForeground(theme.getFontColor());
             date.setForeground(theme.getFontColor());
@@ -273,6 +292,84 @@ public class ViewAttendancePage extends JScrollPane {
             this.add(Container, BorderLayout.CENTER);
 
         }
+
+        public ArrayList<String> getIds() {
+            return this.ids;
+        }
+
+        public ArrayList<String> getNames() {
+            return this.names;
+        }
+
+        // public void setUpDetails(Theme theme) {
+        //     moduleNametxt = new JTextField(mod.getName());
+        //     LecturerNametxt = new JTextField(
+        //             Variables.userLoggedIn.getFirstName() + " " + Variables.userLoggedIn.getLastName());
+        //     moduleCodetxt = new JTextField(mod.getModuleCode());
+        //     noOfStudtxt = new JTextField(ids.size());
+        //     searchtxt = new JTextField("Search");
+        //     weektxt = new JTextField(attendance.getWeek());
+        //     semestertxt = new JTextField(attendance.getSemester());
+        //     datetxt = new JTextField(attendance.getDate());
+        //     //
+        //     moduleNametxt.setEditable(false);
+        //     LecturerNametxt.setEditable(false);
+        //     moduleCodetxt.setEditable(false);
+        //     noOfStudtxt.setEditable(false);
+        //     searchtxt.setEditable(false);
+        //     weektxt.setEditable(false);
+        //     semestertxt.setEditable(false);
+        //     datetxt.setEditable(false);
+        //     //
+        //     // //textfield design
+        //     moduleNametxt.setBackground(theme.getMainColor());
+        //     LecturerNametxt.setBackground(theme.getMainColor());
+        //     moduleCodetxt.setBackground(theme.getMainColor());
+        //     noOfStudtxt.setBackground(theme.getMainColor());
+        //     searchtxt.setBackground(theme.getMainColor());
+        //     weektxt.setBackground(theme.getMainColor());
+        //     semestertxt.setBackground(theme.getMainColor());
+        //     datetxt.setBackground(theme.getMainColor());
+
+        //     moduleNametxt.setForeground(theme.getContentColor());
+        //     LecturerNametxt.setForeground(theme.getContentColor());
+        //     moduleCodetxt.setForeground(theme.getContentColor());
+        //     noOfStudtxt.setForeground(theme.getContentColor());
+        //     searchtxt.setForeground(theme.getContentColor());
+        //     weektxt.setForeground(theme.getContentColor());
+        //     semestertxt.setForeground(theme.getContentColor());
+        //     datetxt.setForeground(theme.getContentColor());
+        //     //
+        //     Border border = BorderFactory.createLineBorder(theme.getMainColor(), 2);
+        //     moduleNametxt.setBorder(border);
+        //     LecturerNametxt.setBorder(border);
+        //     moduleCodetxt.setBorder(border);
+        //     noOfStudtxt.setBorder(border);
+        //     searchtxt.setBorder(border);
+        //     weektxt.setBorder(border);
+        //     semestertxt.setBorder(border);
+        //     datetxt.setBorder(border);
+        //     // add
+        //     moduleDetails.add(moduleName);
+        //     moduleDetails.add(moduleNametxt);
+        //     moduleDetails.add(LecturerName);
+        //     moduleDetails.add(LecturerNametxt);
+        //     moduleDetails.add(moduleCode);
+        //     moduleDetails.add(moduleCodetxt);
+        //     moduleDetails.add(noOfStud);
+        //     moduleDetails.add(noOfStudtxt);
+        //     moduleDetails.add(semester);
+        //     moduleDetails.add(semestertxt);
+        //     moduleDetails.add(week);
+        //     moduleDetails.add(weektxt);
+        //     moduleDetails.add(date);
+        //     moduleDetails.add(datetxt);
+        //     //
+        //     moduleDetails.revalidate();
+        //     validate();
+        //     moduleDetails.repaint();
+        // }
+
 
     }
 }

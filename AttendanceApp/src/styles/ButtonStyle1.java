@@ -32,4 +32,25 @@ public class ButtonStyle1 extends JButton {
                 this);
 
     }
+
+    public ButtonStyle1(Theme theme, Color borderColor, int borderThickness, String text) {
+        super();
+        // instantiating vars
+        border = BorderFactory.createLineBorder(borderColor, borderThickness, false);
+        //
+        this.setText(text);
+        this.setFocusable(false);
+        this.setBorder(border);
+        this.setBackground(theme.getMenuColor());
+        this.setForeground(theme.getButtonColor());
+        this.setFont(Variables.DEFAULT_BUTTON_FONT);
+        // this.setHorizontalTextPosition(JButton.CENTER);
+        this.setVerticalTextPosition(JButton.CENTER);
+        // hover effect
+        ButtonHover.HoverEffect(theme.getButtonColor(), theme.getMenuColor(), theme.getMenuColor(),
+                theme.getFontColor(),
+                this);
+
+    }
+
 }
