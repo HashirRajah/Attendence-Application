@@ -7,6 +7,8 @@ import variables.Variables;
 import backEnd.*;
 import gui.*;
 import pages.AttendancePage;
+import pages.ListAttendancePage;
+
 import java.util.ArrayList;
 import app_version.Configuration;
 
@@ -162,7 +164,7 @@ public class DatabaseConnection {
         dbConnect();
         if (db_conn != null && MainPanel.classList.getAllClasses().getClassButtons().isEmpty()) {
             try {
-                String sql = "SELECT m.module_code, m.name FROM modules m, ";
+                String sql = "SELECT DISTINCT m.module_code, m.name FROM modules m, ";
                 switch (Variables.userType) {
                     case "student":
                         sql += "enroll e WHERE m.module_code = e.module_code AND e.studId = "
@@ -183,10 +185,10 @@ public class DatabaseConnection {
                 //
                 while (results.next()) {
                     ModuleClass mod = new ModuleClass(results.getString(1), results.getString(2));
-                    if (MainPanel.classList.getAllClasses().getClassButtons().isEmpty()) {
-                        MainPanel.classList.getAllClasses().getClassButtons()
-                                .add(new ClassButton(Variables.activeTheme, mod));
-                    }
+
+                    MainPanel.classList.getAllClasses().getClassButtons()
+                            .add(new ClassButton(Variables.activeTheme, mod));
+
                 }
                 MainPanel.classList.getAllClasses().addClasses(Variables.activeTheme);
                 // close
@@ -230,10 +232,10 @@ public class DatabaseConnection {
                 while (results.next()) {
                     Classes c = new Classes(results.getInt(1), results.getString(2), results.getString(3),
                             results.getString(4), results.getString(5));
-                    if (MainPanel.classes.getAllClassesList().getClassButtons().isEmpty()) {
-                        MainPanel.classes.getAllClassesList().getClassButtons()
-                                .add(new ClassButton(Variables.activeTheme, c));
-                    }
+
+                    MainPanel.classes.getAllClassesList().getClassButtons()
+                            .add(new ClassButton(Variables.activeTheme, c));
+
                 }
                 MainPanel.classes.getAllClassesList().addClasses(Variables.activeTheme);
                 // close
@@ -390,6 +392,39 @@ public class DatabaseConnection {
                 AppFrame.mainPanel.remove(AppFrame.mainPanel.attendance);
                 AppFrame.mainPanel.attendance = null;
                 update.close();
+            } catch (Exception e) {
+                System.out.println(e);
+            } finally {
+                try {
+                    db_conn.close();
+                } catch (Exception e) {
+
+                }
+            }
+        }
+    }
+
+    public static void fetchAllAttendance(String classId) {
+        dbConnect();
+        if (db_conn != null) {
+            try {
+                String sql = "SELECT * FROM attendance WHERE classId = " + classId
+                        + " ORDER BY date DESC, semester DESC, week DESC;";
+                Statement query = db_conn.createStatement();
+                ResultSet results = query.executeQuery(sql);
+                ListAttendancePage attdList = new ListAttendancePage(Variables.activeTheme);
+                while (results.next()) {
+                    Attendance attd = new Attendance(results.getInt(1), results.getString(2), results.getInt(4),
+                            results.getInt(5), results.getString(6));
+                    attdList.getAllAttendance().getattdList().add(attd);
+                }
+                //
+                attdList.getAllAttendance().setUpView(Variables.activeTheme);
+                AppFrame.mainPanel.add(attdList, "list-of-attendance");
+                MainPanel.cl.show(AppFrame.mainPanel, "list-of-attendance");
+                Variables.pagesStack.push("list-of-attendance");
+                //
+                query.close();
             } catch (Exception e) {
                 System.out.println(e);
             } finally {

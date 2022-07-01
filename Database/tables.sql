@@ -300,9 +300,9 @@ VALUES(1, 'present'),
 INSERT INTO students
     (fname, lname, gender, address, email, contact, progId, date_of_birth)
 VALUES
-    ( 'Divesh', 'Nugessur', 'M', 'Bel Air', 'divesh@gmial.com', 54344124, NULL, '10-10-1999'),
-    ( 'Devesh', 'Udhin', 'M', 'L''Avenir', 'devesh@gmial.com', 59535354, NULL, '10-10-1990'),
-    ( 'Jeshwan', 'Khoodeeram', 'M', 'Mahebourg', 'jeshwan@gmial.com', 57824562, NULL, '10-10-1990');
+    ( 'Divesh', 'Nugessur', 'M', 'Bel Air', 'divesh@gmial.com', 54344124, 1, '10-10-1999'),
+    ( 'Devesh', 'Udhin', 'M', 'L''Avenir', 'devesh@gmial.com', 59535354, 1, '10-10-1990'),
+    ( 'Jeshwan', 'Khoodeeram', 'M', 'Mahebourg', 'jeshwan@gmial.com', 57824562, 1, '10-10-1990');
 
 --MODULES INSERT
 INSERT INTO modules
@@ -361,3 +361,9 @@ VALUES
     ( 'BSonah', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8' , 'lecturer'),
     ( 'PAppavoo', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8' , 'lecturer'),
     ( 'VSeetohul', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8' , 'lecturer');
+
+
+INSERT INTO enroll
+VALUES('01-01-2022', 4, 'ICT2020'),
+    ('01-01-2022', 5, 'ICT2020'),
+    ('01-01-2022', 6, 'ICT2020');

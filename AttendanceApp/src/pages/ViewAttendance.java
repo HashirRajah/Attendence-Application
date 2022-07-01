@@ -9,6 +9,7 @@ import variables.*;
 import gui.*;
 import java.awt.event.*;
 import backEnd.*;
+import db.*;
 
 public class ViewAttendance extends JPanel {
     //
@@ -77,6 +78,8 @@ public class ViewAttendance extends JPanel {
                 MainPanel.addAttd = new AddAttendance(Variables.activeTheme, c);
                 AppFrame.mainPanel.add(MainPanel.addAttd, "add-attendance");
                 MainPanel.cl.show(AppFrame.mainPanel, "add-attendance");
+            } else if (Variables.userType.equals("lecturer") && target.equals("View Attendance")) {
+                DatabaseConnection.fetchAllAttendance(String.valueOf(c.getId()));
             }
         }
 

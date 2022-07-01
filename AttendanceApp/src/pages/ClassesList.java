@@ -90,6 +90,7 @@ public class ClassesList extends JScrollPane {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
+                AppFrame.mainPanel.classes.getAllClassesList().getClassButtons().clear();
                 DatabaseConnection.fetchClassesList(module_code);
                 MainPanel.cl.show(AppFrame.mainPanel, "list-of-classes");
                 Variables.pagesStack.push("list-of-classes");
