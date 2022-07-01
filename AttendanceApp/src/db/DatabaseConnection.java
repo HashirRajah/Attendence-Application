@@ -8,6 +8,7 @@ import backEnd.*;
 import gui.*;
 import pages.AttendancePage;
 import pages.ListAttendancePage;
+import pages.ViewAttendancePage;
 
 import java.util.ArrayList;
 import app_version.Configuration;
@@ -404,7 +405,7 @@ public class DatabaseConnection {
         }
     }
 
-    public static void fetchAllAttendance(String classId) {
+    public static void fetchAllAttendance(String classId, Classes cls) {
         dbConnect();
         if (db_conn != null) {
             try {
@@ -412,7 +413,7 @@ public class DatabaseConnection {
                         + " ORDER BY date DESC, semester DESC, week DESC;";
                 Statement query = db_conn.createStatement();
                 ResultSet results = query.executeQuery(sql);
-                ListAttendancePage attdList = new ListAttendancePage(Variables.activeTheme);
+                ListAttendancePage attdList = new ListAttendancePage(Variables.activeTheme, cls);
                 while (results.next()) {
                     Attendance attd = new Attendance(results.getInt(1), results.getString(2), results.getInt(4),
                             results.getInt(5), results.getString(6));
@@ -423,6 +424,58 @@ public class DatabaseConnection {
                 AppFrame.mainPanel.add(attdList, "list-of-attendance");
                 MainPanel.cl.show(AppFrame.mainPanel, "list-of-attendance");
                 Variables.pagesStack.push("list-of-attendance");
+                //
+                query.close();
+            } catch (Exception e) {
+                System.out.println(e);
+            } finally {
+                try {
+                    db_conn.close();
+                } catch (Exception e) {
+
+                }
+            }
+        }
+    }
+
+    public static void fetchAttendance(Classes classes, Attendance attd) {
+        dbConnect();
+        if (db_conn != null) {
+            try {
+                String tableName = "attendance_" + classes.getId();
+                String colName = "attd_" + attd.getId();
+                String sql = "SELECT a.studId, CONCAT(s.fname, ' ', s.lname) AS name, " + colName + " FROM students s, "
+                        + tableName
+                        + " a WHERE a.studId = s.studId;";
+                //
+                String sql2 = "SELECT m.module_code, m.name FROM class c, modules m WHERE c.module_code = m.module_code AND c.classId = "
+                        + classes.getId() + ";";
+                //
+                Statement query = db_conn.createStatement();
+                //
+                String mod_code = "";
+                String mod_name = "";
+                ResultSet module = query.executeQuery(sql2);
+                while (module.next()) {
+                    mod_code = module.getString(1);
+                    mod_name = module.getString(2);
+                }
+                //
+                ResultSet results = query.executeQuery(sql);
+                ViewAttendancePage vp = new ViewAttendancePage(Variables.activeTheme, classes, attd, mod_code,
+                        mod_name);
+                while (results.next()) {
+                    vp.getAttendanceBoard().getIds().add(results.getString(1));
+                    vp.getAttendanceBoard().getNames().add(results.getString(2));
+                    vp.getAttendanceBoard().getPresence().add(results.getString(3));
+                }
+                //
+                vp.getAttendanceBoard().setUpDetails(Variables.activeTheme);
+                vp.getAttendanceBoard().setUpListOfStudents(Variables.activeTheme);
+                //
+                AppFrame.mainPanel.add(vp, "view-specific-attendance");
+                MainPanel.cl.show(AppFrame.mainPanel, "view-specific-attendance");
+                Variables.pagesStack.push("view-specific-attendance");
                 //
                 query.close();
             } catch (Exception e) {

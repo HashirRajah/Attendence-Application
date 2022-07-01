@@ -79,7 +79,7 @@ public class ViewAttendance extends JPanel {
                 AppFrame.mainPanel.add(MainPanel.addAttd, "add-attendance");
                 MainPanel.cl.show(AppFrame.mainPanel, "add-attendance");
             } else if (Variables.userType.equals("lecturer") && target.equals("View Attendance")) {
-                DatabaseConnection.fetchAllAttendance(String.valueOf(c.getId()));
+                DatabaseConnection.fetchAllAttendance(String.valueOf(c.getId()), c);
             }
         }
 
