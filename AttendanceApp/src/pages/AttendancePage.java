@@ -143,8 +143,8 @@ public class AttendancePage extends JScrollPane {
 
             TableCol = new JPanel();
             TableCol.setLayout(new GridLayout(1, 3, 0, 5));
-            TableCol.add(nameOfStudents);
             TableCol.add(studentID);
+            TableCol.add(nameOfStudents); 
             TableCol.add(attendanceStatus);
 
             TableCol.setBackground(theme.getMenuColor());
@@ -193,10 +193,12 @@ public class AttendancePage extends JScrollPane {
                 JLabel id = new JLabel(ids.get(i));
                 id.setBorder(idBorder);
                 id.setForeground(theme.getFontColor());
+                id.setFont(new Font("TimesRoman", Font.PLAIN, 15));
                 //
                 JLabel name = new JLabel(names.get(i));
                 name.setForeground(theme.getFontColor());
                 name.setBorder(idBorder);
+                name.setFont(new Font("TimesRoman", Font.PLAIN, 15));
                 //
                 JCheckBox box = new JCheckBox();
                 presense.add(box);
@@ -260,12 +262,13 @@ public class AttendancePage extends JScrollPane {
             semestertxt.setBorder(border);
             datetxt.setBorder(border);
             // add
+
+            moduleDetails.add(moduleCode);
+            moduleDetails.add(moduleCodetxt);
             moduleDetails.add(moduleName);
             moduleDetails.add(moduleNametxt);
             moduleDetails.add(LecturerName);
             moduleDetails.add(LecturerNametxt);
-            moduleDetails.add(moduleCode);
-            moduleDetails.add(moduleCodetxt);
             moduleDetails.add(noOfStud);
             moduleDetails.add(noOfStudtxt);
             moduleDetails.add(semester);
