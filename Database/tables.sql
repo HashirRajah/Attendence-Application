@@ -295,3 +295,72 @@ VALUES(1, 'present'),
 -- SELECT MAX(id)
 -- FROM attendance
 -- WHERE classId = 1
+
+--STUDENT INSERT
+INSERT INTO students
+    (fname, lname, gender, address, email, contact, progId, date_of_birth)
+VALUES
+    ( 'Divesh', 'Nugessur', 'M', 'Bel Air', 'divesh@gmial.com', 54344124, NULL, '10-10-1999'),
+    ( 'Devesh', 'Udhin', 'M', 'L''Avenir', 'devesh@gmial.com', 59535354, NULL, '10-10-1990'),
+    ( 'Jeshwan', 'Khoodeeram', 'M', 'Mahebourg', 'jeshwan@gmial.com', 57824562, NULL, '10-10-1990');
+
+--MODULES INSERT
+INSERT INTO modules
+    (module_code, name)
+VALUES
+    ('ICT2040Y', 'Web-Centric Computing'),
+    ('ICT2019Y', 'Algorithm & Complexities'),
+    ('ICT2022Y', 'Operating System'),
+    ('ICT2042Y', 'Soft Engineering & Project Management'),
+    ('ICT2023Y', 'User Interface Design and Computer Graphics'),
+    ('ICDT2200', 'Industrial Training');
+
+--CLASS INSERT
+INSERT INTO class
+    ( mode, type , duration , starttime , grName, grLevel, progId, module_code )
+VALUES
+    ('face to face', 'Tutorial', '1:00', '8:30', 'Group A', 2, 1, 'ICT2020'),
+    ('face to face', 'Tutorial', '1:00', '11:30', 'Group A', 2, 1, 'ICT2023Y'),
+    ('online', 'Lecture', '2:00', '10:30', 'Group A', 2, 1, 'ICT2023Y'),
+    ('online', 'Lecture', '2:00', '13:30', 'Group A', 2, 1, 'ICT2022Y'),
+    ('face to face', 'Tutorial', '1:00', '8:30', 'Group A', 2, 1, 'ICT2022Y'),
+    ('online', 'Lecture', '2:00', '8:30', 'Group A', 2, 1, 'ICT2042Y'),
+    ('face to face', 'Tutorial', '1:00', '11:00', 'Group A', 2, 1, 'ICT2042Y'),
+    ('online', 'Lecture', '2:00', '10:30', 'Group A', 2, 1, 'ICT2019Y'),
+    ('face to face', 'Tutorial', '1:00', '13:00', 'Group A', 2, 1, 'ICT2019Y'),
+    ('online', 'Lecture', '2:00', '13:00', 'Group A', 2, 1, 'ICT2040Y'),
+    ('face to face', 'Lecture', '1:00', '15:00', 'Group A', 2, 1, 'ICT2040Y');
+
+--ROOM INSERT
+INSERT INTO room
+    (module_code, l_username, classId)
+VALUES
+    ('ICT2020', 'AChutoo', 2),
+    ('ICT2023Y', 'AMungur', 3),
+    ('ICT2023Y', 'AMungur', 4),
+    ('ICT2022Y', 'GSathan', 5),
+    ('ICT2022Y', 'GSathan', 6),
+    ('ICT2042Y', 'VSeetohul', 7),
+    ('ICT2042Y', 'VSeetohul', 8),
+    ('ICT2019Y', 'PAppavoo', 9),
+    ('ICT2019Y', 'PAppavoo', 10);
+
+--LECTURER INSERT
+INSERT INTO lecturer
+    (l_username, fname, lname, gender, address, email, contact, [type], date_of_birth)
+VALUES
+    ( 'AMungur', 'Avinash' , 'Mungur' , 'M' , 'Quatre Bornes' , 'mungur@gmail.com', 59937432 , 'Full-time', '08-10-1980'),
+    ( 'BSonah', 'Bikash' , 'Sonah' , 'M' , 'Port Louis' , 'sonah@gmail.com', 59567432 , 'Full-time', '05-05-1970' ),
+    ( 'PAppavoo', 'Paramasiven' , 'Appavoo' , 'M' , 'Moka' , 'paramasiven@gmail.com', 57895632 , 'Full-time', '03-07-1976' ),
+    ( 'VSeetohul', 'Vidasha' , 'Seetohul' , 'F' , 'St Pierre' , 'seetohul@gmail.com', 57900332 , 'Full-time', '02-09-1980' );
+
+--USER INSERT
+INSERT INTO users
+VALUES
+    ( 'AMungur', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8' , 'lecturer'),
+    ( 'BSonah', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8' , 'lecturer'),
+    ( 'PAppavoo', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8' , 'lecturer'),
+    ( 'VSeetohul', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8' , 'lecturer');
+
+SELECT *
+FROM class

@@ -29,4 +29,22 @@ public class ViewButton extends JButton {
         ButtonHover.HoverEffect(theme.getContentColor(), theme.getMainColor(), theme.getMainColor(),
                 theme.getContentColor(), this);
     }
+
+    public ViewButton(Theme theme, String text) {
+        super();
+        // instantiating vars
+        //
+        this.setText(text);
+        this.setFocusable(false);
+        this.setBorder(border);
+        this.setBackground(theme.getMainColor());
+        this.setForeground(theme.getContentColor());
+        this.setFont(Variables.SETTINGS_FONT);
+        // this.setHorizontalTextPosition(JButton.LEFT);
+        // this.setVerticalTextPosition(JButton.CENTER);
+        // hover effect
+        ButtonHover.HoverEffect(theme.getContentColor(), theme.getMainColor(), theme.getMainColor(),
+                theme.getContentColor(), this);
+    }
+
 }
