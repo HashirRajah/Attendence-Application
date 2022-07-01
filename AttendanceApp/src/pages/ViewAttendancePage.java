@@ -27,7 +27,7 @@ public class ViewAttendancePage extends JScrollPane {
         this.c = cl;
         this.attendance = attd;
         // instantiate vars
-        attendanceBoard = new AttendancePanel(theme, code, name);
+        attendanceBoard = new AttendancePanel(theme, name, code);
         this.setViewportView(attendanceBoard);
 
     }
@@ -44,7 +44,7 @@ public class ViewAttendancePage extends JScrollPane {
 
         // private JLabel
 
-        private JTextField titletxt, noOfStudtxt, moduleNametxt, moduleCodetxt, LecturerNametxt, searchtxt, weektxt,
+        private JTextField titletxt, noOfStudtxt, moduleNametxt, moduleCodetxt, LecturerNametxt, weektxt,
                 semestertxt, datetxt;
 
         private JPanel moduleDetails, titlePanel, attendanceTable, Container, TableCol, attendanceContainer;
@@ -187,16 +187,17 @@ public class ViewAttendancePage extends JScrollPane {
                 JLabel id = new JLabel(ids.get(i));
                 id.setBorder(idBorder);
                 id.setForeground(theme.getFontColor());
-                id.setFont(new Font("TimesRoman", Font.PLAIN, 15));
+                id.setFont(new Font("consolas", Font.PLAIN, 25));
                 //
                 JLabel name = new JLabel(names.get(i));
                 name.setForeground(theme.getFontColor());
                 name.setBorder(idBorder);
-                name.setFont(new Font("TimesRoman", Font.PLAIN, 15));
+                name.setFont(new Font("consolas", Font.PLAIN, 25));
                 //
                 JLabel presenceStatus = new JLabel(presense.get(i));
+                presenceStatus.setFont(new Font("consolas", Font.PLAIN, 25));
                 presenceStatus.setForeground(theme.getFontColor());
-                
+                presenceStatus.setBorder(idBorder);
 
                 attendanceTable.add(id);
                 attendanceTable.add(name);
@@ -216,17 +217,19 @@ public class ViewAttendancePage extends JScrollPane {
             LecturerNametxt = new JTextField(
                     Variables.userLoggedIn.getFirstName() + " " + Variables.userLoggedIn.getLastName());
             moduleCodetxt = new JTextField(mod.getModuleCode());
-            noOfStudtxt = new JTextField(ids.size());
-            searchtxt = new JTextField("Search");
-            weektxt = new JTextField(attendance.getWeek());
-            semestertxt = new JTextField(attendance.getSemester());
+            noOfStudtxt = new JTextField(String.valueOf(ids.size()));
+            weektxt = new JTextField(String.valueOf(attendance.getWeek()));
+            semestertxt = new JTextField(String.valueOf(attendance.getSemester()));
             datetxt = new JTextField(attendance.getDate());
+            //
+            // System.out.println(ids.size());
+            // System.out.println(attendance.getWeek());
+            // System.out.println(attendance.getSemester());
             //
             moduleNametxt.setEditable(false);
             LecturerNametxt.setEditable(false);
             moduleCodetxt.setEditable(false);
             noOfStudtxt.setEditable(false);
-            searchtxt.setEditable(false);
             weektxt.setEditable(false);
             semestertxt.setEditable(false);
             datetxt.setEditable(false);
@@ -236,7 +239,6 @@ public class ViewAttendancePage extends JScrollPane {
             LecturerNametxt.setBackground(theme.getMainColor());
             moduleCodetxt.setBackground(theme.getMainColor());
             noOfStudtxt.setBackground(theme.getMainColor());
-            searchtxt.setBackground(theme.getMainColor());
             weektxt.setBackground(theme.getMainColor());
             semestertxt.setBackground(theme.getMainColor());
             datetxt.setBackground(theme.getMainColor());
@@ -245,7 +247,6 @@ public class ViewAttendancePage extends JScrollPane {
             LecturerNametxt.setForeground(theme.getContentColor());
             moduleCodetxt.setForeground(theme.getContentColor());
             noOfStudtxt.setForeground(theme.getContentColor());
-            searchtxt.setForeground(theme.getContentColor());
             weektxt.setForeground(theme.getContentColor());
             semestertxt.setForeground(theme.getContentColor());
             datetxt.setForeground(theme.getContentColor());
@@ -255,7 +256,6 @@ public class ViewAttendancePage extends JScrollPane {
             LecturerNametxt.setBorder(border);
             moduleCodetxt.setBorder(border);
             noOfStudtxt.setBorder(border);
-            searchtxt.setBorder(border);
             weektxt.setBorder(border);
             semestertxt.setBorder(border);
             datetxt.setBorder(border);
