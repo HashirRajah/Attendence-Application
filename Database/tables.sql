@@ -275,15 +275,23 @@ VALUES(1, 'present'),
     (2, 'present'),
     (3, 'present');
 
-GO;
-CREATE PROCEDURE sp_add_attendance
-    @date DATE,
-    @classId INT,
-    @semester TINYINT,
-    @week TINYINT
-AS
-BEGIN
-    INSERT INTO attendance
-        (date, classId, week, semester, status)
-    VALUES(@date, @classId, @week, @semester, 'completed');
-END;
+-- GO;
+-- CREATE PROCEDURE sp_add_attendance
+--     @date DATE,
+--     @classId INT,
+--     @semester TINYINT,
+--     @week TINYINT
+-- AS
+-- BEGIN
+--     INSERT INTO attendance
+--         (date, classId, week, semester, status)
+--     VALUES(@date, @classId, @week, @semester, 'completed');
+-- END;
+
+-- use attendance_application_db;
+-- select *
+-- from attendance_1;
+
+-- SELECT MAX(id)
+-- FROM attendance
+-- WHERE classId = 1

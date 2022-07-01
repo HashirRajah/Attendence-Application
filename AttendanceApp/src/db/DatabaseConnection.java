@@ -6,6 +6,7 @@ import styles.*;
 import variables.Variables;
 import backEnd.*;
 import gui.*;
+import pages.AttendancePage;
 import java.util.ArrayList;
 import app_version.Configuration;
 
@@ -291,35 +292,104 @@ public class DatabaseConnection {
         }
     }
 
-    public static void add_Attendance(String date, int classId, int sem, int week) {
+    public static void add_Attendance(String date, String classId, String sem, String week, Classes c) {
         dbConnect();
         if (db_conn != null) {
             try {
-                String sql = "EXEC sp_add_attendance '" + date + "', " + classId + ", " + sem + ", " + week + ";";
-                String sql2 = "SELECT MAX(id) FROM attendance WHERE classId = " + classId + ";";
-                String tableName = "attendance_" + String.valueOf(classId);
+                String sql = "INSERT INTO attendance(date, classId, week, semester, status) VALUES('" + date + "', "
+                        + classId + ", " + week + ", " + sem + ", 'completed');";
+                String sql2 = "SELECT MAX(id) AS max_id FROM attendance WHERE classId = " + classId + ";";
+                String tableName = "attendance_" + classId;
                 String colName = "attd_";
-                String sql3 = "ALTER TABLE " + tableName + " ADD " + colName + " VARCHAR(255);";
+                String sql4 = "SELECT a.studId, CONCAT(s.fname, ' ', s.lname) AS name FROM students s, "
+                        + tableName
+                        + " a WHERE a.studId = s.studId;";
+                String sql5 = "SELECT m.module_code, m.name FROM class c, modules m WHERE c.module_code = m.module_code AND c.classId = "
+                        + classId + ";";
 
                 // System.out.println(sql);
                 // execute query
+
                 Statement query = db_conn.createStatement();
                 boolean status = query.execute(sql);
-                if (status) {
-                    ResultSet result = query.executeQuery(sql2);
-                    int col;
-                    result.first();
-                    col = result.getInt(1);
-                    colName += String.valueOf(col);
 
+                if (!status) {
+                    //
+                    ResultSet result = query.executeQuery(sql2);
+                    int col = 1;
+                    while (result.next()) {
+                        col = result.getInt(1);
+                    }
+                    //
+                    String mod_code = "";
+                    String mod_name = "";
+                    ResultSet module = query.executeQuery(sql5);
+                    while (module.next()) {
+                        mod_code = module.getString(1);
+                        mod_name = module.getString(2);
+                    }
+                    //
+                    colName += String.valueOf(col);
+                    String sql3 = "ALTER TABLE " + tableName + " ADD " + colName + " VARCHAR(255);";
                     boolean status2 = query.execute(sql3);
-                    if (status2) {
-                        MainPanel.cl.show(AppFrame.mainPanel, "");
+                    // System.out.println(status2);
+                    AppFrame.mainPanel.attendance = new AttendancePage(Variables.activeTheme, c,
+                            new Attendance(col, date, Integer.parseInt(week), Integer.parseInt(sem), "completed"),
+                            mod_code, mod_name);
+                    if (!status2) {
+                        // System.out.println("hey");
+                        ResultSet students = query.executeQuery(sql4);
+                        while (students.next()) {
+                            MainPanel.attendance.getAttendanceBoard().getIds().add(students.getString(1));
+                            MainPanel.attendance.getAttendanceBoard().getNames().add(students.getString(2));
+                        }
+                        //
+                        AppFrame.mainPanel.attendance.getAttendanceBoard().setUpDetails(Variables.activeTheme);
+                        AppFrame.mainPanel.attendance.getAttendanceBoard().setUpListOfStudents(Variables.activeTheme);
+                        AppFrame.mainPanel.add(AppFrame.mainPanel.attendance, "attendance");
+                        MainPanel.cl.show(AppFrame.mainPanel, "attendance");
                     }
                 }
                 //
                 // close
                 query.close();
+            } catch (Exception e) {
+                System.out.println(e);
+            } finally {
+                try {
+                    db_conn.close();
+                } catch (Exception e) {
+
+                }
+            }
+        }
+    }
+
+    public static void saveAttendance(String classId, String attendanceId) {
+        dbConnect();
+        if (db_conn != null && AppFrame.mainPanel.attendance != null) {
+            try {
+                String tableName = "attendance_" + classId;
+                String colName = "attd_" + attendanceId;
+                String sql = "UPDATE " + tableName + " SET " + colName + " = '";
+                Statement update = db_conn.createStatement();
+                for (int i = 0; i < AppFrame.mainPanel.attendance.getAttendanceBoard().getPresence().size(); i++) {
+                    String id = AppFrame.mainPanel.attendance.getAttendanceBoard().getIds().get(i);
+                    String value = ((AppFrame.mainPanel.attendance.getAttendanceBoard().getPresence().get(i)
+                            .isSelected()) ? "present" : "absent");
+                    //
+                    sql += value + "' WHERE studId = " + id + ";";
+                    //
+                    // System.out.println(sql);
+                    update.execute(sql);
+                    sql = "UPDATE " + tableName + " SET " + colName + " = '";
+                }
+                //
+
+                MainPanel.cl.show(AppFrame.mainPanel, "attendance-choice");
+                AppFrame.mainPanel.remove(AppFrame.mainPanel.attendance);
+                AppFrame.mainPanel.attendance = null;
+                update.close();
             } catch (Exception e) {
                 System.out.println(e);
             } finally {

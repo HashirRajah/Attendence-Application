@@ -93,8 +93,10 @@ public class AddAttendance extends JPanel {
         this.addButton = new ButtonStyle1(theme, Color.GREEN, 0, "Add", 50, 50);
 
         addButton.addActionListener(e -> {
-            DatabaseConnection.add_Attendance(date_txt.getText(), Integer.parseInt(class_txt.getText()),
-                    Integer.parseInt(semester_txt.getText()), Integer.parseInt(week_txt.getText()));
+            DatabaseConnection.add_Attendance(date_txt.getText(),
+                    class_txt.getText(),
+                    semester_txt.getText(),
+                    week_txt.getText(), c);
         });
         // login_button.setBorder(new RoundBtn(15));
 

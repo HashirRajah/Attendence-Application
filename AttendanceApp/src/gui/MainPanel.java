@@ -20,7 +20,7 @@ public class MainPanel extends JPanel {
     private FontSettingsPage fontSettings;
     private AccountSettingsPage accountSettings;
     public static HomePage homePage;
-    private AttendancePage attendance;
+    public static AttendancePage attendance;
     public static ViewAttendance viewAttd;
     public static AddAttendance addAttd;
 

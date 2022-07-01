@@ -1,33 +1,46 @@
 package pages;
 
-import javax.print.AttributeException;
 //imports
 import javax.swing.*;
-
 import backEnd.Attendance;
-
+import backEnd.Classes;
+import backEnd.ModuleClass;
 import java.awt.*;
 import styles.*;
 import variables.Variables;
 import gui.*;
+import java.util.ArrayList;
+import javax.print.AttributeException;
+import javax.swing.border.Border;
+import javax.swing.BorderFactory;
+import db.*;
 
 public class AttendancePage extends JScrollPane {
     //
     private AttendancePanel attendanceBoard;
+    private Attendance attendance;
+    private Classes c;
     // private ClassButton classButton;
 
-    public AttendancePage(Theme theme) {
+    public AttendancePage(Theme theme, Classes cl, Attendance attd, String code, String name) {
         super();
+        this.c = cl;
+        this.attendance = attd;
         // instantiate vars
-        attendanceBoard = new AttendancePanel(theme);
+        attendanceBoard = new AttendancePanel(theme, code, name);
         this.setViewportView(attendanceBoard);
 
+    }
+
+    public AttendancePanel getAttendanceBoard() {
+        return attendanceBoard;
     }
 
     public class AttendancePanel extends JPanel {
         //
         private JLabel title, noOfStud, moduleName, moduleCode, LecturerName, week, semester, date, nameOfStudents,
                 attendanceStatus;
+        private ArrayList<String> ids = new ArrayList<String>(), names = new ArrayList<String>();
 
         // private JLabel
 
@@ -36,29 +49,27 @@ public class AttendancePage extends JScrollPane {
 
         private JPanel moduleDetails, titlePanel, attendanceTable, Container, TableCol, attendanceContainer;
 
-        private JPanel southPanel, northPanel, eastPanel, westPanel, centerPanel;
-
-        // hardcoded label
-        private JLabel stud1, stud2;
-        private JLabel stud1Atd, stud2Atd;
-
-
         private JLabel studentID;
-        private JLabel studID1, studID2;
-        private JCheckBox c1, c2;
 
-        private Attendance attendance;
+        private ModuleClass mod;
+        private ArrayList<JCheckBox> presense;
+        private ButtonStyle1 save;
 
         //
-        public AttendancePanel(Theme theme) {
+        public AttendancePanel(Theme theme, String module_name, String module_code) {
             super();
-
             this.setLayout(new BorderLayout());
             this.setBackground(theme.getMainColor());
+            this.mod = new ModuleClass(module_code, module_name);
+
+            //
+            save = new ButtonStyle1(theme, theme.getFontColor(), 2, "Save", 50, 50);
+            save.addActionListener(e -> {
+                DatabaseConnection.saveAttendance(String.valueOf(c.getId()), String.valueOf(attendance.getId()));
+            });
 
             // instantiating vars
-            attendance = new Attendance(1, "13/02/2022", 3, 2, "present");
-
+            // attendance;
 
             title = new CenteredTextLabel("A T T E N D A N C E", theme.getContentColor(), Variables.PAGES_TITLE);
 
@@ -78,30 +89,12 @@ public class AttendancePage extends JScrollPane {
             nameOfStudents.setBorder(BorderFactory.createLineBorder(theme.getButtonColor(), 2));
             attendanceStatus.setBorder(BorderFactory.createLineBorder(theme.getButtonColor(), 2));
             studentID.setBorder(BorderFactory.createLineBorder(theme.getButtonColor(), 2));
-            
 
             nameOfStudents.setForeground(theme.getContentColor());
             attendanceStatus.setForeground(theme.getContentColor());
             studentID.setForeground(theme.getContentColor());
 
-            stud1 = new JLabel("Divesh Nugessur");
-            // stud1.setHorizontalAlignment();
-
-            stud2 = new JLabel("Divesh Nugessur");
-
-            studID1 = new JLabel("2012929");
-
-            studID2 = new JLabel("2012929");
             // TextField
-            moduleNametxt = new JTextField("Object Oriented Techniques ");
-            LecturerNametxt = new JTextField("Bikash Sonak ");
-            moduleCodetxt = new JTextField("1019Y ICR ");
-            noOfStudtxt = new JTextField("120");
-            searchtxt = new JTextField("Search");
-
-            weektxt = new JTextField("7");
-            semestertxt = new JTextField("2");
-            datetxt = new JTextField("30-6-2022");
 
             // COLORS
 
@@ -114,42 +107,8 @@ public class AttendancePage extends JScrollPane {
             // week.setBackground(theme.getContentColor());
             // semester.setBackground(theme.getContentColor());
             // date.setBackground(theme.getContentColor());
-            moduleNametxt.setEditable(false);
-            LecturerNametxt.setEditable(false);
-            moduleCodetxt.setEditable(false);
-            noOfStudtxt.setEditable(false);
-            searchtxt.setEditable(false);
-            weektxt.setEditable(false);
-            semestertxt.setEditable(false);
-            datetxt.setEditable(false);
 
-            // //textfield design
-            moduleNametxt.setBackground(theme.getMainColor());
-            LecturerNametxt.setBackground(theme.getMainColor());
-            moduleCodetxt.setBackground(theme.getMainColor());
-            noOfStudtxt.setBackground(theme.getMainColor());
-            searchtxt.setBackground(theme.getMainColor());
-            weektxt.setBackground(theme.getMainColor());
-            semestertxt.setBackground(theme.getMainColor());
-            datetxt.setBackground(theme.getMainColor());
-
-            moduleNametxt.setForeground(theme.getContentColor());
-            LecturerNametxt.setForeground(theme.getContentColor());
-            moduleCodetxt.setForeground(theme.getContentColor());
-            noOfStudtxt.setForeground(theme.getContentColor());
-            searchtxt.setForeground(theme.getContentColor());
-            weektxt.setForeground(theme.getContentColor());
-            semestertxt.setForeground(theme.getContentColor());
-            datetxt.setForeground(theme.getContentColor());
-
-            moduleNametxt.setBorder(BorderFactory.createLineBorder(theme.getMainColor(), 2));
-            LecturerNametxt.setBorder(BorderFactory.createLineBorder(theme.getMainColor(), 2));
-            moduleCodetxt.setBorder(BorderFactory.createLineBorder(theme.getMainColor(), 2));
-            noOfStudtxt.setBorder(BorderFactory.createLineBorder(theme.getMainColor(), 2));
-            searchtxt.setBorder(BorderFactory.createLineBorder(theme.getMainColor(), 2));
-            weektxt.setBorder(BorderFactory.createLineBorder(theme.getMainColor(), 2));
-            semestertxt.setBorder(BorderFactory.createLineBorder(theme.getMainColor(), 2));
-            datetxt.setBorder(BorderFactory.createLineBorder(theme.getMainColor(), 2));
+            //
 
             // .setBackground(theme.getMainColor());
             moduleName.setForeground(theme.getFontColor());
@@ -177,22 +136,6 @@ public class AttendancePage extends JScrollPane {
             moduleDetails.setBorder(BorderFactory.createEmptyBorder(15, 300, 15, 300));
             moduleDetails.setLayout(new GridLayout(8, 2, 5, 5));
 
-            moduleDetails.add(moduleName);
-            moduleDetails.add(moduleNametxt);
-            moduleDetails.add(LecturerName);
-            moduleDetails.add(LecturerNametxt);
-            moduleDetails.add(moduleCode);
-            moduleDetails.add(moduleCodetxt);
-            moduleDetails.add(noOfStud);
-            moduleDetails.add(noOfStudtxt);
-
-            moduleDetails.add(semester);
-            moduleDetails.add(semestertxt);
-            moduleDetails.add(week);
-            moduleDetails.add(weektxt);
-            moduleDetails.add(date);
-            moduleDetails.add(datetxt);
-
             // ATTENDANCE TABLE
             attendanceContainer = new JPanel();
             attendanceContainer.setLayout(new BorderLayout());
@@ -203,13 +146,9 @@ public class AttendancePage extends JScrollPane {
             TableCol.add(nameOfStudents);
             TableCol.add(studentID);
             TableCol.add(attendanceStatus);
-            
+
             TableCol.setBackground(theme.getMenuColor());
             TableCol.setForeground(theme.getFontColor());
-
-            attendanceTable.setLayout(new GridLayout(2, 3, 0, 0));
-            attendanceTable.setBorder(BorderFactory.createLineBorder(theme.getButtonColor(), 2));
-            attendanceTable.setBackground(theme.getMainColor());
 
             attendanceContainer.add(TableCol, BorderLayout.NORTH);
             attendanceContainer.add(attendanceTable, BorderLayout.CENTER);
@@ -221,46 +160,6 @@ public class AttendancePage extends JScrollPane {
             // attendanceTable.add(nameOfStudents);
             // attendanceTable.add(attendanceStatus);
 
-            stud1 = new JLabel("Divesh Nugessur");
-            stud2 = new JLabel("Divesh Nugessur");
-
-            stud1.setBorder(BorderFactory.createLineBorder(theme.getButtonColor(), 2));
-            stud2.setBorder(BorderFactory.createLineBorder(theme.getButtonColor(), 2));
-
-            studID1.setBorder(BorderFactory.createLineBorder(theme.getButtonColor(), 2));
-            studID2.setBorder(BorderFactory.createLineBorder(theme.getButtonColor(), 2));
-            
-
-
-            stud1.setForeground(theme.getFontColor());
-            stud2.setForeground(theme.getFontColor());
-
-            studID1.setForeground(theme.getFontColor());
-            studID2.setForeground(theme.getFontColor());
-
-            c1 = new JCheckBox();
-            c2 = new JCheckBox();
-
-            c1.setBackground(theme.getMainColor());
-            // c1.setForeground(Color.YELLOW);
-            c1.setBorder(BorderFactory.createLineBorder(theme.getButtonColor(), 2));
-
-            c2.setBackground(theme.getMainColor());
-            c2.setBorder(BorderFactory.createLineBorder(theme.getButtonColor(), 2));
-
-            attendanceTable.add(stud1);
-            attendanceTable.add(studID1);
-            attendanceTable.add(c1);
-            
-
-            attendanceTable.add(stud2);
-            attendanceTable.add(studID2);
-            attendanceTable.add(c2);
-            
-
-            // attendanceTable.add(stud2);
-            // attendanceTable.add(c1);
-
             Container.setLayout(new BorderLayout());
 
             Container.add(moduleDetails, BorderLayout.NORTH);
@@ -268,23 +167,126 @@ public class AttendancePage extends JScrollPane {
 
             this.add(titlePanel, BorderLayout.NORTH);
             this.add(Container, BorderLayout.CENTER);
+            this.add(save, BorderLayout.SOUTH);
 
+        }
+
+        public ArrayList<String> getIds() {
+            return this.ids;
+        }
+
+        public ArrayList<String> getNames() {
+            return this.names;
+        }
+
+        public void setUpListOfStudents(Theme theme) {
+            //
+            presense = new ArrayList<JCheckBox>();
+            //
+            Border idBorder = BorderFactory.createLineBorder(theme.getButtonColor(), 2);
+            Border tableBorder = BorderFactory.createLineBorder(theme.getButtonColor(), 2);
+            //
+            attendanceTable.setLayout(new GridLayout(ids.size(), 3, 0, 0));
+            attendanceTable.setBorder(tableBorder);
+            attendanceTable.setBackground(theme.getMainColor());
+            for (int i = 0; i < ids.size(); i++) {
+                JLabel id = new JLabel(ids.get(i));
+                id.setBorder(idBorder);
+                id.setForeground(theme.getFontColor());
+                //
+                JLabel name = new JLabel(names.get(i));
+                name.setForeground(theme.getFontColor());
+                name.setBorder(idBorder);
+                //
+                JCheckBox box = new JCheckBox();
+                presense.add(box);
+
+                attendanceTable.add(id);
+                attendanceTable.add(name);
+                attendanceTable.add(box);
+            }
+            attendanceTable.revalidate();
+            validate();
+            attendanceTable.repaint();
+
+        }
+
+        public void setUpDetails(Theme theme) {
+            moduleNametxt = new JTextField(mod.getName());
+            LecturerNametxt = new JTextField(
+                    Variables.userLoggedIn.getFirstName() + " " + Variables.userLoggedIn.getLastName());
+            moduleCodetxt = new JTextField(mod.getModuleCode());
+            noOfStudtxt = new JTextField(ids.size());
+            searchtxt = new JTextField("Search");
+            weektxt = new JTextField(attendance.getWeek());
+            semestertxt = new JTextField(attendance.getSemester());
+            datetxt = new JTextField(attendance.getDate());
+            //
+            moduleNametxt.setEditable(false);
+            LecturerNametxt.setEditable(false);
+            moduleCodetxt.setEditable(false);
+            noOfStudtxt.setEditable(false);
+            searchtxt.setEditable(false);
+            weektxt.setEditable(false);
+            semestertxt.setEditable(false);
+            datetxt.setEditable(false);
+            //
+            // //textfield design
+            moduleNametxt.setBackground(theme.getMainColor());
+            LecturerNametxt.setBackground(theme.getMainColor());
+            moduleCodetxt.setBackground(theme.getMainColor());
+            noOfStudtxt.setBackground(theme.getMainColor());
+            searchtxt.setBackground(theme.getMainColor());
+            weektxt.setBackground(theme.getMainColor());
+            semestertxt.setBackground(theme.getMainColor());
+            datetxt.setBackground(theme.getMainColor());
+
+            moduleNametxt.setForeground(theme.getContentColor());
+            LecturerNametxt.setForeground(theme.getContentColor());
+            moduleCodetxt.setForeground(theme.getContentColor());
+            noOfStudtxt.setForeground(theme.getContentColor());
+            searchtxt.setForeground(theme.getContentColor());
+            weektxt.setForeground(theme.getContentColor());
+            semestertxt.setForeground(theme.getContentColor());
+            datetxt.setForeground(theme.getContentColor());
+            //
+            Border border = BorderFactory.createLineBorder(theme.getMainColor(), 2);
+            moduleNametxt.setBorder(border);
+            LecturerNametxt.setBorder(border);
+            moduleCodetxt.setBorder(border);
+            noOfStudtxt.setBorder(border);
+            searchtxt.setBorder(border);
+            weektxt.setBorder(border);
+            semestertxt.setBorder(border);
+            datetxt.setBorder(border);
+            // add
+            moduleDetails.add(moduleName);
+            moduleDetails.add(moduleNametxt);
+            moduleDetails.add(LecturerName);
+            moduleDetails.add(LecturerNametxt);
+            moduleDetails.add(moduleCode);
+            moduleDetails.add(moduleCodetxt);
+            moduleDetails.add(noOfStud);
+            moduleDetails.add(noOfStudtxt);
+            moduleDetails.add(semester);
+            moduleDetails.add(semestertxt);
+            moduleDetails.add(week);
+            moduleDetails.add(weektxt);
+            moduleDetails.add(date);
+            moduleDetails.add(datetxt);
+            //
+            moduleDetails.revalidate();
+            validate();
+            moduleDetails.repaint();
+        }
+
+        public void setTheme(Theme theme) {
+
+        }
+
+        public ArrayList<JCheckBox> getPresence() {
+            return this.presense;
         }
 
     }
 }
-
-// moduleDetails.setLayout(new GridBagLayout());
-// GridBagConstraints gbc = new GridBagConstraints();
-
-// gbc.gridx=0;
-// gbc.gridy=0;
-// moduleDetails.add(moduleName,gbc);
-
-// gbc.gridx=0;
-// gbc.gridy=1;
-// moduleDetails.add(moduleCode,gbc);
-
-// gbc.gridx=0;
-// gbc.gridy=2;
-// moduleDetails.add(LecturerName,gbc);

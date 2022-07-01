@@ -10,7 +10,7 @@ public class Attendance {
 
     public Attendance(int id, String date, int week, int semester, String status) {
         this.id = id;
-        this.date= date;
+        this.date = date;
         this.week = week;
         this.semester = semester;
         this.status = status;
@@ -28,7 +28,7 @@ public class Attendance {
         this.date = date;
     }
 
-    public String getDate(String date) {
+    public String getDate() {
         return this.date;
     }
 
