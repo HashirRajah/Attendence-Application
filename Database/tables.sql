@@ -367,3 +367,5 @@ INSERT INTO enroll
 VALUES('01-01-2022', 4, 'ICT2020'),
     ('01-01-2022', 5, 'ICT2020'),
     ('01-01-2022', 6, 'ICT2020');
+SELECT *
+FROM class

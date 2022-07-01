@@ -3,7 +3,6 @@ package pages;
 //imports
 import javax.swing.*;
 import javax.swing.text.View;
-
 import backEnd.Attendance;
 import styles.*;
 import java.awt.*;
@@ -14,15 +13,18 @@ import javax.swing.BorderFactory;
 import event_handling.*;
 import javax.swing.JButton;
 import java.util.ArrayList;
+import java.awt.event.*;
+import db.*;
+import backEnd.*;
 
 public class ListAttendancePage extends JScrollPane {
     //
     private ListAttendance allAttendance;
 
-    public ListAttendancePage(Theme theme) {
+    public ListAttendancePage(Theme theme, Classes cls) {
         super();
         // instantiate vars
-        allAttendance = new ListAttendance(theme);
+        allAttendance = new ListAttendance(theme, cls);
         this.setViewportView(allAttendance);
     }
 
@@ -36,13 +38,15 @@ public class ListAttendancePage extends JScrollPane {
         private ArrayList<ViewButton> listBtn;
         private ArrayList<Attendance> attdList;
         private JLabel title;
+        private Classes cls;
 
-        public ListAttendance(Theme theme) {
+        public ListAttendance(Theme theme, Classes cls) {
             super();
             // instantiating vars
             allView = new JPanel();
             title = new JLabel();
             attdList = new ArrayList<Attendance>();
+            this.cls = cls;
             // title customization
             title.setPreferredSize(new Dimension(this.getWidth(), 150));
             title.setForeground(theme.getContentColor());
@@ -76,6 +80,8 @@ public class ListAttendancePage extends JScrollPane {
                                 + "<br> Semester: "
                                 + attdList.get(i).getSemester() + "<br></html>"));
                 this.allView.add(listBtn.get(i));
+                // add action listner
+                listBtn.get(i).addActionListener(new MyActionListener(cls, attdList.get(i)));
             }
             this.allView.revalidate();
             validate();
@@ -89,5 +95,23 @@ public class ListAttendancePage extends JScrollPane {
         public ArrayList<Attendance> getattdList() {
             return attdList;
         }
+
+        private class MyActionListener implements ActionListener {
+            private Classes cls;
+            private Attendance attd;
+
+            public MyActionListener(Classes cls, Attendance attd) {
+                this.cls = cls;
+                this.attd = attd;
+            }
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                DatabaseConnection.fetchAttendance(cls, attd);
+            }
+
+        }
+
     }
 }
