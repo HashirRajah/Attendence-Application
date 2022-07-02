@@ -45,9 +45,9 @@ public class AdminDashBoard extends JScrollPane {
 
         private CenteredTextLabel title, welcome;
 
-        private JPanel topPanel, statisticsPanel, mainContainer, buttonContainer;
+        private JPanel topPanel, statisticsPanel, mainContainer, buttonContainer, buttonContainer1;
 
-        private ButtonStyle1 save, manageUser, manageDept, attendance;
+        private ViewButton save, manageUser, manageDept, attendance;
         //
         private HashMap<String, MyActionListener> myListeners;
 
@@ -60,7 +60,7 @@ public class AdminDashBoard extends JScrollPane {
 
             topPanel = new JPanel();
             //
-            save = new ButtonStyle1(theme, theme.getFontColor(), 2, "Save", 50, 50);
+            // save = new ViewButton(theme, theme.getFontColor(), 2, "Save", 50, 50);
             //
             setUpMyListeners();
             // instantiating vars
@@ -99,23 +99,29 @@ public class AdminDashBoard extends JScrollPane {
             mainContainer.add(statisticsPanel, BorderLayout.NORTH);
 
             // manage buttons
+            buttonContainer1 = new JPanel();
+            buttonContainer1.setLayout(new BorderLayout());
+            StylingPanel.setUpStylingPanels(theme, buttonContainer1, 60, 20);
             buttonContainer = new JPanel();
             buttonContainer.setBackground(theme.getMainColor());
-            buttonContainer.setLayout(new GridLayout(1, 3, 5, 0));
-            attendance = new ButtonStyle1(theme, theme.getMenuColor(), 3, "Attendance");
+            buttonContainer.setSize(new Dimension(800, 200));
+            buttonContainer.setLayout(new GridLayout(3, 1, 10, 15));
+            attendance = new ViewButton(theme, theme.getMenuColor(), 3, "Attendance");
             attendance.addActionListener(myListeners.get(attendance.getText()));
-            manageUser = new ButtonStyle1(theme, theme.getMenuColor(), 3, "Manage user");
+            manageUser = new ViewButton(theme, theme.getMenuColor(), 3, "Manage user");
             manageUser.addActionListener(myListeners.get(manageUser.getText()));
-            manageDept = new ButtonStyle1(theme, theme.getMenuColor(), 3, "Manage Department");
+            manageDept = new ViewButton(theme, theme.getMenuColor(), 3, "Manage Department");
             manageDept.addActionListener(myListeners.get(manageDept.getText()));
+
             buttonContainer.add(attendance);
             buttonContainer.add(manageUser);
             buttonContainer.add(manageDept);
+            buttonContainer1.add(buttonContainer, BorderLayout.CENTER);
 
             // Adding to main
             this.add(topPanel, BorderLayout.NORTH);
             this.add(mainContainer, BorderLayout.CENTER);
-            this.add(buttonContainer, BorderLayout.SOUTH);
+            this.add(buttonContainer1, BorderLayout.SOUTH);
         }
 
         private void setUpMyListeners() {
