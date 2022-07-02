@@ -141,6 +141,10 @@ public class DatabaseConnection {
                         MainPanel.cl.show(AppFrame.mainPanel, "home");
                         Variables.pagesStack.push("home");
                     }
+                    if (Variables.userType.equals("admin")) {
+                        AdminDashBoard dashboard = new AdminDashBoard(Variables.activeTheme);
+                        AppFrame.mainPanel.add(dashboard, "dashboard");
+                    }
                     // close all statements
                     stmt.close();
                     stmt2.close();

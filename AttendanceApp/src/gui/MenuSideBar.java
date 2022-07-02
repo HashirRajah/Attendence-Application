@@ -8,6 +8,8 @@ import variables.*;
 import styles.*;
 import java.util.ArrayList;
 import event_handling.*;
+import pages.AdminDashBoard;
+
 import java.awt.event.*;
 import app_version.*;
 import javax.swing.JButton;
@@ -148,7 +150,7 @@ public class MenuSideBar extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            // MainPanel.cl.show(AppFrame.mainPanel, "classes");
+            MainPanel.cl.show(AppFrame.mainPanel, "dashboard");
         }
 
     }
