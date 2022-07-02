@@ -163,4 +163,7 @@ public class Variables {
 
         // pages stack
         public static Stack<String> pagesStack = new Stack<String>();
+
+        //
+        public static int programId;
 }

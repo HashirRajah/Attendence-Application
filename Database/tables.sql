@@ -393,3 +393,8 @@ END;
 SELECT *
 FROM class;
 
+
+ALTER TABLE modules
+ADD progId INTEGER FOREIGN KEY REFERENCES programs;
+
+UPDATE modules SET progId = 1;

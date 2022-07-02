@@ -28,7 +28,7 @@ public class ListOfDepartments extends JScrollPane {
         this.setViewportView(allDepartments);
     }
 
-    public ListDepartment getAllAttendance() {
+    public ListDepartment getAllDepartments() {
         return allDepartments;
     }
 
@@ -76,7 +76,7 @@ public class ListOfDepartments extends JScrollPane {
                 listBtn.add(new ViewButton(theme, theme.getMenuColor(), 3, deptList.get(i).getName()));
                 this.allView.add(listBtn.get(i));
                 // add action listner
-                listBtn.get(i).addActionListener(new MyActionListener());
+                listBtn.get(i).addActionListener(new MyActionListener(deptList.get(i)));
             }
             this.allView.revalidate();
             validate();
@@ -92,15 +92,16 @@ public class ListOfDepartments extends JScrollPane {
         }
 
         private class MyActionListener implements ActionListener {
+            private Department dept;
 
-            public MyActionListener() {
-
+            public MyActionListener(Department dept) {
+                this.dept = dept;
             }
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-
+                DatabaseConnection.fetchPrograms(dept);
             }
 
         }

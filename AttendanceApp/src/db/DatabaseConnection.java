@@ -168,15 +168,19 @@ public class DatabaseConnection {
         dbConnect();
         if (db_conn != null && MainPanel.classList.getAllClasses().getClassButtons().isEmpty()) {
             try {
-                String sql = "SELECT DISTINCT m.module_code, m.name FROM modules m, ";
+                String sql = "SELECT DISTINCT m.module_code, m.name FROM modules m";
                 switch (Variables.userType) {
                     case "student":
-                        sql += "enroll e WHERE m.module_code = e.module_code AND e.studId = "
+                        sql += ", enroll e WHERE m.module_code = e.module_code AND e.studId = "
                                 + Variables.userLoggedIn.getUsername() + ";";
                         break;
                     case "lecturer":
-                        sql += "room r WHERE m.module_code = r.module_code AND r.l_username = '"
+                        sql += ", room r WHERE m.module_code = r.module_code AND r.l_username = '"
                                 + Variables.userLoggedIn.getUsername() + "';";
+                        break;
+                    case "admin":
+                        sql += " WHERE progId = "
+                                + Variables.programId + ";";
                         break;
                 }
                 // execute query
@@ -222,6 +226,9 @@ public class DatabaseConnection {
                         sql += ", room r WHERE r.classId = c.classId AND r.module_code = '" + module_code
                                 + "' AND r.l_username = '"
                                 + Variables.userLoggedIn.getUsername() + "';";
+                        break;
+                    case "admin":
+                        sql += " WHERE c.module_code = '" + module_code + "';";
                         break;
                 }
                 // System.out.println(sql);
@@ -501,11 +508,44 @@ public class DatabaseConnection {
                 Statement query = db_conn.createStatement();
                 //
                 ResultSet depts = query.executeQuery(sql);
+                ListOfDepartments allDept = new ListOfDepartments(Variables.activeTheme);
                 while (depts.next()) {
                     Department dp = new Department(depts.getInt(1), depts.getString(2));
+                    allDept.getAllDepartments().getdeptList().add(dp);
                 }
                 //
+                AppFrame.mainPanel.add(allDept, "list-of-departments");
+                MainPanel.cl.show(AppFrame.mainPanel, "list-of-departments");
+                Variables.pagesStack.push("list-of-departments");
+            } catch (Exception e) {
+                System.out.println(e);
+            } finally {
+                try {
+                    db_conn.close();
+                } catch (Exception e) {
 
+                }
+            }
+        }
+    }
+
+    public static void fetchPrograms(Department dept) {
+        dbConnect();
+        if (db_conn != null) {
+            try {
+                String sql = "SELECT * FROM programs WHERE deptId = " + dept.getId() + ";";
+                Statement query = db_conn.createStatement();
+                //
+                ResultSet depts = query.executeQuery(sql);
+                ListOfProgramPage allProg = new ListOfProgramPage(Variables.activeTheme, dept);
+                while (depts.next()) {
+                    Program prog = new Program(depts.getInt(1), depts.getString(2), depts.getString(3));
+                    allProg.getallProgram().getprogList().add(prog);
+                }
+                //
+                AppFrame.mainPanel.add(allProg, "list-of-programs");
+                MainPanel.cl.show(AppFrame.mainPanel, "list-of-programs");
+                Variables.pagesStack.push("list-of-programs");
             } catch (Exception e) {
                 System.out.println(e);
             } finally {
