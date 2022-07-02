@@ -390,3 +390,4 @@ END;
 
 SELECT *
 FROM class;
+

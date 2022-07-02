@@ -488,4 +488,29 @@ public class DatabaseConnection {
             }
         }
     }
+
+    public static void fetchDepartments() {
+        dbConnect();
+        if (db_conn != null) {
+            try {
+                String sql = "SELECT * FROM department;";
+                Statement query = db_conn.createStatement();
+                //
+                ResultSet depts = query.executeQuery(sql);
+                while (depts.next()) {
+                    Department dp = new Department(depts.getInt(1), depts.getString(2));
+                }
+                //
+
+            } catch (Exception e) {
+                System.out.println(e);
+            } finally {
+                try {
+                    db_conn.close();
+                } catch (Exception e) {
+
+                }
+            }
+        }
+    }
 }
