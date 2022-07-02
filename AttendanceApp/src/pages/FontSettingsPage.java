@@ -17,7 +17,7 @@ public class FontSettingsPage extends JPanel {
         this.setLayout(new BorderLayout());
         this.setBackground(theme.getMainColor());
         // instantiating vars
-        message = new CenteredTextLabel("In development:)", theme.getContentColor(), Variables.PAGES_TITLE2);
+        message = new CenteredTextLabel("In development:,)", theme.getContentColor(), Variables.PAGES_TITLE2);
         // adding contents
         this.add(message, BorderLayout.CENTER);
         StylingPanel.setUpStylingPanels(theme, this, 50, 50);

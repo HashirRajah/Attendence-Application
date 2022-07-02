@@ -151,6 +151,7 @@ public class MenuSideBar extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             MainPanel.cl.show(AppFrame.mainPanel, "dashboard");
+            Variables.pagesStack.push("dashboard");
         }
 
     }

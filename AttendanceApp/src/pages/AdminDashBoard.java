@@ -12,8 +12,9 @@ import gui.*;
 import java.util.ArrayList;
 import javax.print.AttributeException;
 import javax.swing.border.Border;
-
 import db.*;
+import java.awt.event.*;
+import java.util.HashMap;
 
 public class AdminDashBoard extends JScrollPane {
     //
@@ -47,6 +48,8 @@ public class AdminDashBoard extends JScrollPane {
         private JPanel topPanel, statisticsPanel, mainContainer, buttonContainer;
 
         private ButtonStyle1 save, manageUser, manageDept, attendance;
+        //
+        private HashMap<String, MyActionListener> myListeners;
 
         //
         public AdminDashBoardPanel(Theme theme) {
@@ -58,7 +61,8 @@ public class AdminDashBoard extends JScrollPane {
             topPanel = new JPanel();
             //
             save = new ButtonStyle1(theme, theme.getFontColor(), 2, "Save", 50, 50);
-
+            //
+            setUpMyListeners();
             // instantiating vars
             // attendance;
             welcome = new CenteredTextLabel("Welcome Admin", theme.getContentColor(), Variables.PAGES_TITLE);
@@ -99,8 +103,11 @@ public class AdminDashBoard extends JScrollPane {
             buttonContainer.setBackground(theme.getMainColor());
             buttonContainer.setLayout(new GridLayout(1, 3, 5, 0));
             attendance = new ButtonStyle1(theme, theme.getMenuColor(), 3, "Attendance");
+            attendance.addActionListener(myListeners.get(attendance.getText()));
             manageUser = new ButtonStyle1(theme, theme.getMenuColor(), 3, "Manage user");
+            manageUser.addActionListener(myListeners.get(manageUser.getText()));
             manageDept = new ButtonStyle1(theme, theme.getMenuColor(), 3, "Manage Department");
+            manageDept.addActionListener(myListeners.get(manageDept.getText()));
             buttonContainer.add(attendance);
             buttonContainer.add(manageUser);
             buttonContainer.add(manageDept);
@@ -110,6 +117,51 @@ public class AdminDashBoard extends JScrollPane {
             this.add(mainContainer, BorderLayout.CENTER);
             this.add(buttonContainer, BorderLayout.SOUTH);
         }
-    }
 
+        private void setUpMyListeners() {
+            myListeners = new HashMap<String, MyActionListener>();
+            //
+            myListeners.put("Attendance", new Attd());
+            myListeners.put("Manage user", new ManageUsers());
+            myListeners.put("Manage Department", new ManageDepts());
+
+        }
+
+        private class MyActionListener implements ActionListener {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+        }
+
+        private class Attd extends MyActionListener implements ActionListener {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DatabaseConnection.fetchDepartments();
+            }
+
+        }
+
+        private class ManageUsers extends MyActionListener implements ActionListener {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+
+        }
+
+        private class ManageDepts extends MyActionListener implements ActionListener {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+
+        }
+    }
 }

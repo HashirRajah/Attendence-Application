@@ -204,12 +204,17 @@ public class DatabaseConnection {
             } catch (Exception e) {
                 System.out.println(e);
             } finally {
+
                 try {
                     db_conn.close();
                 } catch (Exception e) {
 
                 }
             }
+        }
+        if (Variables.userType.equals("admin")) {
+            MainPanel.cl.show(AppFrame.mainPanel, "classes");
+            Variables.pagesStack.push("classes");
         }
     }
 
@@ -514,6 +519,7 @@ public class DatabaseConnection {
                     allDept.getAllDepartments().getdeptList().add(dp);
                 }
                 //
+                allDept.getAllDepartments().setUpView(Variables.activeTheme);
                 AppFrame.mainPanel.add(allDept, "list-of-departments");
                 MainPanel.cl.show(AppFrame.mainPanel, "list-of-departments");
                 Variables.pagesStack.push("list-of-departments");
@@ -543,6 +549,7 @@ public class DatabaseConnection {
                     allProg.getallProgram().getprogList().add(prog);
                 }
                 //
+                allProg.getallProgram().setUpView(Variables.activeTheme);
                 AppFrame.mainPanel.add(allProg, "list-of-programs");
                 MainPanel.cl.show(AppFrame.mainPanel, "list-of-programs");
                 Variables.pagesStack.push("list-of-programs");

@@ -78,7 +78,7 @@ public class ListOfProgramPage extends JScrollPane {
                 listBtn.add(new ViewButton(theme, theme.getMenuColor(), 3, progList.get(i).getName()));
                 this.allView.add(listBtn.get(i));
                 // add action listner
-                listBtn.get(i).addActionListener(new MyActionListener());
+                listBtn.get(i).addActionListener(new MyActionListener(progList.get(i)));
             }
             this.allView.revalidate();
             validate();
@@ -94,14 +94,17 @@ public class ListOfProgramPage extends JScrollPane {
         }
 
         private class MyActionListener implements ActionListener {
+            private Program prog;
 
-            public MyActionListener() {
-
+            public MyActionListener(Program prog) {
+                this.prog = prog;
             }
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
+                Variables.programId = prog.getId();
+                DatabaseConnection.fetchClasses();
             }
 
         }
