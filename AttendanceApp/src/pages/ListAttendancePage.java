@@ -71,7 +71,18 @@ public class ListAttendancePage extends JScrollPane {
         public void setUpView(Theme theme) {
             this.allView.removeAll();
             listBtn = new ArrayList<ViewButton>();
-            this.allView.setLayout(new GridLayout(attdList.size(), 1, 0, 10));
+            //
+            int stop = ((Variables.userType.equals("admin")) ? attdList.size() + 1 : attdList.size());
+            //
+            this.allView.setLayout(new GridLayout(stop, 1, 0, 10));
+            //
+            if (Variables.userType.equals("admin")) {
+                ButtonStyle1 btn = new ButtonStyle1(theme, theme.getContentColor(), 3, "Download Report");
+                btn.addActionListener(e -> {
+                    DatabaseConnection.downloadReport();
+                });
+                this.allView.add(btn);
+            }
             //
             for (int i = 0; i < attdList.size(); i++) {
                 //

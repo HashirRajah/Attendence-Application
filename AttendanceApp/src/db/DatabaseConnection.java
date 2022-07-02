@@ -166,7 +166,8 @@ public class DatabaseConnection {
 
     public static void fetchClasses() {
         dbConnect();
-        if (db_conn != null && MainPanel.classList.getAllClasses().getClassButtons().isEmpty()) {
+        MainPanel.classList.getAllClasses().getClassButtons().clear();
+        if (db_conn != null) {
             try {
                 String sql = "SELECT DISTINCT m.module_code, m.name FROM modules m";
                 switch (Variables.userType) {
@@ -553,6 +554,24 @@ public class DatabaseConnection {
                 AppFrame.mainPanel.add(allProg, "list-of-programs");
                 MainPanel.cl.show(AppFrame.mainPanel, "list-of-programs");
                 Variables.pagesStack.push("list-of-programs");
+            } catch (Exception e) {
+                System.out.println(e);
+            } finally {
+                try {
+                    db_conn.close();
+                } catch (Exception e) {
+
+                }
+            }
+        }
+    }
+
+    public static void downloadReport() {
+        dbConnect();
+        if (db_conn != null) {
+            try {
+                // code here
+                System.out.println("hello world");
             } catch (Exception e) {
                 System.out.println(e);
             } finally {

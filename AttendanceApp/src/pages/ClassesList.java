@@ -65,6 +65,7 @@ public class ClassesList extends JScrollPane {
         }
 
         public void addClasses(Theme theme) {
+            listOfClasses.removeAll();
             int rows = (classButtons.size() / 3) + 1;
             listOfClasses.setLayout(new GridLayout(rows, 3, 10, 10));
             for (int i = 0; i < classButtons.size(); i++) {
