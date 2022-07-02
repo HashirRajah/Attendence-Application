@@ -254,7 +254,7 @@ ADD grLevel TINYINT;
 UPDATE students SET grName = 'Group A';
 UPDATE students SET grLevel = 2;
 
-CREATE TABLE attendance_1
+CREATE TABLE attendance_2
 (
     studId INT PRIMARY KEY FOREIGN KEY REFERENCES students,
     attd_1 VARCHAR(255)
@@ -270,10 +270,13 @@ VALUES('01-01-2022', 1, 'ICT2020'),
     ('01-01-2022', 3, 'ICT2020');
 
 
-INSERT INTO attendance_1
+INSERT INTO attendance_2
 VALUES(1, 'present'),
     (2, 'present'),
-    (3, 'present');
+    (3, 'present'),
+    (4, 'present'),
+    (5, 'present'),
+    (6, 'present');
 
 -- GO;
 -- CREATE PROCEDURE sp_add_attendance
@@ -369,7 +372,6 @@ VALUES('01-01-2022', 4, 'ICT2020'),
     ('01-01-2022', 6, 'ICT2020');
 SELECT *
 FROM class
-
 
 ---02/07/2022---
 ALTER TABLE class
