@@ -10,18 +10,20 @@ public class Classes {
      private String type;
      private String startTime;
      private String duration;
+     private String dayOfWeek;
      private static int nextId;
      private Module module;
      private ArrayList<Lecturer> lecturer;
      private StudentAttendance attendance;
      private Group group;
 
-     public Classes(int id, String mode, String type, String startTime, String duration) {
+     public Classes(int id, String mode, String type, String startTime, String duration, String dow) {
           this.id = id;
           this.mode = mode;
           this.type = type;
           this.startTime = startTime;
           this.duration = duration;
+          this.dayOfWeek = dow;
      }
 
      public void setId(int id) {
@@ -46,6 +48,14 @@ public class Classes {
 
      public String getType() {
           return this.type;
+     }
+
+     public String getDayOfWeek() {
+          return this.dayOfWeek;
+     }
+
+     public void setDayOfWeek(String dow) {
+          this.dayOfWeek = dow;
      }
 
      public void setStartTime(String startTime) {

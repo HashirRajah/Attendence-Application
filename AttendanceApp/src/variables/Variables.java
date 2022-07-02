@@ -26,26 +26,26 @@ public class Variables {
                         Color.BLACK, new Color(28, 28, 27),
                         "Default", Color.BLACK);
 
-                        // public Theme(Color menu, Color font, Color main, Color content, Color hover, String name, Color buttonColor) {
-                        //         this.menuColor = menu;
-                        //         this.fontColor = font;
-                        //         this.mainColor = main;
-                        //         this.contentColor = content;
-                        //         this.hoverColor = hover;
-                        //         this.name = name;
-                        //         this.buttonColor = buttonColor;
-                        //     }
-                        
+        // public Theme(Color menu, Color font, Color main, Color content, Color hover,
+        // String name, Color buttonColor) {
+        // this.menuColor = menu;
+        // this.fontColor = font;
+        // this.mainColor = main;
+        // this.contentColor = content;
+        // this.hoverColor = hover;
+        // this.name = name;
+        // this.buttonColor = buttonColor;
+        // }
+
         // Theme 1
 
         public static final Theme DEFAULT_2 = new Theme(Color.DARK_GRAY,
-                                                    Color.WHITE,
-                                                new Color(165, 159, 127),
-                                                Color.WHITE,
-                                                new Color(28, 28, 27),
-                                                "Bumblebee",
-                                                new Color(244, 180, 10));
-
+                        Color.WHITE,
+                        new Color(165, 159, 127),
+                        Color.WHITE,
+                        new Color(28, 28, 27),
+                        "Bumblebee",
+                        new Color(244, 180, 10));
 
         public static final Theme BUMBLEBEE = new Theme(new Color(13, 14, 15),
                         new Color(244, 180, 10),
@@ -153,7 +153,7 @@ public class Variables {
         // menu
         public static String[] studentMenu = new String[] { "Home", "Classes", "Settings", "Logout", "Back" };
         public static String[] lecturerMenu = new String[] { "Home", "Classes", "Settings", "Logout", "Back" };
-        public static String[] adminMenu = new String[] { "Dashboard", "Settings", "Logout", "Back" };
+        public static String[] adminMenu = new String[] { "Home", "Dashboard", "Settings", "Logout", "Back" };
         public static ArrayList<String> activeMenu;
 
         // login

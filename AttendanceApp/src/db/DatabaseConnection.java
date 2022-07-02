@@ -6,10 +6,7 @@ import styles.*;
 import variables.Variables;
 import backEnd.*;
 import gui.*;
-import pages.AttendancePage;
-import pages.ListAttendancePage;
-import pages.ViewAttendancePage;
-
+import pages.*;
 import java.util.ArrayList;
 import app_version.Configuration;
 
@@ -136,6 +133,8 @@ public class DatabaseConnection {
                     }
                     // System.out.println(Variables.userLoggedIn);
                     if (Variables.userLoggedIn != null) {
+                        AppFrame.mainPanel.accountSettings = new AccountSettingsPage(Variables.activeTheme);
+                        AppFrame.mainPanel.add(AppFrame.mainPanel.accountSettings, Variables.pages[6]);
                         Configuration.menuConfiguration();
                         AppFrame.menu.setupSideButton(Variables.activeTheme);
                         MainPanel.homePage.setUpLabel(Variables.activeTheme);
@@ -232,7 +231,7 @@ public class DatabaseConnection {
                 //
                 while (results.next()) {
                     Classes c = new Classes(results.getInt(1), results.getString(2), results.getString(3),
-                            results.getString(4), results.getString(5));
+                            results.getString(4), results.getString(5), results.getString(6));
 
                     MainPanel.classes.getAllClassesList().getClassButtons()
                             .add(new ClassButton(Variables.activeTheme, c));

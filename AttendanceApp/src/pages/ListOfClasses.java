@@ -92,12 +92,12 @@ public class ListOfClasses extends JScrollPane {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-                if (Variables.userType.equals("lecturer")) {
-                    MainPanel.viewAttd = new ViewAttendance(Variables.activeTheme, c);
-                    AppFrame.mainPanel.add(MainPanel.viewAttd, "attendance-choice");
-                    MainPanel.cl.show(AppFrame.mainPanel, "attendance-choice");
-                    Variables.pagesStack.push("attendance-choice");
-                }
+
+                MainPanel.viewAttd = new ViewAttendance(Variables.activeTheme, c);
+                AppFrame.mainPanel.add(MainPanel.viewAttd, "attendance-choice");
+                MainPanel.cl.show(AppFrame.mainPanel, "attendance-choice");
+                Variables.pagesStack.push("attendance-choice");
+
             }
 
         }

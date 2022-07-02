@@ -369,3 +369,24 @@ VALUES('01-01-2022', 4, 'ICT2020'),
     ('01-01-2022', 6, 'ICT2020');
 SELECT *
 FROM class
+
+
+---02/07/2022---
+ALTER TABLE class
+ADD day_of_week VARCHAR(10);
+
+BEGIN
+    DECLARE @id INTEGER;
+    SET @id = 1;
+    --LOOP--
+    WHILE @id <= 12
+        BEGIN
+        UPDATE  class 
+            SET     day_of_week = DATENAME(WEEKDAY, DATEADD(day, @id, GETDATE()))
+            WHERE   classId = @id;
+        SET @id = @id + 1;
+    END;
+END;
+
+SELECT *
+FROM class;

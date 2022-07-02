@@ -52,7 +52,8 @@ public class ViewAttendance extends JPanel {
         viewBtn = new ViewButton[2];
         this.allView.setLayout(new GridLayout(viewBtn.length, 1, 0, 10));
         //
-        for (int i = 0; i < viewBtn.length; i++) {
+        int limit = ((Variables.userType.equals("lecturer")) ? viewBtn.length : viewBtn.length - 1);
+        for (int i = 0; i < limit; i++) {
             //
             viewBtn[i] = new ViewButton(theme, theme.getMenuColor(), 3, this.viewList[i]);
             this.allView.add(viewBtn[i]);
@@ -78,7 +79,7 @@ public class ViewAttendance extends JPanel {
                 MainPanel.addAttd = new AddAttendance(Variables.activeTheme, c);
                 AppFrame.mainPanel.add(MainPanel.addAttd, "add-attendance");
                 MainPanel.cl.show(AppFrame.mainPanel, "add-attendance");
-            } else if (Variables.userType.equals("lecturer") && target.equals("View Attendance")) {
+            } else if (target.equals("View Attendance")) {
                 DatabaseConnection.fetchAllAttendance(String.valueOf(c.getId()), c);
             }
         }

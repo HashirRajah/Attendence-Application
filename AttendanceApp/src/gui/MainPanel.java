@@ -18,7 +18,7 @@ public class MainPanel extends JPanel {
     public static LoginPage login;
     private ThemeSettingPage themeSettings;
     private FontSettingsPage fontSettings;
-    private AccountSettingsPage accountSettings;
+    public static AccountSettingsPage accountSettings;
     public static HomePage homePage;
     public static AttendancePage attendance;
     public static ViewAttendance viewAttd;
@@ -33,7 +33,6 @@ public class MainPanel extends JPanel {
         login = new LoginPage(theme);
         themeSettings = new ThemeSettingPage(theme);
         fontSettings = new FontSettingsPage(theme);
-        accountSettings = new AccountSettingsPage(theme);
         homePage = new HomePage(theme);
         // attendance = new AttendancePage(theme);
         classes = new ListOfClasses(theme);
@@ -47,7 +46,6 @@ public class MainPanel extends JPanel {
         this.add(login, Variables.pages[3]);
         this.add(themeSettings, Variables.pages[4]);
         this.add(fontSettings, Variables.pages[5]);
-        this.add(accountSettings, Variables.pages[6]);
         this.add(homePage, "home");
         // this.add(attendance, "attendance");
         this.add(classes, "list-of-classes");
