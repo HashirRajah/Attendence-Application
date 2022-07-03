@@ -31,7 +31,7 @@ public class BarGraphModel {
         }
     }
     
-    public static final int DEFAULT_ITEM_WIDTH = 10;
+    public static final int DEFAULT_ITEM_WIDTH = 20;
     
     protected List<BarItem> items = new ArrayList<BarItem>();
     protected Point location = new Point();

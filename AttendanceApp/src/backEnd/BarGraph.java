@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 
+import styles.Theme;
+
 /**
  *
  * @author Nate
@@ -18,7 +20,7 @@ public class BarGraph {
     
     protected static final Font BAR_TITLE_FONT = new Font("Calibri", Font.PLAIN, 10);
     
-    public BarGraph() {
+    public BarGraph(Theme theme) {
         this.model = new BarGraphModel();
         
         //TODO: Remove this code below. Only test code
@@ -91,7 +93,7 @@ public class BarGraph {
         drawBoarder(g);
     }
     
-    private void drawItems(Graphics g){
+    private void drawItems(Graphics g ){
         int i = 0;
         g.setFont(BAR_TITLE_FONT);
         FontMetrics fm = g.getFontMetrics(BAR_TITLE_FONT);
@@ -104,7 +106,7 @@ public class BarGraph {
             int y = model.getY() + model.getSize().height - percentHeight;
             int w = item.width;
             int h = percentHeight;
-            g.setColor(item.background==null ? new Color(136, 193, 251) : item.background);
+            g.setColor(item.background==null ? new Color(51, 106, 161) : item.background);
             g.fillRect(x, y, w, h);
             i++;
             //Draw the title
@@ -121,7 +123,7 @@ public class BarGraph {
     }
     
    private void drawBoarder(Graphics g){
-       g.setColor(Color.cyan);
+       g.setColor(new Color(56, 171, 171));
        g.drawRoundRect(model.getX(), model.getY(), model.getSize().width, model.getSize().height, 5, 5);
    }
 }
