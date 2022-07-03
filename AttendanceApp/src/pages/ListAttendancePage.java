@@ -79,7 +79,7 @@ public class ListAttendancePage extends JScrollPane {
             if (Variables.userType.equals("admin")) {
                 ButtonStyle1 btn = new ButtonStyle1(theme, theme.getContentColor(), 3, "Download Report");
                 btn.addActionListener(e -> {
-                    DatabaseConnection.downloadReport();
+                    DatabaseConnection.downloadReport(cls);
                 });
                 this.allView.add(btn);
             }

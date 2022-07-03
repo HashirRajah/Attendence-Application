@@ -138,6 +138,7 @@ public class DatabaseConnection {
                         Configuration.menuConfiguration();
                         AppFrame.menu.setupSideButton(Variables.activeTheme);
                         if (!Variables.userType.equals("admin")) {
+                            fetchTodayClass();
                             MainPanel.homePage.setUpLabel(Variables.activeTheme);
                             MainPanel.cl.show(AppFrame.mainPanel, "home");
                             Variables.pagesStack.push("home");
@@ -256,48 +257,6 @@ public class DatabaseConnection {
 
                     MainPanel.classes.getAllClassesList().getClassButtons()
                             .add(new ClassButton(Variables.activeTheme, c));
-
-                }
-                MainPanel.classes.getAllClassesList().addClasses(Variables.activeTheme);
-                // close
-                query.close();
-            } catch (Exception e) {
-                System.out.println(e);
-            } finally {
-                try {
-                    db_conn.close();
-                } catch (Exception e) {
-
-                }
-            }
-        }
-    }
-
-    public static void fetchStudents(Classes c) {
-        dbConnect();
-        if (db_conn != null && MainPanel.classes.getAllClassesList().getClassButtons().isEmpty()) {
-            try {
-                String sql = "SELECT * FROM class c";
-                switch (Variables.userType) {
-                    case "student":
-                        sql += " WHERE c.module_code = '" + c.getMode() + "';";
-                        break;
-                    case "lecturer":
-                        sql += ", room r WHERE r.classId = c.classId AND r.module_code = '" + c.getMode()
-                                + "' AND r.l_username = '"
-                                + Variables.userLoggedIn.getUsername() + "';";
-                        break;
-                }
-                // System.out.println(sql);
-                // execute query
-                Statement query = db_conn.createStatement();
-                ResultSet results = query.executeQuery(sql);
-                //
-                ResultSetMetaData mtdt = results.getMetaData();
-                // int numColumns = mtdt.getColumnCount();
-                // System.out.println(numColumns);
-                //
-                while (results.next()) {
 
                 }
                 MainPanel.classes.getAllClassesList().addClasses(Variables.activeTheme);
@@ -570,12 +529,80 @@ public class DatabaseConnection {
         }
     }
 
-    public static void downloadReport() {
+    public static void downloadReport(Classes cls) {
+        dbConnect();
+        if (db_conn != null) {
+            try {
+                String tableName = "attendance_" + cls.getId();
+                String sql = "SELECT * FROM " + tableName + ";";
+                Statement query = db_conn.createStatement();
+                //
+                ResultSet attd = query.executeQuery(sql);
+                ResultSetMetaData meta = attd.getMetaData();
+                //
+                String[] cols = new String[meta.getColumnCount() - 1];
+                int start = 2;
+                for (int i = 0; i < cols.length; i++) {
+                    String[] id = meta.getColumnName(start).split("_");
+                    cols[i] = id[1];
+                    start++;
+                }
+                Attendance[] allAttd = new Attendance[cols.length];
+                sql = "SELECT * FROM attendance WHERE id = ";
+                for (int i = 0; i < allAttd.length; i++) {
+                    sql += cols[i] + ";";
+                    ResultSet results = query.executeQuery(sql);
+                    while (results.next()) {
+                        allAttd[i] = new Attendance(results.getInt(1), results.getString(2), results.getInt(4),
+                                results.getInt(5), results.getString(6));
+                    }
+                    sql = "SELECT * FROM attendance WHERE id = ";
+                }
+                // code here
+
+                //
+                query.close();
+            } catch (Exception e) {
+                System.out.println(e);
+            } finally {
+                try {
+                    db_conn.close();
+                } catch (Exception e) {
+
+                }
+            }
+        }
+    }
+
+    public static void fetchTodayClass() {
         dbConnect();
         if (db_conn != null) {
             try {
                 // code here
-                System.out.println("hello world");
+                String sql = "SELECT * FROM class c";
+                //
+                switch (Variables.userType) {
+                    case "lecturer":
+                        sql += " WHERE day_of_week = DATENAME(WEEKDAY, GETDATE()) AND module_code IN (SELECT module_code FROM room WHERE l_username = '"
+                                + Variables.userLoggedIn.getUsername() + "');";
+                        break;
+                    case "student":
+                        sql += " WHERE day_of_week = DATENAME(WEEKDAY, GETDATE()) AND module_code IN (SELECT module_code FROM enroll WHERE studId = "
+                                + Variables.userLoggedIn.getUsername() + ");";
+                        break;
+                }
+                Statement query = db_conn.createStatement();
+                ResultSet results = query.executeQuery(sql);
+                MainPanel.homePage.getAllClassesBtn().clear();
+                while (results.next()) {
+                    Classes c = new Classes(results.getInt(1), results.getString(2), results.getString(3),
+                            results.getString(4), results.getString(5), results.getString(6));
+
+                    MainPanel.homePage.getAllClassesBtn().add(new ClassButton(Variables.activeTheme, c));
+                }
+
+                //
+                query.close();
             } catch (Exception e) {
                 System.out.println(e);
             } finally {

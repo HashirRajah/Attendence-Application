@@ -88,6 +88,7 @@ public class MenuSideBar extends JPanel {
             Configuration.menuConfiguration();
             MainPanel.cl.show(AppFrame.mainPanel, "start");
             setupSideButton(Variables.activeTheme);
+            Variables.pagesStack.clear();
         }
 
     }
