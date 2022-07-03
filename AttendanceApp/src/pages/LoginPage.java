@@ -68,7 +68,7 @@ public class LoginPage extends JPanel {
         user_text.setForeground(theme.getFontColor());
         user_text.setFont(new Font("consolas", Font.BOLD, 20));
         user_text.setCaretColor(theme.getFontColor());
-        user_text.setText("AChutoo");
+        user_text.setText("Admin1");
 
         Border user_text_border = BorderFactory.createLineBorder(Color.YELLOW, 0);
 
