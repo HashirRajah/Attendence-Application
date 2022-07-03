@@ -18,6 +18,8 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import styles.Theme;
+
 /**
  *
  * @author Nate
@@ -30,9 +32,9 @@ public class BarGraphApp extends JPanel {
     private BarGraph graph;
     private BarGraphModel model;
     
-    public BarGraphApp() {
-        setBackground(new Color(27, 29, 77));
-        this.graph = new BarGraph();
+    public BarGraphApp(Theme theme) {
+        setBackground(theme.getMainColor());
+        this.graph = new BarGraph(theme);
 //        this.model = graph.getModel();
 //        slider = new JSlider();
 //        slider.setMaximum(100);

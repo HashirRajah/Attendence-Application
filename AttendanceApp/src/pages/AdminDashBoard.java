@@ -13,6 +13,8 @@ import gui.*;
 import java.util.ArrayList;
 import javax.print.AttributeException;
 import javax.swing.border.Border;
+import javax.swing.plaf.ColorUIResource;
+
 import db.*;
 import java.awt.event.*;
 import java.util.HashMap;
@@ -64,15 +66,18 @@ public class AdminDashBoard extends JScrollPane {
         public JPanel BarGraphPanel;
         private JPanel statisticsPanel2;
 
-        private JPanel newsAndEvents;
+        private JPanel newsAndEvents, newsPanel1, newsPanel2, newsHeadingPanel, date;
         private JLabel news1, news2;
+        private JLabel newsHeading;
+        private JLabel currentDate, scheduleIcon, scheduletxt;
+        private JPanel schedule;
 
         //
         public AdminDashBoardPanel(Theme theme) {
             super();
 
             this.setLayout(new BorderLayout());
-            this.setBackground(theme.getMainColor());
+            this.setBackground(theme.getTwo());
 
             topPanel = new JPanel();
             //
@@ -175,12 +180,14 @@ public class AdminDashBoard extends JScrollPane {
 
             //////////////////// stats panel
             statisticsPanel = new JPanel();
+           // statisticsPanel.setBackground(theme.getMainColor());
+            statisticsPanel.setBackground(theme.getTwo());
             statisticsPanel.setLayout(new GridLayout(1, 4, 10, 10));
             statisticsPanel.add(totalStudents);
             statisticsPanel.add(totalLecturers);
             statisticsPanel.add(totalClasses);
             statisticsPanel.add(totalAdmins);
-            statisticsPanel.setBackground(theme.getMainColor());
+            statisticsPanel.setBackground(theme.getTwo());
             statisticsPanel.setBorder(BorderFactory.createEmptyBorder(15, 30, 15, 30));
 
             topPanel = new JPanel();
@@ -192,31 +199,105 @@ public class AdminDashBoard extends JScrollPane {
             //////////////// GRAPH
 
             statisticsPanel2 = new JPanel();
-            statisticsPanel2.setLayout(new GridLayout(2, 2, 5, 5));
-            statisticsPanel2.setBackground(new Color(255, 255, 179));
+            statisticsPanel2.setBackground(theme.getTwo());
+            statisticsPanel2.setLayout(new GridLayout(2, 2, 25,25));
+            statisticsPanel2.setBorder(BorderFactory.createEmptyBorder(5, 25, 5, 25));
 
-            BarGraphPanel = new JPanel();
+            BarGraphPanel = new JPanel(); 
             BarGraphPanel.setLayout(new BorderLayout());
-            BarGraphPanel.add(new BarGraphApp(), BorderLayout.CENTER);
+            BarGraphPanel.add(new BarGraphApp(theme), BorderLayout.CENTER);
+            BarGraphPanel.setBackground(theme.getTwo());
 
             // statisticsPanel2.add(totalAdmins);
             // statisticsPanel2.add(totalAdmins);
             // statisticsPanel2.add(totalAdmins);
 
             ////////////// Others
-            newsAndEvents = new JPanel();
-            newsAndEvents.setLayout(new GridLayout(1, 3, 5, 5));
-            news1 = new JLabel("News And Event");
-            news2 = new JLabel("News And Event");
-            newsAndEvents.add(news1);
-            newsAndEvents.add(news2);
+            schedule= new JPanel();
+            scheduleIcon = new JLabel();
+            scheduletxt = new JLabel();
+            schedule.setBackground(new Color(235, 68, 101));
+            schedule.setBorder(BorderFactory.createEmptyBorder(10, 50, 15, 30));
 
-            statisticsPanel2.add(newsAndEvents);
+        
+            scheduleIcon.setHorizontalAlignment(JLabel.CENTER);
+            scheduleIcon.setVerticalAlignment(JLabel.CENTER);
+
+            scheduletxt = new JLabel("Schedule");
+            scheduletxt.setHorizontalAlignment(JLabel.CENTER);
+            scheduletxt.setVerticalAlignment(JLabel.CENTER);
+            scheduletxt.setFont(new Font("Calibri", Font.BOLD, 30));
+
+            schedule.setLayout(new GridLayout(1, 2, 0, 5));
+            ImageIcon scheduleIcon1 = new ImageIcon(new ImageIcon("AttendanceApp/images/schedule.png").getImage()
+                    .getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+            scheduleIcon.setIcon(scheduleIcon1);
+            scheduletxt.setForeground(Color.WHITE);
+            schedule.add(scheduleIcon);
+            schedule.add(scheduletxt);
+            
+
+
+
+
+
+
+
+
+
+            date = new JPanel();
+            currentDate = new JLabel("03  JULY  2020");
+            currentDate.setFont(new Font("Calibri", Font.BOLD, 40));
+            currentDate.setForeground(theme.getButtonColor());
+            date.setBackground(theme.getTwo());
+            date.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+            date.add(currentDate);
+
+
+            newsAndEvents = new JPanel();
+            newsAndEvents.setBorder(BorderFactory.createEmptyBorder(0, 15, 15, 15));
+            newsAndEvents.setBackground(theme.getTwo());
+            newsAndEvents.setLayout(new GridLayout(3, 1, 5,0));
+            newsHeading= new JLabel("Latest Announcements");
+            newsHeading.setBackground(new Color(194, 204, 198));
+            //newsHeading.setForeground(fg);
+            //newsHeading.setBackground(Color.BLACK);
+            newsHeadingPanel = new JPanel();
+            newsPanel1 = new JPanel();
+            newsPanel2 = new JPanel();
+ 
+            news1 = new JLabel("Semester 2 delayed by 2 weeks");
+            //news1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+            news2 = new JLabel("Classes resume face-to-face");
+            //news2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+            newsPanel1.add(news1);
+            newsPanel2.add(news2);
+            newsHeadingPanel.add(newsHeading);
+            newsHeadingPanel.setBackground(new Color(84, 84, 83));
+            newsPanel1.setBackground(new Color(250, 249, 240));
+            newsPanel2.setBackground(new Color(250, 249, 240));
+            newsPanel1.setBorder(BorderFactory.createLineBorder(new Color(163, 163, 163), 1));
+            newsPanel2.setBorder(BorderFactory.createLineBorder(new Color(163, 163, 163), 1));
+            //newsHeadingPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+
+            newsAndEvents.add(newsHeadingPanel);
+            newsAndEvents.add(newsPanel1);
+            newsAndEvents.add(newsPanel2);
+            
+
+            
+            statisticsPanel2.add(date);
             statisticsPanel2.add(BarGraphPanel);
+            statisticsPanel2.add(newsAndEvents);
+            statisticsPanel2.add(schedule);
+
+
+
 
             mainContainer = new JPanel();
             mainContainer.setLayout(new BorderLayout());
-            mainContainer.setBackground(theme.getMainColor());
+            mainContainer.setBackground(theme.getTwo());
+            mainContainer.setBackground(theme.getTwo());
             mainContainer.add(statisticsPanel, BorderLayout.NORTH);
 
             mainContainer.add(statisticsPanel2, BorderLayout.CENTER);
@@ -224,22 +305,31 @@ public class AdminDashBoard extends JScrollPane {
             // manage buttons
             buttonContainer1 = new JPanel();
             buttonContainer1.setLayout(new BorderLayout());
-            StylingPanel.setUpStylingPanels(theme, buttonContainer1, 60, 20);
+            //StylingPanel.setUpStylingPanels(theme, buttonContainer1, 60, 20);
             buttonContainer = new JPanel();
-            buttonContainer.setBackground(theme.getMainColor());
+            buttonContainer.setBackground(theme.getTwo());
+            buttonContainer1.setBackground(theme.getTwo());
             buttonContainer.setSize(new Dimension(800, 200));
             buttonContainer.setLayout(new GridLayout(3, 1, 10, 15));
-            attendance = new ViewButton(theme, theme.getMenuColor(), 3, "Attendance");
+            attendance = new ViewButton(theme, theme.getMenuColor(), 0, "Student Attendance", new Color(116, 76, 156));
             attendance.addActionListener(myListeners.get(attendance.getText()));
-            manageUser = new ViewButton(theme, theme.getMenuColor(), 3, "Manage user");
+            manageUser = new ViewButton(theme, theme.getMenuColor(), 0, "Manage users", new Color(255, 112, 56));
             manageUser.addActionListener(myListeners.get(manageUser.getText()));
-            manageDept = new ViewButton(theme, theme.getMenuColor(), 3, "Manage Department");
+            manageDept = new ViewButton(theme, theme.getMenuColor(), 0, "Manage Departments", new Color(56, 171, 89));
             manageDept.addActionListener(myListeners.get(manageDept.getText()));
+            attendance.setFont(new Font("Calibri", Font.BOLD, 30));
+            manageUser.setFont(new Font("Calibri", Font.BOLD, 30));
+            manageDept.setFont(new Font("Calibri", Font.BOLD, 30));
 
             buttonContainer.add(attendance);
             buttonContainer.add(manageUser);
             buttonContainer.add(manageDept);
             buttonContainer1.add(buttonContainer, BorderLayout.CENTER);
+
+            buttonContainer1.setBorder(BorderFactory.createEmptyBorder(0, 50, 15, 50));
+
+            mainContainer.setBackground(theme.getTwo());
+            topPanel.setBackground(theme.getOne());
 
             // Adding to main
             this.add(topPanel, BorderLayout.NORTH);
