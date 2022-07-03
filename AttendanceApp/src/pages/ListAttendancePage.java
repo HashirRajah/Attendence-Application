@@ -76,7 +76,7 @@ public class ListAttendancePage extends JScrollPane {
             //
             this.allView.setLayout(new GridLayout(stop, 1, 0, 10));
             //
-            if (Variables.userType.equals("admin")) {
+            if (Variables.userType.equals("admin") && !attdList.isEmpty()) {
                 ButtonStyle1 btn = new ButtonStyle1(theme, theme.getContentColor(), 3, "Download Report");
                 btn.addActionListener(e -> {
                     DatabaseConnection.downloadReport(cls);
