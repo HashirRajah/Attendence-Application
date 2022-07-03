@@ -153,7 +153,7 @@ public class Variables {
         // menu
         public static String[] studentMenu = new String[] { "Home", "Classes", "Settings", "Logout", "Back" };
         public static String[] lecturerMenu = new String[] { "Home", "Classes", "Settings", "Logout", "Back" };
-        public static String[] adminMenu = new String[] { "Home", "Dashboard", "Settings", "Logout", "Back" };
+        public static String[] adminMenu = new String[] { "Dashboard", "Settings", "Logout", "Back" };
         public static ArrayList<String> activeMenu;
 
         // login

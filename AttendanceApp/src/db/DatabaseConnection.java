@@ -137,13 +137,17 @@ public class DatabaseConnection {
                         AppFrame.mainPanel.add(AppFrame.mainPanel.accountSettings, Variables.pages[6]);
                         Configuration.menuConfiguration();
                         AppFrame.menu.setupSideButton(Variables.activeTheme);
-                        MainPanel.homePage.setUpLabel(Variables.activeTheme);
-                        MainPanel.cl.show(AppFrame.mainPanel, "home");
-                        Variables.pagesStack.push("home");
+                        if (!Variables.userType.equals("admin")) {
+                            MainPanel.homePage.setUpLabel(Variables.activeTheme);
+                            MainPanel.cl.show(AppFrame.mainPanel, "home");
+                            Variables.pagesStack.push("home");
+                        }
                     }
                     if (Variables.userType.equals("admin")) {
                         AdminDashBoard dashboard = new AdminDashBoard(Variables.activeTheme);
                         AppFrame.mainPanel.add(dashboard, "dashboard");
+                        MainPanel.cl.show(AppFrame.mainPanel, "dashboard");
+                        Variables.pagesStack.push("dashboard");
                     }
                     // close all statements
                     stmt.close();
