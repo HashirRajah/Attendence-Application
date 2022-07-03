@@ -180,7 +180,7 @@ public class AdminDashBoard extends JScrollPane {
 
             //////////////////// stats panel
             statisticsPanel = new JPanel();
-           // statisticsPanel.setBackground(theme.getMainColor());
+            // statisticsPanel.setBackground(theme.getMainColor());
             statisticsPanel.setBackground(theme.getTwo());
             statisticsPanel.setLayout(new GridLayout(1, 4, 10, 10));
             statisticsPanel.add(totalStudents);
@@ -200,10 +200,10 @@ public class AdminDashBoard extends JScrollPane {
 
             statisticsPanel2 = new JPanel();
             statisticsPanel2.setBackground(theme.getTwo());
-            statisticsPanel2.setLayout(new GridLayout(2, 2, 25,25));
+            statisticsPanel2.setLayout(new GridLayout(2, 2, 25, 25));
             statisticsPanel2.setBorder(BorderFactory.createEmptyBorder(5, 25, 5, 25));
 
-            BarGraphPanel = new JPanel(); 
+            BarGraphPanel = new JPanel();
             BarGraphPanel.setLayout(new BorderLayout());
             BarGraphPanel.add(new BarGraphApp(theme), BorderLayout.CENTER);
             BarGraphPanel.setBackground(theme.getTwo());
@@ -213,13 +213,12 @@ public class AdminDashBoard extends JScrollPane {
             // statisticsPanel2.add(totalAdmins);
 
             ////////////// Others
-            schedule= new JPanel();
+            schedule = new JPanel();
             scheduleIcon = new JLabel();
             scheduletxt = new JLabel();
             schedule.setBackground(new Color(235, 68, 101));
             schedule.setBorder(BorderFactory.createEmptyBorder(10, 50, 15, 30));
 
-        
             scheduleIcon.setHorizontalAlignment(JLabel.CENTER);
             scheduleIcon.setVerticalAlignment(JLabel.CENTER);
 
@@ -235,15 +234,6 @@ public class AdminDashBoard extends JScrollPane {
             scheduletxt.setForeground(Color.WHITE);
             schedule.add(scheduleIcon);
             schedule.add(scheduletxt);
-            
-
-
-
-
-
-
-
-
 
             date = new JPanel();
             currentDate = new JLabel("03  JULY  2020");
@@ -253,23 +243,22 @@ public class AdminDashBoard extends JScrollPane {
             date.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
             date.add(currentDate);
 
-
             newsAndEvents = new JPanel();
             newsAndEvents.setBorder(BorderFactory.createEmptyBorder(0, 15, 15, 15));
             newsAndEvents.setBackground(theme.getTwo());
-            newsAndEvents.setLayout(new GridLayout(3, 1, 5,0));
-            newsHeading= new JLabel("Latest Announcements");
+            newsAndEvents.setLayout(new GridLayout(3, 1, 5, 0));
+            newsHeading = new JLabel("Latest Announcements");
             newsHeading.setBackground(new Color(194, 204, 198));
-            //newsHeading.setForeground(fg);
-            //newsHeading.setBackground(Color.BLACK);
+            // newsHeading.setForeground(fg);
+            // newsHeading.setBackground(Color.BLACK);
             newsHeadingPanel = new JPanel();
             newsPanel1 = new JPanel();
             newsPanel2 = new JPanel();
- 
+
             news1 = new JLabel("Semester 2 delayed by 2 weeks");
-            //news1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+            // news1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
             news2 = new JLabel("Classes resume face-to-face");
-            //news2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+            // news2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
             newsPanel1.add(news1);
             newsPanel2.add(news2);
             newsHeadingPanel.add(newsHeading);
@@ -278,21 +267,16 @@ public class AdminDashBoard extends JScrollPane {
             newsPanel2.setBackground(new Color(250, 249, 240));
             newsPanel1.setBorder(BorderFactory.createLineBorder(new Color(163, 163, 163), 1));
             newsPanel2.setBorder(BorderFactory.createLineBorder(new Color(163, 163, 163), 1));
-            //newsHeadingPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+            // newsHeadingPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 
             newsAndEvents.add(newsHeadingPanel);
             newsAndEvents.add(newsPanel1);
             newsAndEvents.add(newsPanel2);
-            
 
-            
             statisticsPanel2.add(date);
             statisticsPanel2.add(BarGraphPanel);
             statisticsPanel2.add(newsAndEvents);
             statisticsPanel2.add(schedule);
-
-
-
 
             mainContainer = new JPanel();
             mainContainer.setLayout(new BorderLayout());
@@ -305,7 +289,7 @@ public class AdminDashBoard extends JScrollPane {
             // manage buttons
             buttonContainer1 = new JPanel();
             buttonContainer1.setLayout(new BorderLayout());
-            //StylingPanel.setUpStylingPanels(theme, buttonContainer1, 60, 20);
+            // StylingPanel.setUpStylingPanels(theme, buttonContainer1, 60, 20);
             buttonContainer = new JPanel();
             buttonContainer.setBackground(theme.getTwo());
             buttonContainer1.setBackground(theme.getTwo());
@@ -341,9 +325,9 @@ public class AdminDashBoard extends JScrollPane {
         private void setUpMyListeners() {
             myListeners = new HashMap<String, MyActionListener>();
             //
-            myListeners.put("Attendance", new Attd());
-            myListeners.put("Manage user", new ManageUsers());
-            myListeners.put("Manage Department", new ManageDepts());
+            myListeners.put("Student Attendance", new Attd());
+            myListeners.put("Manage users", new ManageUsers());
+            myListeners.put("Manage Departments", new ManageDepts());
 
         }
 
