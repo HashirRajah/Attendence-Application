@@ -614,4 +614,77 @@ public class DatabaseConnection {
             }
         }
     }
+
+    public static void addStudent(Student stud) {
+        dbConnect();
+        if (db_conn != null) {
+            try {
+                // code here
+                String sql = "INSERT INTO students(fname, lname, gender, address, email, contact, progId, date_of_birth, grLevel, grName) VALUES(?,?,?,?,?,?,?,?,?,?);";
+                PreparedStatement stmt = db_conn.prepareStatement(sql);
+                stmt.setString(1, stud.getFirstName());
+                stmt.setString(2, stud.getLastName());
+                stmt.setString(3, Character.toString(stud.getGender()));
+                stmt.setString(4, stud.getAddress());
+                stmt.setString(5, stud.getEmail());
+                stmt.setString(6, stud.getContactNo());
+                // stmt.setString(7, stud.getType());
+                stmt.setString(8, stud.getDateOfBirth());
+                stmt.setString(9, stud.getDateOfBirth());
+                //
+                String password = PasswordManipulation.generatePassword();
+                MainPanel.info.setMyText("<html>Insert Successful<br />Password generated: " + password + "</html>");
+                MainPanel.cl.show(AppFrame.mainPanel, "info");
+            } catch (Exception e) {
+                System.out.println(e);
+            } finally {
+                try {
+                    db_conn.close();
+                } catch (Exception e) {
+
+                }
+            }
+        }
+    }
+
+    public static void addLecturer(Lecturer lec) {
+        dbConnect();
+        if (db_conn != null) {
+            try {
+                // code here
+                String sql = "INSERT INTO lecturer VALUES(?,?,?,?,?,?,?,?,?)";
+                PreparedStatement stmt = db_conn.prepareStatement(sql);
+                stmt.setString(1, lec.getUsername());
+                stmt.setString(2, lec.getFirstName());
+                stmt.setString(3, lec.getLastName());
+                stmt.setString(4, Character.toString(lec.getGender()));
+                stmt.setString(5, lec.getAddress());
+                stmt.setString(6, lec.getEmail());
+                stmt.setString(7, lec.getContactNo());
+                stmt.setString(8, lec.getType());
+                stmt.setString(9, lec.getDateOfBirth());
+                //
+                String password = PasswordManipulation.generatePassword();
+                String sql2 = "INSERT INTO users VALUES(?,?,?)";
+                PreparedStatement stmt2 = db_conn.prepareStatement(sql2);
+                stmt2.setString(1, lec.getUsername());
+                stmt2.setString(2, PasswordManipulation.hash(password));
+                stmt2.setString(3, "lecturer");
+                //
+                MainPanel.info.setMyText("<html>Insert Successful<br />Password generated: " + password + "</html>");
+                MainPanel.cl.show(AppFrame.mainPanel, "info");
+                //
+                stmt.close();
+                stmt2.close();
+            } catch (Exception e) {
+                System.out.println(e);
+            } finally {
+                try {
+                    db_conn.close();
+                } catch (Exception e) {
+
+                }
+            }
+        }
+    }
 }

@@ -3,11 +3,15 @@ package pages;
 //imports
 import javax.swing.*;
 import javax.swing.border.*;
+
+import backEnd.Student;
+
 import java.awt.*;
 import java.awt.event.*;
 import styles.*;
 import variables.Variables;
 import gui.*;
+import db.*;
 
 public class AdminAddStudent extends JPanel implements ActionListener {
     // attributes
@@ -169,7 +173,9 @@ public class AdminAddStudent extends JPanel implements ActionListener {
 
         }
         if (e.getSource() == save) {
-
+            // Student stud = new Student(username, gender, email, fName, lName, addr,
+            // contactNo, passwdHash, dob)
+            // DatabaseConnection.addStudent(stud);
         }
 
     }

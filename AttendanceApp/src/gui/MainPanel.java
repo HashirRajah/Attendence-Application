@@ -23,6 +23,7 @@ public class MainPanel extends JPanel {
     public static AttendancePage attendance;
     public static ViewAttendance viewAttd;
     public static AddAttendance addAttd;
+    public static InfoPanel info;
 
     public MainPanel(Theme theme) {
         super();
@@ -36,6 +37,7 @@ public class MainPanel extends JPanel {
         homePage = new HomePage(theme);
         // attendance = new AttendancePage(theme);
         classes = new ListOfClasses(theme);
+        info = new InfoPanel(theme);
         //
         this.setLayout(cl);
         this.setBackground(theme.getMainColor());
@@ -49,6 +51,7 @@ public class MainPanel extends JPanel {
         this.add(homePage, "home");
         // this.add(attendance, "attendance");
         this.add(classes, "list-of-classes");
+        this.add(info, "info");
 
         // show start page
         cl.show(this, Variables.pages[0]);

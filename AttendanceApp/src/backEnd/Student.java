@@ -21,4 +21,5 @@ public class Student extends User {
     public int getNextId() {
         return nextId;
     }
+
 }
