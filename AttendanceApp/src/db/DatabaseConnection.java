@@ -9,6 +9,11 @@ import gui.*;
 import pages.*;
 import java.util.ArrayList;
 import app_version.Configuration;
+import java.io.*;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Formatter;
 
 public class DatabaseConnection {
     static final String URL = new String(
@@ -535,9 +540,12 @@ public class DatabaseConnection {
             try {
                 String tableName = "attendance_" + cls.getId();
                 String sql = "SELECT * FROM " + tableName + ";";
+                String sql2 = "SELECT * FROM class WHERE classId = " + cls.getId() + ";";
                 Statement query = db_conn.createStatement();
                 //
+                Formatter writer = new Formatter("C://downloaded_report.txt");
                 ResultSet attd = query.executeQuery(sql);
+                ResultSet c = query.executeQuery(sql2);
                 ResultSetMetaData meta = attd.getMetaData();
                 //
                 String[] cols = new String[meta.getColumnCount() - 1];
@@ -559,7 +567,41 @@ public class DatabaseConnection {
                     sql = "SELECT * FROM attendance WHERE id = ";
                 }
                 // code here
+                ResultSetMetaData m = c.getMetaData();
+                while(c.next()) {
 
+                    writer.format("%s:%s\n%s:%s\n%s:%s\n%s:%s\n%s:%s\n%s:%s\n%s:%s\n%s:%s\n%s:%s\n%s:%s\n", m.getColumnName(1), c.getString(1), m.getColumnName(2), c.getString(2), m.getColumnName(3), c.getString(3), m.getColumnName(4), c.getString(4), m.getColumnName(5), c.getString(5), m.getColumnName(6), c.getString(6), m.getColumnName(7), c.getString(7), m.getColumnName(8), c.getString(8), m.getColumnName(9), c.getString(9), m.getColumnName(10), c.getString(10));
+
+                }
+
+                writer.format("Student ID");
+
+                for(int i = 0; i < allAttd.length; i++) {
+
+                    writer.format("%10s", allAttd[i].getDate());
+
+                }
+
+                writer.format("\n");
+
+                while(attd.next()) {
+
+                    writer.format("%s", attd.getString(1));
+                    int index = 2;
+
+                    for(int j = 0; j < allAttd.length; j++) {
+
+                         writer.format("%10s", attd.getString(index));
+
+                         index++;
+                    }
+
+                    writer.format("\n");
+
+                }
+
+                writer.close();
+                
                 //
                 query.close();
             } catch (Exception e) {
@@ -603,6 +645,79 @@ public class DatabaseConnection {
 
                 //
                 query.close();
+            } catch (Exception e) {
+                System.out.println(e);
+            } finally {
+                try {
+                    db_conn.close();
+                } catch (Exception e) {
+
+                }
+            }
+        }
+    }
+
+    public static void addStudent(Student stud) {
+        dbConnect();
+        if (db_conn != null) {
+            try {
+                // code here
+                String sql = "INSERT INTO students(fname, lname, gender, address, email, contact, progId, date_of_birth, grLevel, grName) VALUES(?,?,?,?,?,?,?,?,?,?);";
+                PreparedStatement stmt = db_conn.prepareStatement(sql);
+                stmt.setString(1, stud.getFirstName());
+                stmt.setString(2, stud.getLastName());
+                stmt.setString(3, Character.toString(stud.getGender()));
+                stmt.setString(4, stud.getAddress());
+                stmt.setString(5, stud.getEmail());
+                stmt.setString(6, stud.getContactNo());
+                // stmt.setString(7, stud.getType());
+                stmt.setString(8, stud.getDateOfBirth());
+                stmt.setString(9, stud.getDateOfBirth());
+                //
+                String password = PasswordManipulation.generatePassword();
+                MainPanel.info.setMyText("<html>Insert Successful<br />Password generated: " + password + "</html>");
+                MainPanel.cl.show(AppFrame.mainPanel, "info");
+            } catch (Exception e) {
+                System.out.println(e);
+            } finally {
+                try {
+                    db_conn.close();
+                } catch (Exception e) {
+
+                }
+            }
+        }
+    }
+
+    public static void addLecturer(Lecturer lec) {
+        dbConnect();
+        if (db_conn != null) {
+            try {
+                // code here
+                String sql = "INSERT INTO lecturer VALUES(?,?,?,?,?,?,?,?,?)";
+                PreparedStatement stmt = db_conn.prepareStatement(sql);
+                stmt.setString(1, lec.getUsername());
+                stmt.setString(2, lec.getFirstName());
+                stmt.setString(3, lec.getLastName());
+                stmt.setString(4, Character.toString(lec.getGender()));
+                stmt.setString(5, lec.getAddress());
+                stmt.setString(6, lec.getEmail());
+                stmt.setString(7, lec.getContactNo());
+                stmt.setString(8, lec.getType());
+                stmt.setString(9, lec.getDateOfBirth());
+                //
+                String password = PasswordManipulation.generatePassword();
+                String sql2 = "INSERT INTO users VALUES(?,?,?)";
+                PreparedStatement stmt2 = db_conn.prepareStatement(sql2);
+                stmt2.setString(1, lec.getUsername());
+                stmt2.setString(2, PasswordManipulation.hash(password));
+                stmt2.setString(3, "lecturer");
+                //
+                MainPanel.info.setMyText("<html>Insert Successful<br />Password generated: " + password + "</html>");
+                MainPanel.cl.show(AppFrame.mainPanel, "info");
+                //
+                stmt.close();
+                stmt2.close();
             } catch (Exception e) {
                 System.out.println(e);
             } finally {
