@@ -30,10 +30,10 @@ public class ManageUserOptions extends JPanel implements ActionListener {
         Border date_txt_border = BorderFactory.createLineBorder(Color.YELLOW, 0);
 
         // instantiating JButtons
-        add = new ButtonStyle1(theme, Color.GREEN, 0, "<html>+<br />Add</html>", 50, 50);
+        add = new ButtonStyle1(theme, Color.GREEN, 0, "<html>+ Add</html>", 50, 50);
         // add.setPreferredSize(new Dimension(100, 550));
         add.addActionListener(this);
-        remove = new ButtonStyle1(theme, Color.GREEN, 0, "<html>-<br />Remove</html>", 50, 50);
+        remove = new ButtonStyle1(theme, Color.GREEN, 0, "<html>- Remove</html>", 50, 50);
         // remove.setPreferredSize(new Dimension(100, 50));
         remove.addActionListener(this);
 
