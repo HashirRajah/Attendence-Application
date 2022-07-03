@@ -29,7 +29,12 @@ public class InfoPanel extends JPanel {
 
         // login button
         ok.addActionListener(e -> {
-            MainPanel.cl.show(AppFrame.mainPanel, "dashboard");
+            if (!Variables.pagesStack.empty()) {
+                Variables.pagesStack.pop();
+            }
+            if (!Variables.pagesStack.empty()) {
+                MainPanel.cl.show(AppFrame.mainPanel, Variables.pagesStack.peek());
+            }
         });
         // adding contents
         this.add(message, BorderLayout.CENTER);
