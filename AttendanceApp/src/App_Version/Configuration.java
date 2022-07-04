@@ -42,7 +42,7 @@ public class Configuration {
     }
 
     public static void populateAppData() {
-        Variables.appData.put("Name", "TheApp");
+        Variables.appData.put("Name", "MoAttendance");
         Variables.appData.put("Version", "1.0");
         // populate themes hashmap
         for (int i = 0; i < Variables.themes.length; i++) {

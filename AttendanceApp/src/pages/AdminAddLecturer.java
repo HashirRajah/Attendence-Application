@@ -16,7 +16,8 @@ import db.*;
 public class AdminAddLecturer extends JPanel implements ActionListener {
     // attributes
     private JTextField userName, firstName, lastName, address, gender, dateOfBirth, email, ContactNumber, type;
-    private CenteredTextLabel userNameLabel, firstNameLabel, lastNameLabel, addressLabel, genderLabel, dateOfBirthLabel, emailLabel,
+    private CenteredTextLabel userNameLabel, firstNameLabel, lastNameLabel, addressLabel, genderLabel, dateOfBirthLabel,
+            emailLabel,
             ContactNumberLabel, typeLabel, title;
     private ButtonStyle1 save, cancel;
     private JPanel mainPanelContent, buttonPanels;
@@ -185,9 +186,10 @@ public class AdminAddLecturer extends JPanel implements ActionListener {
 
         }
         if (e.getSource() == save) {
-            // Lecturer lec = new Lecturer(username, gender, email, fName, lName, addr,
-            // contactNo, passwordHash, dob, type)
-            // DatabaseConnection.addLecturer(lec);
+            Lecturer lec = new Lecturer(userName.getText(), gender.getText().charAt(0), email.getText(),
+                    firstName.getText(), lastName.getText(), address.getText(),
+                    ContactNumber.getText(), "", dateOfBirth.getText(), type.getText());
+            DatabaseConnection.addLecturer(lec);
         }
 
     }
