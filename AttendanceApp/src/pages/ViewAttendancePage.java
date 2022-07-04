@@ -38,14 +38,14 @@ public class ViewAttendancePage extends JScrollPane {
 
     public class AttendancePanel extends JPanel {
         //
-        private JLabel title, noOfStud, moduleName, moduleCode, LecturerName, week, semester, date, nameOfStudents,
-                attendanceStatus;
+        private JLabel title, noOfStud, moduleName, moduleCode, LecturerName, week, semester, date, search, nameOfStudents,
+                attendanceStatus, filler;
         private ArrayList<String> ids = new ArrayList<String>(), names = new ArrayList<String>();
 
         // private JLabel
 
         private JTextField titletxt, noOfStudtxt, moduleNametxt, moduleCodetxt, LecturerNametxt, weektxt,
-                semestertxt, datetxt;
+                semestertxt, datetxt, searchtxt;
 
         private JPanel moduleDetails, titlePanel, attendanceTable, Container, TableCol, attendanceContainer;
 
@@ -76,7 +76,9 @@ public class ViewAttendancePage extends JScrollPane {
             week = new JLabel("Week");
             semester = new JLabel("Semester");
             date = new JLabel("Date");
+            filler = new JLabel();
 
+            
             nameOfStudents = new JLabel("Name of Students");
             attendanceStatus = new JLabel("Attendance");
             studentID = new JLabel("Student ID");
@@ -129,7 +131,7 @@ public class ViewAttendancePage extends JScrollPane {
             // MODULE DETAILS PANEL
             moduleDetails.setBackground(theme.getMainColor());
             moduleDetails.setBorder(BorderFactory.createEmptyBorder(15, 300, 15, 300));
-            moduleDetails.setLayout(new GridLayout(8, 2, 5, 5));
+            moduleDetails.setLayout(new GridLayout(9, 2, 5, 5));
 
             // ATTENDANCE TABLE
             attendanceContainer = new JPanel();
@@ -221,6 +223,7 @@ public class ViewAttendancePage extends JScrollPane {
             weektxt = new JTextField(String.valueOf(attendance.getWeek()));
             semestertxt = new JTextField(String.valueOf(attendance.getSemester()));
             datetxt = new JTextField(attendance.getDate());
+            searchtxt =  new JTextField("Search Student here");
             //
             // System.out.println(ids.size());
             // System.out.println(attendance.getWeek());
@@ -242,6 +245,7 @@ public class ViewAttendancePage extends JScrollPane {
             weektxt.setBackground(theme.getMainColor());
             semestertxt.setBackground(theme.getMainColor());
             datetxt.setBackground(theme.getMainColor());
+            searchtxt.setBackground(theme.getMainColor());
 
             moduleNametxt.setForeground(theme.getContentColor());
             LecturerNametxt.setForeground(theme.getContentColor());
@@ -250,6 +254,7 @@ public class ViewAttendancePage extends JScrollPane {
             weektxt.setForeground(theme.getContentColor());
             semestertxt.setForeground(theme.getContentColor());
             datetxt.setForeground(theme.getContentColor());
+            searchtxt.setForeground(theme.getContentColor());
             //
             Border border = BorderFactory.createLineBorder(theme.getMainColor(), 2);
             moduleNametxt.setBorder(border);
@@ -259,6 +264,8 @@ public class ViewAttendancePage extends JScrollPane {
             weektxt.setBorder(border);
             semestertxt.setBorder(border);
             datetxt.setBorder(border);
+            searchtxt.setBorder(border);
+            
             // add
             moduleDetails.add(moduleCode);
             moduleDetails.add(moduleCodetxt);
@@ -274,6 +281,8 @@ public class ViewAttendancePage extends JScrollPane {
             moduleDetails.add(weektxt);
             moduleDetails.add(date);
             moduleDetails.add(datetxt);
+            moduleDetails.add(searchtxt);
+            moduleDetails.add(filler);
             //
             moduleDetails.revalidate();
             validate();
