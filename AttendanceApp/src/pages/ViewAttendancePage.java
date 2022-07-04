@@ -15,6 +15,7 @@ import javax.swing.border.Border;
 import javax.swing.BorderFactory;
 import db.*;
 import java.awt.event.*;
+import java.util.regex.*;
 
 public class ViewAttendancePage extends JScrollPane {
     //
@@ -306,8 +307,10 @@ public class ViewAttendancePage extends JScrollPane {
         }
 
         private void searchStud(String nameText, Theme theme) {
+            nameText = nameText.toLowerCase();
+            String regex = "\\.*" + nameText + "\\.*";
             for (int i = 0; i < names.size(); i++) {
-                if (nameText.equalsIgnoreCase(names.get(i))) {
+                if (Pattern.matches(regex, names.get(i).toLowerCase())) {
                     setUpListOfStudents(theme);
                     int n = (1 + (2 * i)) + i;
                     attendanceTable.getComponent(n - 1).setForeground(Color.RED);
