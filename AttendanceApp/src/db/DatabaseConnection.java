@@ -543,9 +543,7 @@ public class DatabaseConnection {
                 String sql2 = "SELECT * FROM class WHERE classId = " + cls.getId() + ";";
                 Statement query = db_conn.createStatement();
                 //
-                Formatter writer = new Formatter("C://downloaded_report.txt");
                 ResultSet attd = query.executeQuery(sql);
-                ResultSet c = query.executeQuery(sql2);
                 ResultSetMetaData meta = attd.getMetaData();
                 //
                 String[] cols = new String[meta.getColumnCount() - 1];
@@ -553,59 +551,62 @@ public class DatabaseConnection {
                 for (int i = 0; i < cols.length; i++) {
                     String[] id = meta.getColumnName(start).split("_");
                     cols[i] = id[1];
+                    // System.out.println(cols[i]);
                     start++;
                 }
+
                 Attendance[] allAttd = new Attendance[cols.length];
-                sql = "SELECT * FROM attendance WHERE id = ";
+                String sql3 = "SELECT * FROM attendance WHERE id = ";
                 for (int i = 0; i < allAttd.length; i++) {
-                    sql += cols[i] + ";";
-                    ResultSet results = query.executeQuery(sql);
+                    sql3 += cols[i] + ";";
+                    // System.out.println(sql3);
+                    ResultSet results = query.executeQuery(sql3);
                     while (results.next()) {
                         allAttd[i] = new Attendance(results.getInt(1), results.getString(2), results.getInt(4),
                                 results.getInt(5), results.getString(6));
                     }
-                    sql = "SELECT * FROM attendance WHERE id = ";
+                    sql3 = "SELECT * FROM attendance WHERE id = ";
                 }
                 // code here
+                ResultSet c = query.executeQuery(sql2);
                 ResultSetMetaData m = c.getMetaData();
-                while(c.next()) {
+                Formatter writer = new Formatter("C:\\Users\\user\\Downloads\\downloaded_report.txt");
 
-                    writer.format("%s:%s\n%s:%s\n%s:%s\n%s:%s\n%s:%s\n%s:%s\n%s:%s\n%s:%s\n%s:%s\n%s:%s\n", m.getColumnName(1), c.getString(1), m.getColumnName(2), c.getString(2), m.getColumnName(3), c.getString(3), m.getColumnName(4), c.getString(4), m.getColumnName(5), c.getString(5), m.getColumnName(6), c.getString(6), m.getColumnName(7), c.getString(7), m.getColumnName(8), c.getString(8), m.getColumnName(9), c.getString(9), m.getColumnName(10), c.getString(10));
-
+                while (c.next()) {
+                    writer.format(
+                            "%s:%15s\n\n%s:%15s\n\n%s:%15s\n\n%s:%15s\n\n%s:%15s\n\n%s:%15s\n\n%s:%15s\n\n%s:%15s\n\n%s:%15s\n\n%s:%15s\n\n",
+                            m.getColumnName(1), c.getString(1), m.getColumnName(2), c.getString(2), m.getColumnName(3),
+                            c.getString(3), m.getColumnName(4), c.getString(4), m.getColumnName(5), c.getString(5),
+                            m.getColumnName(6), c.getString(6), m.getColumnName(7), c.getString(7), m.getColumnName(8),
+                            c.getString(8), m.getColumnName(9), c.getString(9), m.getColumnName(10), c.getString(10));
                 }
-
-                writer.format("Student ID");
-
-                for(int i = 0; i < allAttd.length; i++) {
-
-                    writer.format("%10s", allAttd[i].getDate());
-
+                writer.format("\n\n\n\nStudent ID");
+                for (int i = 0; i < allAttd.length; i++) {
+                    writer.format("%20s", allAttd[i].getDate());
                 }
 
                 writer.format("\n");
-
-                while(attd.next()) {
-
-                    writer.format("%s", attd.getString(1));
+                ResultSet attd2 = query.executeQuery(sql);
+                while (attd2.next()) {
+                    writer.format("%-8s", attd2.getString(1));
                     int index = 2;
-
-                    for(int j = 0; j < allAttd.length; j++) {
-
-                         writer.format("%10s", attd.getString(index));
-
-                         index++;
+                    for (int j = 0; j < allAttd.length; j++) {
+                        writer.format("%20s", attd2.getString(index));
+                        index++;
                     }
-
                     writer.format("\n");
-
                 }
-
+                //
+                MainPanel.info
+                        .setMyText(
+                                "<html>Report downloaded Successfully<br />File path: C:\\Users\\user\\Downloads\\downloaded_report.txt</html>");
+                MainPanel.cl.show(AppFrame.mainPanel, "info");
                 writer.close();
-                
+
                 //
                 query.close();
             } catch (Exception e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
             } finally {
                 try {
                     db_conn.close();
