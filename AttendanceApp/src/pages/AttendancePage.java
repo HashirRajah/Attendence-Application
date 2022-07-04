@@ -192,11 +192,11 @@ public class AttendancePage extends JScrollPane {
             for (int i = 0; i < ids.size(); i++) {
                 JLabel id = new JLabel(ids.get(i));
                 id.setBorder(idBorder);
-                id.setForeground(theme.getFontColor());
+                id.setForeground(theme.getContentColor());
                 id.setFont(new Font("consolas", Font.PLAIN, 25));
                 //
                 JLabel name = new JLabel(names.get(i));
-                name.setForeground(theme.getFontColor());
+                name.setForeground(theme.getContentColor());
                 name.setBorder(idBorder);
                 name.setFont(new Font("consolas", Font.PLAIN, 25));
                 //
@@ -234,13 +234,13 @@ public class AttendancePage extends JScrollPane {
             datetxt.setEditable(false);
             //
             // //textfield design
-            moduleNametxt.setBackground(theme.getMainColor());
-            LecturerNametxt.setBackground(theme.getMainColor());
-            moduleCodetxt.setBackground(theme.getMainColor());
-            noOfStudtxt.setBackground(theme.getMainColor());
-            weektxt.setBackground(theme.getMainColor());
-            semestertxt.setBackground(theme.getMainColor());
-            datetxt.setBackground(theme.getMainColor());
+            moduleNametxt.setBackground(theme.getContentColor());
+            LecturerNametxt.setBackground(theme.getContentColor());
+            moduleCodetxt.setBackground(theme.getContentColor());
+            noOfStudtxt.setBackground(theme.getContentColor());
+            weektxt.setBackground(theme.getContentColor());
+            semestertxt.setBackground(theme.getContentColor());
+            datetxt.setBackground(theme.getContentColor());
 
             moduleNametxt.setForeground(theme.getContentColor());
             LecturerNametxt.setForeground(theme.getContentColor());

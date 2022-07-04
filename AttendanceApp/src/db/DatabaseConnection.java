@@ -714,8 +714,14 @@ public class DatabaseConnection {
                 stmt2.setString(2, PasswordManipulation.hash(password));
                 stmt2.setString(3, "lecturer");
                 //
-                MainPanel.info.setMyText("<html>Insert Successful<br />Password generated: " + password + "</html>");
-                MainPanel.cl.show(AppFrame.mainPanel, "info");
+
+                if (stmt.execute()) {
+                    if (stmt2.execute()) {
+                        MainPanel.info
+                                .setMyText("<html>Insert Successful<br />Password generated: " + password + "</html>");
+                        MainPanel.cl.show(AppFrame.mainPanel, "info");
+                    }
+                }
                 //
                 stmt.close();
                 stmt2.close();

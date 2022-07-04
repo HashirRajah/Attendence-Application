@@ -15,8 +15,8 @@ import db.*;
 
 public class AdminAddLecturer extends JPanel implements ActionListener {
     // attributes
-    private JTextField userName, firstName, lastName, address, gender, email, ContactNumber, type;
-    private CenteredTextLabel userNameLabel, firstNameLabel, lastNameLabel, addressLabel, genderLabel, emailLabel,
+    private JTextField userName, firstName, lastName, address, gender, dateOfBirth, email, ContactNumber, type;
+    private CenteredTextLabel userNameLabel, firstNameLabel, lastNameLabel, addressLabel, genderLabel, dateOfBirthLabel, emailLabel,
             ContactNumberLabel, typeLabel, title;
     private ButtonStyle1 save, cancel;
     private JPanel mainPanelContent, buttonPanels;
@@ -39,6 +39,8 @@ public class AdminAddLecturer extends JPanel implements ActionListener {
         addressLabel.setFont(new Font("consolas", Font.BOLD, 25));
         genderLabel = new CenteredTextLabel("Gender : ", theme.getContentColor());
         genderLabel.setFont(new Font("consolas", Font.BOLD, 25));
+        dateOfBirthLabel = new CenteredTextLabel("Date of Birth : ", theme.getContentColor());
+        dateOfBirthLabel.setFont(new Font("consolas", Font.BOLD, 25));
         emailLabel = new CenteredTextLabel("Email Address : ", theme.getContentColor());
         emailLabel.setFont(new Font("consolas", Font.BOLD, 25));
         ContactNumberLabel = new CenteredTextLabel("Contact Number : ", theme.getContentColor());
@@ -54,6 +56,7 @@ public class AdminAddLecturer extends JPanel implements ActionListener {
         lastName = new JTextField();
         address = new JTextField();
         gender = new JTextField();
+        dateOfBirth = new JTextField();
         email = new JTextField();
         ContactNumber = new JTextField();
         type = new JTextField();
@@ -91,12 +94,19 @@ public class AdminAddLecturer extends JPanel implements ActionListener {
         address.setCaretColor(theme.getFontColor());
         address.setBorder(date_txt_border);
 
-        // address
+        // gender
         gender.setBackground(theme.getMenuColor());
         gender.setForeground(theme.getFontColor());
         gender.setFont(new Font("consolas", Font.BOLD, 20));
         gender.setCaretColor(theme.getFontColor());
         gender.setBorder(date_txt_border);
+
+        // Date of Birth
+        dateOfBirth.setBackground(theme.getMenuColor());
+        dateOfBirth.setForeground(theme.getFontColor());
+        dateOfBirth.setFont(new Font("consolas", Font.BOLD, 20));
+        dateOfBirth.setCaretColor(theme.getFontColor());
+        dateOfBirth.setBorder(date_txt_border);
 
         // address
         email.setBackground(theme.getMenuColor());
@@ -112,7 +122,7 @@ public class AdminAddLecturer extends JPanel implements ActionListener {
         ContactNumber.setCaretColor(theme.getFontColor());
         ContactNumber.setBorder(date_txt_border);
 
-        // address
+        // type
         type.setBackground(theme.getMenuColor());
         type.setForeground(theme.getFontColor());
         type.setFont(new Font("consolas", Font.BOLD, 20));
@@ -144,7 +154,7 @@ public class AdminAddLecturer extends JPanel implements ActionListener {
     private void setUpMainPanel(Theme theme) {
 
         this.mainPanelContent.setBackground(theme.getMainColor());
-        this.mainPanelContent.setLayout(new GridLayout(9, 2, 10, 15));
+        this.mainPanelContent.setLayout(new GridLayout(10, 2, 10, 15));
 
         // addings components to login contents
         this.mainPanelContent.add(userNameLabel);
@@ -157,6 +167,8 @@ public class AdminAddLecturer extends JPanel implements ActionListener {
         this.mainPanelContent.add(address);
         this.mainPanelContent.add(genderLabel);
         this.mainPanelContent.add(gender);
+        this.mainPanelContent.add(dateOfBirthLabel);
+        this.mainPanelContent.add(dateOfBirth);
         this.mainPanelContent.add(emailLabel);
         this.mainPanelContent.add(email);
         this.mainPanelContent.add(ContactNumberLabel);

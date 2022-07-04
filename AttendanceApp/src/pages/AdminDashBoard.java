@@ -23,6 +23,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class AdminDashBoard extends JScrollPane {
     //
@@ -236,7 +238,8 @@ public class AdminDashBoard extends JScrollPane {
             schedule.add(scheduletxt);
 
             date = new JPanel();
-            currentDate = new JLabel("03  JULY  2020");
+            java.util.Date dateNow = new java.util.Date();
+            currentDate = new JLabel(dateNow.toString());
             currentDate.setFont(new Font("Calibri", Font.BOLD, 40));
             currentDate.setForeground(theme.getButtonColor());
             date.setBackground(theme.getTwo());
