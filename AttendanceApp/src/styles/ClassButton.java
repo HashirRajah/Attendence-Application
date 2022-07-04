@@ -15,7 +15,7 @@ import backEnd.*;
 
 public class ClassButton extends JButton {
 
-    private CenteredTextLabel className, classCode;
+    private CenteredTextLabel className, classCode, mode;
     private ImageIcon banner;
     private JPanel p1, p2, p3, p4;
     private Border border, border2;
@@ -36,6 +36,7 @@ public class ClassButton extends JButton {
         p4 = new JPanel();
         className = new CenteredTextLabel(mod.getName(), theme.getFontColor(), Variables.THEME_BUTTON_FONT);
         classCode = new CenteredTextLabel(mod.getModuleCode(), theme.getFontColor(), Variables.THEME_BUTTON_FONT);
+
         //
         p1.setBackground(theme.getMenuColor());
         p2.setBackground(theme.getContentColor());
@@ -89,8 +90,12 @@ public class ClassButton extends JButton {
         p2 = new JPanel();
         p3 = new JPanel();
         p4 = new JPanel();
-        className = new CenteredTextLabel(c.getStartTime(), theme.getFontColor(), Variables.THEME_BUTTON_FONT);
+        className = new CenteredTextLabel("Start Time: " + String.format("%5.5s", c.getStartTime()),
+                theme.getFontColor(),
+                Variables.THEME_BUTTON_FONT);
         classCode = new CenteredTextLabel(c.getType(), theme.getFontColor(), Variables.THEME_BUTTON_FONT);
+        mode = new CenteredTextLabel("Mode: " + c.getMode(), theme.getFontColor(), Variables.THEME_BUTTON_FONT);
+
         //
         p1.setBackground(theme.getMenuColor());
         p2.setBackground(theme.getContentColor());
@@ -100,6 +105,7 @@ public class ClassButton extends JButton {
         className.setHorizontalAlignment(JLabel.LEFT);
         className.setVerticalAlignment(JLabel.BOTTOM);
         p1.add(classCode);
+        p2.add(mode);
         p3.add(className);
 
         this.setText(c.getMode());

@@ -24,12 +24,13 @@ public class Variables {
         // default theme
         public static final Theme DEFAULT = new Theme(Color.DARK_GRAY, Color.WHITE, new Color(245, 245, 245),
                         Color.BLACK, new Color(28, 28, 27),
-                        "Default", Color.BLACK, 
-                        new Color(245, 225, 171), new Color(250, 246, 235), new Color(35, 173, 86) );
+                        "Default", Color.BLACK,
+                        new Color(245, 225, 171), new Color(250, 246, 235), new Color(35, 173, 86));
 
-//  (Color menu, Color font, Color main, Color content, Color hover, String name, Color buttonColor, Color one, Color two, Color three) {
+        // (Color menu, Color font, Color main, Color content, Color hover, String name,
+        // Color buttonColor, Color one, Color two, Color three) {
 
-//                             }
+        // }
 
         // Theme 1
 

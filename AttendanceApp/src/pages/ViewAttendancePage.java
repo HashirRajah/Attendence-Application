@@ -106,15 +106,15 @@ public class ViewAttendancePage extends JScrollPane {
             //
 
             // .setBackground(theme.getMainColor());
-            moduleName.setForeground(theme.getFontColor());
-            LecturerName.setForeground(theme.getFontColor());
-            moduleCode.setForeground(theme.getFontColor());
-            noOfStud.setForeground(theme.getFontColor());
+            moduleName.setForeground(theme.getContentColor());
+            LecturerName.setForeground(theme.getContentColor());
+            moduleCode.setForeground(theme.getContentColor());
+            noOfStud.setForeground(theme.getContentColor());
             // search.setForeground(theme.getFontColor());
 
-            week.setForeground(theme.getFontColor());
-            semester.setForeground(theme.getFontColor());
-            date.setForeground(theme.getFontColor());
+            week.setForeground(theme.getContentColor());
+            semester.setForeground(theme.getContentColor());
+            date.setForeground(theme.getContentColor());
 
             // Panels
             Container = new JPanel();
@@ -186,17 +186,17 @@ public class ViewAttendancePage extends JScrollPane {
             for (int i = 0; i < ids.size(); i++) {
                 JLabel id = new JLabel(ids.get(i));
                 id.setBorder(idBorder);
-                id.setForeground(theme.getFontColor());
+                id.setForeground(theme.getContentColor());
                 id.setFont(new Font("consolas", Font.PLAIN, 25));
                 //
                 JLabel name = new JLabel(names.get(i));
-                name.setForeground(theme.getFontColor());
+                name.setForeground(theme.getContentColor());
                 name.setBorder(idBorder);
                 name.setFont(new Font("consolas", Font.PLAIN, 25));
                 //
                 JLabel presenceStatus = new JLabel(presense.get(i));
                 presenceStatus.setFont(new Font("consolas", Font.PLAIN, 25));
-                presenceStatus.setForeground(theme.getFontColor());
+                presenceStatus.setForeground(theme.getContentColor());
                 presenceStatus.setBorder(idBorder);
 
                 attendanceTable.add(id);
