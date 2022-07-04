@@ -14,6 +14,7 @@ import javax.print.AttributeException;
 import javax.swing.border.Border;
 import javax.swing.BorderFactory;
 import db.*;
+import java.awt.event.*;
 
 public class ViewAttendancePage extends JScrollPane {
     //
@@ -38,7 +39,8 @@ public class ViewAttendancePage extends JScrollPane {
 
     public class AttendancePanel extends JPanel {
         //
-        private JLabel title, noOfStud, moduleName, moduleCode, LecturerName, week, semester, date, search, nameOfStudents,
+        private JLabel title, noOfStud, moduleName, moduleCode, LecturerName, week, semester, date, search,
+                nameOfStudents,
                 attendanceStatus, filler;
         private ArrayList<String> ids = new ArrayList<String>(), names = new ArrayList<String>();
 
@@ -78,7 +80,6 @@ public class ViewAttendancePage extends JScrollPane {
             date = new JLabel("Date");
             filler = new JLabel();
 
-            
             nameOfStudents = new JLabel("Name of Students");
             attendanceStatus = new JLabel("Attendance");
             studentID = new JLabel("Student ID");
@@ -223,7 +224,7 @@ public class ViewAttendancePage extends JScrollPane {
             weektxt = new JTextField(String.valueOf(attendance.getWeek()));
             semestertxt = new JTextField(String.valueOf(attendance.getSemester()));
             datetxt = new JTextField(attendance.getDate());
-            searchtxt =  new JTextField("Search Student here");
+            searchtxt = new JTextField("Search Student here");
             //
             // System.out.println(ids.size());
             // System.out.println(attendance.getWeek());
@@ -264,8 +265,9 @@ public class ViewAttendancePage extends JScrollPane {
             weektxt.setBorder(border);
             semestertxt.setBorder(border);
             datetxt.setBorder(border);
-            searchtxt.setBorder(border);
-            
+            searchtxt.setBorder(BorderFactory.createLineBorder(theme.getContentColor(), 3));
+            searchtxt.addKeyListener(new KeyHandler());
+
             // add
             moduleDetails.add(moduleCode);
             moduleDetails.add(moduleCodetxt);
@@ -303,5 +305,42 @@ public class ViewAttendancePage extends JScrollPane {
             names.clear();
         }
 
+        private void searchStud(String nameText, Theme theme) {
+            for (int i = 0; i < names.size(); i++) {
+                if (nameText.equalsIgnoreCase(names.get(i))) {
+                    setUpListOfStudents(theme);
+                    int n = (1 + (2 * i)) + i;
+                    attendanceTable.getComponent(n - 1).setForeground(Color.RED);
+                    attendanceTable.getComponent(n).setForeground(Color.RED);
+                    attendanceTable.getComponent(n + 1).setForeground(Color.RED);
+                    // System.out.println("works");
+                    break;
+                }
+            }
+        }
+
+        private class KeyHandler implements KeyListener {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                // TODO Auto-generated method stub
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    searchStud(searchtxt.getText(), Variables.activeTheme);
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+        }
     }
 }
