@@ -64,7 +64,7 @@ public class LoginPage extends JPanel {
         this.pass_text = new JPasswordField();
 
         // textfield design
-        user_text.setBackground(theme.getMenuColor());
+        user_text.setBackground(theme.getThree());
         user_text.setForeground(theme.getFontColor());
         user_text.setFont(new Font("consolas", Font.BOLD, 20));
         user_text.setCaretColor(theme.getFontColor());
@@ -74,7 +74,7 @@ public class LoginPage extends JPanel {
 
         user_text.setBorder(user_text_border);
 
-        pass_text.setBackground(theme.getMenuColor());
+        pass_text.setBackground(theme.getThree());
         pass_text.setForeground(theme.getFontColor());
         pass_text.setFont(new Font("consolas", Font.PLAIN, 15));
         pass_text.setCaretColor(theme.getFontColor());

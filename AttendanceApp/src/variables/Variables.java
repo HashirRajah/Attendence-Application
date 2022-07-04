@@ -21,11 +21,29 @@ public class Variables {
         // all themes
         // public Theme(Color menu, Color font, Color main, Color content, Color hover,
         // String name)
+
         // default theme
-        public static final Theme DEFAULT = new Theme(Color.DARK_GRAY, Color.WHITE, new Color(245, 245, 245),
-                        Color.BLACK, new Color(28, 28, 27),
-                        "Default", Color.BLACK,
-                        new Color(245, 225, 171), new Color(250, 246, 235), new Color(35, 173, 86));
+        //  (Color menu, Color font, Color main, Color content, Color hover, String name, Color buttonColor, Color one, Color two, Color three)
+        // public static final Theme DEFAULT = new Theme(Color.DARK_GRAY, Color.WHITE, new Color(245, 245, 245),
+        //                 Color.BLACK, new Color(28, 28, 27),
+        //                 "Default", Color.BLACK, 
+        //                 new Color(245, 225, 171), new Color(250, 246, 235), new Color(35, 173, 86) );
+
+         public static final Theme DEFAULT = new Theme(
+                new Color(45, 52, 61), 
+                Color.WHITE, 
+                new Color(255, 251, 214),
+                 Color.BLACK, 
+                new Color(28, 28, 27),
+                "Default", 
+                new Color(120, 85, 56), 
+                 new Color(245, 225, 171), new Color(250, 246, 235), new Color(130, 122, 116) );
+//  (Color menu, Color font, Color main, Color content, Color hover, String name, Color buttonColor, Color one, Color two, Color three) {
+        // default theme
+        // public static final Theme DEFAULT = new Theme(Color.DARK_GRAY, Color.WHITE, new Color(245, 245, 245),
+        //                 Color.BLACK, new Color(28, 28, 27),
+        //                 "Default", Color.BLACK,
+        //                 new Color(245, 225, 171), new Color(250, 246, 235), new Color(35, 173, 86));
 
         // (Color menu, Color font, Color main, Color content, Color hover, String name,
         // Color buttonColor, Color one, Color two, Color three) {
@@ -34,6 +52,21 @@ public class Variables {
 
         // Theme 1
 
+        public static final Theme DEFAULT_2 = new Theme(
+       
+        new Color(45, 52, 61),
+        new Color(0, 0, 0),
+        new Color(255, 248, 222),
+        Color.WHITE,
+        new Color(0, 48, 40),
+        "Default2",
+        new Color(35, 173, 86),
+
+        new Color(24, 37, 46), new Color(24, 37, 46), new Color(130, 122, 116));
+
+
+
+
         public static final Theme BUMBLEBEE = new Theme(new Color(13, 14, 15),
                         new Color(244, 180, 10),
                         new Color(26, 27, 31),
@@ -41,7 +74,7 @@ public class Variables {
                         new Color(28, 28, 27),
                         "Bumblebee",
                         new Color(244, 180, 10),
-                        new Color(26, 27, 31), new Color(26, 27, 31), new Color(35, 173, 86));
+                        new Color(26, 27, 31), new Color(26, 27, 31), new Color(13, 14, 15));
 
         public static final Theme LAVENDER = new Theme(new Color(74, 56, 115),
                         Color.WHITE,
@@ -50,7 +83,7 @@ public class Variables {
                         new Color(22, 10, 68),
                         "Lavender",
                         new Color(12, 5, 35),
-                        new Color(42, 28, 73), new Color(42, 28, 73), new Color(35, 173, 86));
+                        new Color(42, 28, 73), new Color(42, 28, 73), new Color(74, 56, 115));
 
         public static final Theme JUNGLE_FURY = new Theme(new Color(38, 58, 71),
                         new Color(35, 173, 86),
@@ -59,7 +92,7 @@ public class Variables {
                         new Color(0, 48, 40),
                         "Jungle_fury",
                         new Color(35, 173, 86),
-                        new Color(24, 37, 46), new Color(24, 37, 46), new Color(35, 173, 86));
+                        new Color(24, 37, 46), new Color(24, 37, 46), new Color(38, 58, 71));
 
         public static final Theme BLUEBERRY = new Theme(new Color(13, 25, 51),
                         new Color(156, 195, 255),
@@ -68,7 +101,7 @@ public class Variables {
                         new Color(38, 69, 135),
                         "Blueberry",
                         new Color(52, 100, 201),
-                        new Color(26, 49, 97), new Color(26, 49, 97), new Color(35, 173, 86));
+                        new Color(26, 49, 97), new Color(26, 49, 97), new Color(13, 25, 51));
 
         public static final Theme CANDY = new Theme(new Color(64, 62, 64),
                         new Color(230, 78, 139),
@@ -77,7 +110,7 @@ public class Variables {
                         new Color(51, 40, 43),
                         "Candy",
                         new Color(230, 78, 139),
-                        new Color(33, 32, 33), new Color(33, 32, 33), new Color(35, 173, 86));
+                        new Color(33, 32, 33), new Color(33, 32, 33), new Color(64, 62, 64));
 
         public static final Theme MIDNIGHT_RED = new Theme(new Color(48, 3, 3),
                         new Color(245, 245, 245),
@@ -86,7 +119,7 @@ public class Variables {
                         new Color(130, 59, 59),
                         "Midnight_red",
                         new Color(130, 59, 59),
-                        new Color(97, 31, 31), new Color(97, 31, 31), new Color(35, 173, 86));
+                        new Color(97, 31, 31), new Color(97, 31, 31), new Color(48, 3, 3));
 
         public static final Theme GREEN = new Theme(new Color(32, 145, 122),
                         new Color(3, 28, 23),
@@ -95,7 +128,7 @@ public class Variables {
                         new Color(84, 240, 216),
                         "Green",
                         new Color(84, 240, 216),
-                        new Color(16, 156, 112), new Color(16, 156, 112), new Color(35, 173, 86));
+                        new Color(16, 156, 112), new Color(16, 156, 112), new Color(32, 145, 122));
 
         public static final Theme DEVESH_SPECIAL_THEME = new Theme(new Color(69, 12, 37),
                         new Color(78, 140, 89),
@@ -104,7 +137,7 @@ public class Variables {
                         new Color(200, 10, 100),
                         "Devesh_Special_Theme",
                         new Color(210, 90, 100),
-                        new Color(120, 20, 15), new Color(120, 20, 15), new Color(35, 173, 86));
+                        new Color(120, 20, 15), new Color(120, 20, 15), new Color(69, 12, 37));
 
         // array and hashmap of themes
         public static Theme[] themes = new Theme[] { DEFAULT, MIDNIGHT_RED, CANDY, BLUEBERRY, JUNGLE_FURY, LAVENDER,
