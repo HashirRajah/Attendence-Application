@@ -572,8 +572,10 @@ public class DatabaseConnection {
                 // code here
                 ResultSet c = query.executeQuery(sql2);
                 ResultSetMetaData m = c.getMetaData();
-                Formatter writer = new Formatter("C:\\Users\\user\\Downloads\\downloaded_report.txt");
-                Formatter writer2 = new Formatter("C:\\Users\\user\\Downloads\\downloaded_report_csv.csv");
+                String url = System.getProperty("user.home");
+                Formatter writer = new Formatter(url + "\\downloaded_report.txt");
+                url += "\\downloaded_report_csv.csv";
+                Formatter writer2 = new Formatter(url);
                 while (c.next()) {
                     writer.format(
                             "%s:%15s\n\n%s:%15s\n\n%s:%15s\n\n%s:%15s\n\n%s:%15s\n\n%s:%15s\n\n%s:%15s\n\n%s:%15s\n\n%s:%15s\n\n%s:%15s\n\n",
@@ -614,11 +616,12 @@ public class DatabaseConnection {
                 //
                 MainPanel.info
                         .setMyText(
-                                "<html>Report downloaded Successfully<br />File path: C:\\Users\\user\\Downloads\\downloaded_report_csv.csv</html>");
+                                "<html>Report downloaded Successfully<br />File path: " + url + "</html>");
                 MainPanel.cl.show(AppFrame.mainPanel, "info");
                 writer.close();
                 writer2.close();
-                java.awt.Desktop.getDesktop().browse(new URI("C:/Users/user/Downloads/downloaded_report_csv.csv"));
+                url = url.replace('\\', '/');
+                java.awt.Desktop.getDesktop().browse(new URI(url));
 
                 //
                 query.close();
