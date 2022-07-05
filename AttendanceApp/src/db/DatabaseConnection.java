@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Formatter;
+import java.net.URI;
 
 public class DatabaseConnection {
     static final String URL = new String(
@@ -612,10 +613,11 @@ public class DatabaseConnection {
                 //
                 MainPanel.info
                         .setMyText(
-                                "<html>Report downloaded Successfully<br />File path: C:\\Users\\user\\Downloads\\downloaded_report.txt</html>");
+                                "<html>Report downloaded Successfully<br />File path: C:\\Users\\user\\Downloads\\downloaded_report_csv.csv</html>");
                 MainPanel.cl.show(AppFrame.mainPanel, "info");
                 writer.close();
                 writer2.close();
+                java.awt.Desktop.getDesktop().browse(new URI("C:/Users/user/Downloads/downloaded_report_csv.csv"));
 
                 //
                 query.close();
