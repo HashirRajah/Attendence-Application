@@ -15,6 +15,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Formatter;
 import java.net.URI;
+import java.util.HashMap;
 
 public class DatabaseConnection {
     static final String URL = new String(
@@ -584,7 +585,7 @@ public class DatabaseConnection {
                             c.getString(8), m.getColumnName(9), c.getString(9), m.getColumnName(10), c.getString(10));
                     //
                     writer2.format(
-                            "%s,%s\n%s:%15s\n\n%s,%s\n%s,%s\n%s,%s\n%s,%s\n%s,%s\n%s,%s\n%s,%s\n%s,%s\n",
+                            "%s,%s\n%s,%15s\n\n%s,%s\n%s,%s\n%s,%s\n%s,%s\n%s,%s\n%s,%s\n%s,%s\n%s,%s\n",
                             m.getColumnName(1), c.getString(1), m.getColumnName(2), c.getString(2), m.getColumnName(3),
                             c.getString(3), m.getColumnName(4), c.getString(4), m.getColumnName(5), c.getString(5),
                             m.getColumnName(6), c.getString(6), m.getColumnName(7), c.getString(7), m.getColumnName(8),
@@ -755,4 +756,113 @@ public class DatabaseConnection {
             }
         }
     }
+
+    public static void downloadDefaulterList(Classes cls) {
+        dbConnect();
+        if (db_conn != null) {
+            try {
+                int absenceLimitPercentage = 40;
+                String tableName = "attendance_" + cls.getId();
+                String sql = "SELECT * FROM " + tableName + ";";
+                String sql2 = "SELECT * FROM class WHERE classId = " + cls.getId() + ";";
+                Statement query = db_conn.createStatement();
+                //
+                ResultSet attd = query.executeQuery(sql);
+                ResultSetMetaData meta = attd.getMetaData();
+                //
+                ResultSet attd3 = query.executeQuery(sql);
+                int size = 0;
+                while (attd3.next()) {
+                    size++;
+                }
+                int[] ids = new int[size], absence = new int[size];
+                //
+                String[] cols = new String[meta.getColumnCount() - 1];
+                int start = 2;
+                for (int i = 0; i < cols.length; i++) {
+                    String[] id = meta.getColumnName(start).split("_");
+                    cols[i] = id[1];
+                    // System.out.println(cols[i]);
+                    start++;
+                }
+
+                ResultSet attd2 = query.executeQuery(sql);
+                int index = 0;
+                while (attd2.next()) {
+                    ids[index] = attd2.getInt(1);
+                    index++;
+                }
+
+                String sql3 = "SELECT studId FROM " + tableName + " WHERE attd_";
+                for (int i = 0; i < cols.length; i++) {
+                    sql3 += cols[i] + " = 'absent';";
+                    // System.out.println(sql3);
+                    ResultSet results = query.executeQuery(sql3);
+                    while (results.next()) {
+                        for (int j = 0; j < ids.length; j++) {
+                            if (ids[j] == results.getInt(1)) {
+                                absence[j]++;
+                                break;
+                            }
+                        }
+                    }
+                    sql3 = "SELECT studId FROM " + tableName + " WHERE attd_";
+                }
+                // code here
+                ResultSet c = query.executeQuery(sql2);
+                ResultSetMetaData m = c.getMetaData();
+                String url = System.getProperty("user.home") + "\\downloaded_defaulter_list_csv.csv";
+                Formatter writer2 = new Formatter(url);
+                while (c.next()) {
+                    writer2.format(
+                            "%s,%s\n%s,%15s\n\n%s,%s\n%s,%s\n%s,%s\n%s,%s\n%s,%s\n%s,%s\n%s,%s\n%s,%s\n",
+                            m.getColumnName(1), c.getString(1), m.getColumnName(2), c.getString(2), m.getColumnName(3),
+                            c.getString(3), m.getColumnName(4), c.getString(4), m.getColumnName(5), c.getString(5),
+                            m.getColumnName(6), c.getString(6), m.getColumnName(7), c.getString(7), m.getColumnName(8),
+                            c.getString(8), m.getColumnName(9), c.getString(9), m.getColumnName(10), c.getString(10));
+                }
+                ArrayList<ArrayList<Integer>> defaulterList = new ArrayList<ArrayList<Integer>>();
+
+                for (int i = 0; i < ids.length; i++) {
+                    // System.out.println();
+                    if ((int) ((absence[i] / (float) cols.length) * 100) > absenceLimitPercentage) {
+                        // System.out.println("hey");
+                        ArrayList<Integer> badStud = new ArrayList<Integer>();
+                        badStud.add(ids[i]);
+                        badStud.add(absence[i]);
+                        badStud.add((int) ((absence[i] / (float) cols.length) * 100));
+                        defaulterList.add(badStud);
+                    }
+                }
+
+                writer2.format("Student ID,absences,percentage_absences\n");
+                for (int i = 0; i < defaulterList.size(); i++) {
+                    writer2.format("%d,%d,%d\n", defaulterList.get(i).get(0), defaulterList.get(i).get(1),
+                            defaulterList.get(i).get(2));
+                }
+
+                //
+                MainPanel.info
+                        .setMyText(
+                                "<html>Report downloaded Successfully<br />File path: " + url + "</html>");
+                MainPanel.cl.show(AppFrame.mainPanel, "info");
+
+                writer2.close();
+                url = url.replace('\\', '/');
+                java.awt.Desktop.getDesktop().browse(new URI(url));
+
+                //
+                query.close();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            } finally {
+                try {
+                    db_conn.close();
+                } catch (Exception e) {
+
+                }
+            }
+        }
+    }
+
 }

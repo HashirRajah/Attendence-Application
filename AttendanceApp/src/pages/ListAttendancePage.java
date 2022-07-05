@@ -82,10 +82,10 @@ public class ListAttendancePage extends JScrollPane {
                     DatabaseConnection.downloadReport(cls);
                 });
                 this.allView.add(btn);
-                //defaulter list
+                // defaulter list
                 ButtonStyle1 btn2 = new ButtonStyle1(theme, theme.getContentColor(), 3, "Download Defaulter List");
                 btn2.addActionListener(e -> {
-                    //DatabaseConnection.downloadReport(cls);
+                    DatabaseConnection.downloadDefaulterList(cls);
                 });
                 this.allView.add(btn2);
             }
