@@ -145,6 +145,9 @@ public class ViewAttendancePage extends JScrollPane {
             TableCol.add(studentID);
             TableCol.add(nameOfStudents);
             TableCol.add(attendanceStatus);
+            studentID.setForeground(theme.getFontColor());
+            nameOfStudents.setForeground(theme.getFontColor());
+            attendanceStatus.setForeground(theme.getFontColor());
 
             TableCol.setBackground(theme.getMenuColor());
             TableCol.setForeground(theme.getFontColor());

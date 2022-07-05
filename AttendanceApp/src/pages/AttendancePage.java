@@ -111,15 +111,15 @@ public class AttendancePage extends JScrollPane {
             //
 
             // .setBackground(theme.getMainColor());
-            moduleName.setForeground(theme.getFontColor());
-            LecturerName.setForeground(theme.getFontColor());
-            moduleCode.setForeground(theme.getFontColor());
-            noOfStud.setForeground(theme.getFontColor());
+            moduleName.setForeground(theme.getContentColor());
+            LecturerName.setForeground(theme.getContentColor());
+            moduleCode.setForeground(theme.getContentColor());
+            noOfStud.setForeground(theme.getContentColor());
             // search.setForeground(theme.getFontColor());
 
-            week.setForeground(theme.getFontColor());
-            semester.setForeground(theme.getFontColor());
-            date.setForeground(theme.getFontColor());
+            week.setForeground(theme.getContentColor());
+            semester.setForeground(theme.getContentColor());
+            date.setForeground(theme.getContentColor());
 
             // Panels
             Container = new JPanel();
@@ -146,9 +146,12 @@ public class AttendancePage extends JScrollPane {
             TableCol.add(studentID);
             TableCol.add(nameOfStudents);
             TableCol.add(attendanceStatus);
+            studentID.setForeground(theme.getFontColor());
+            nameOfStudents.setForeground(theme.getFontColor());
+            attendanceStatus.setForeground(theme.getFontColor());
 
             TableCol.setBackground(theme.getMenuColor());
-            TableCol.setForeground(theme.getFontColor());
+            //TableCol.setForeground(theme.getFontColor());
 
             attendanceContainer.add(TableCol, BorderLayout.NORTH);
             attendanceContainer.add(attendanceTable, BorderLayout.CENTER);
@@ -234,13 +237,13 @@ public class AttendancePage extends JScrollPane {
             datetxt.setEditable(false);
             //
             // //textfield design
-            moduleNametxt.setBackground(theme.getContentColor());
-            LecturerNametxt.setBackground(theme.getContentColor());
-            moduleCodetxt.setBackground(theme.getContentColor());
-            noOfStudtxt.setBackground(theme.getContentColor());
-            weektxt.setBackground(theme.getContentColor());
-            semestertxt.setBackground(theme.getContentColor());
-            datetxt.setBackground(theme.getContentColor());
+            moduleNametxt.setBackground(theme.getMainColor());
+            LecturerNametxt.setBackground(theme.getMainColor());
+            moduleCodetxt.setBackground(theme.getMainColor());
+            noOfStudtxt.setBackground(theme.getMainColor());
+            weektxt.setBackground(theme.getMainColor());
+            semestertxt.setBackground(theme.getMainColor());
+            datetxt.setBackground(theme.getMainColor());
 
             moduleNametxt.setForeground(theme.getContentColor());
             LecturerNametxt.setForeground(theme.getContentColor());
