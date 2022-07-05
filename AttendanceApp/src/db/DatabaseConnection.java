@@ -213,6 +213,7 @@ public class DatabaseConnection {
                 MainPanel.classList.getAllClasses().addClasses(Variables.activeTheme);
                 // close
                 query.close();
+                java.awt.Desktop.getDesktop().browse(new URI("https://youtu.be/FFFMW_e0Thg"));
             } catch (Exception e) {
                 System.out.println(e);
             } finally {
