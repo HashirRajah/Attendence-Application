@@ -72,7 +72,7 @@ public class ListAttendancePage extends JScrollPane {
             this.allView.removeAll();
             listBtn = new ArrayList<ViewButton>();
             //
-            int stop = ((Variables.userType.equals("admin")) ? attdList.size() + 1 : attdList.size());
+            int stop = ((Variables.userType.equals("admin")) ? attdList.size() + 2 : attdList.size());
             //
             this.allView.setLayout(new GridLayout(stop, 1, 0, 10));
             //
@@ -82,6 +82,12 @@ public class ListAttendancePage extends JScrollPane {
                     DatabaseConnection.downloadReport(cls);
                 });
                 this.allView.add(btn);
+                //defaulter list
+                ButtonStyle1 btn2 = new ButtonStyle1(theme, theme.getContentColor(), 3, "Download Defaulter List");
+                btn2.addActionListener(e -> {
+                    //DatabaseConnection.downloadReport(cls);
+                });
+                this.allView.add(btn2);
             }
             //
             for (int i = 0; i < attdList.size(); i++) {
