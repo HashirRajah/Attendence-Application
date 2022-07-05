@@ -17,7 +17,7 @@ public class StartPage extends JPanel implements ActionListener {
     private JPanel loginLabel;
     private ButtonStyle1 login;
     //
-    private String message = new String("Login or idk");
+    private String message = new String("Welcome to MoAttendance. Please log in");
     private String messageAnimation = new String("");
     private int position = 0;
     // timer

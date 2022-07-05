@@ -12,7 +12,8 @@ import gui.*;
 import java.util.ArrayList;
 import javax.print.AttributeException;
 import javax.swing.border.Border;
-import javax.swing.BorderFactory;
+import javax.swing.border.LineBorder;
+
 import db.*;
 import java.awt.event.*;
 import java.util.regex.*;
@@ -319,6 +320,10 @@ public class ViewAttendancePage extends JScrollPane {
                     attendanceTable.getComponent(n - 1).setForeground(Color.RED);
                     attendanceTable.getComponent(n).setForeground(Color.RED);
                     attendanceTable.getComponent(n + 1).setForeground(Color.RED);
+
+                    ((JComponent) attendanceTable.getComponent(n - 1)).setBorder(new LineBorder(Color.RED, 3));
+                    ((JComponent) attendanceTable.getComponent(n)).setBorder(new LineBorder(Color.RED, 3));
+                    ((JComponent) attendanceTable.getComponent(n+1)).setBorder(new LineBorder(Color.RED, 3));
                     // System.out.println("works");
                     break;
                 }

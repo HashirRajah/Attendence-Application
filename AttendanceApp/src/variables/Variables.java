@@ -30,7 +30,7 @@ public class Variables {
         //                 new Color(245, 225, 171), new Color(250, 246, 235), new Color(35, 173, 86) );
 
          public static final Theme DEFAULT = new Theme(
-                new Color(45, 52, 61), 
+                new Color(56, 53, 50), 
                 Color.WHITE, 
                 new Color(255, 251, 214),
                  Color.BLACK, 
